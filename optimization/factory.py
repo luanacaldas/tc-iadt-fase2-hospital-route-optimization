@@ -9,6 +9,8 @@ from typing import Optional
 from hospital_routes.core.interfaces import BaseOptimizer
 from hospital_routes.core.exceptions import InvalidConfigurationError
 from hospital_routes.optimization.genetic_algorithm import GeneticAlgorithmOptimizer
+from hospital_routes.optimization.greedy_optimizer import GreedyOptimizer
+from hospital_routes.optimization.simulated_annealing_optimizer import SimulatedAnnealingOptimizer
 from hospital_routes.optimization.initialization_strategy import (
     InitialPopulationStrategy,
     RandomInitializationStrategy,
@@ -47,14 +49,14 @@ class OptimizerFactory:
         Raises:
             InvalidConfigurationError: Se o tipo de otimizador não for suportado
         """
+        config = config or {}
+        
+        # Fitness weights (compartilhado entre algoritmos)
+        fitness_weights = config.get("fitness_weights")
+        if fitness_weights is None:
+            fitness_weights = FitnessWeights()
+        
         if optimizer_type == "genetic_algorithm":
-            config = config or {}
-            
-            # Fitness weights
-            fitness_weights = config.get("fitness_weights")
-            if fitness_weights is None:
-                fitness_weights = FitnessWeights()
-            
             # Initialization strategy
             strategy_name = config.get("initialization_strategy", "random")
             if strategy_name == "nearest_neighbor":
@@ -68,8 +70,19 @@ class OptimizerFactory:
                 fitness_weights=fitness_weights,
                 initialization_strategy=initialization_strategy,
             )
+        elif optimizer_type == "greedy":
+            return GreedyOptimizer(fitness_weights=fitness_weights)
+        elif optimizer_type == "simulated_annealing":
+            sa_config = config.get("sa_config", {})
+            return SimulatedAnnealingOptimizer(
+                fitness_weights=fitness_weights,
+                initial_temperature=sa_config.get("initial_temperature", 1000.0),
+                cooling_rate=sa_config.get("cooling_rate", 0.95),
+                min_temperature=sa_config.get("min_temperature", 0.1),
+            )
         else:
             raise InvalidConfigurationError(
-                f"Tipo de otimizador não suportado: {optimizer_type}"
+                f"Tipo de otimizador não suportado: {optimizer_type}. "
+                f"Opções: genetic_algorithm, greedy, simulated_annealing"
             )
 
