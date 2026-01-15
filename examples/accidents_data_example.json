@@ -1,0 +1,88 @@
+{
+  "accidents": [
+    {
+      "location": [-23.5200, -46.6200],
+      "accidents_count": 25,
+      "severity": 4.2,
+      "risk_level": "high",
+      "road_name": "Marginal Tietê - Sentido Leste"
+    },
+    {
+      "location": [-23.5250, -46.6250],
+      "accidents_count": 18,
+      "severity": 3.8,
+      "risk_level": "high",
+      "road_name": "Marginal Tietê - Sentido Oeste"
+    },
+    {
+      "location": [-23.5550, -46.6600],
+      "accidents_count": 15,
+      "severity": 3.5,
+      "risk_level": "medium",
+      "road_name": "Av. Paulista - Próximo ao MASP"
+    },
+    {
+      "location": [-23.5500, -46.6550],
+      "accidents_count": 12,
+      "severity": 3.2,
+      "risk_level": "medium",
+      "road_name": "Av. Paulista - Próximo à Consolação"
+    },
+    {
+      "location": [-23.5600, -46.6700],
+      "accidents_count": 20,
+      "severity": 4.0,
+      "risk_level": "high",
+      "road_name": "Av. Rebouças - Cruzamento com Av. Paulista"
+    },
+    {
+      "location": [-23.5450, -46.6400],
+      "accidents_count": 10,
+      "severity": 2.8,
+      "risk_level": "medium",
+      "road_name": "Rua Augusta - Centro"
+    },
+    {
+      "location": [-23.5400, -46.6100],
+      "accidents_count": 8,
+      "severity": 2.5,
+      "risk_level": "low",
+      "road_name": "Av. Celso Garcia - Tatuapé"
+    },
+    {
+      "location": [-23.5350, -46.6050],
+      "accidents_count": 6,
+      "severity": 2.2,
+      "risk_level": "low",
+      "road_name": "Rua Tatuapé - Zona Leste"
+    },
+    {
+      "location": [-23.5900, -46.6900],
+      "accidents_count": 14,
+      "severity": 3.3,
+      "risk_level": "medium",
+      "road_name": "Av. Morumbi - Próximo ao Shopping"
+    },
+    {
+      "location": [-23.5850, -46.6850],
+      "accidents_count": 11,
+      "severity": 3.0,
+      "risk_level": "medium",
+      "road_name": "Av. Morumbi - Zona Sul"
+    },
+    {
+      "location": [-23.5928, -46.6889],
+      "accidents_count": 5,
+      "severity": 2.0,
+      "risk_level": "low",
+      "road_name": "Av. Albert Einstein - Hospital"
+    },
+    {
+      "location": [-23.5560, -46.6566],
+      "accidents_count": 9,
+      "severity": 2.7,
+      "risk_level": "low",
+      "road_name": "Rua Dona Adma Jafet - Bela Vista"
+    }
+  ]
+}

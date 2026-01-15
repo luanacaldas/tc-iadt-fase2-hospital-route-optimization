@@ -1,0 +1,34 @@
+# Core Dependencies
+numpy>=1.24.0
+deap>=1.4.1
+
+# Visualization
+folium>=0.14.0
+matplotlib>=3.7.0
+
+# LLM Support (Opcional - escolha uma)
+# Ollama (recomendado - gratuito e local)
+ollama>=0.1.0
+# OU LangChain com Ollama
+# langchain-ollama>=0.1.0
+
+# OpenAI (opcional - requer API key paga)
+# langchain-openai>=0.1.0
+# langchain>=0.1.0
+
+# Utilities
+python-dotenv>=1.0.0
+
+# Exportação de Relatórios (TODAS GRATUITAS)
+# PDF - WeasyPrint (gratuito, open source)
+weasyprint>=60.0
+# Excel - pandas e openpyxl (gratuitos, open source)
+pandas>=2.0.0
+openpyxl>=3.1.0
+
+# Development Dependencies (instalar com: pip install -r requirements-dev.txt)
+# pytest>=7.4.0
+# pytest-cov>=4.1.0
+# black>=23.7.0
+# flake8>=6.1.0
+# mypy>=1.5.0

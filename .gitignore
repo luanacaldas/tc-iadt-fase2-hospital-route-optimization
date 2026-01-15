@@ -1,0 +1,76 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment (pastas de dependências do venv)
+bin/
+Lib/
+Scripts/  # Pasta do venv (binários Python)
+scripts/  # Pasta do venv (binários Python)
+Include/
+share/
+pyvenv.cfg
+*.exe
+
+# Pacotes Python instalados localmente
+blinker/
+blinker-*/
+click/
+click-*/
+colorama/
+colorama-*/
+flask/
+flask-*/
+flask_cors/
+flask_cors-*/
+itsdangerous/
+itsdangerous-*/
+jinja2/
+jinja2-*/
+markupsafe/
+markupsafe-*/
+werkzeug/
+werkzeug-*/
+
+# Arquivos de output gerados
+output/*.html
+output/*.txt
+output/*.json
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Env files
+.env
+.env.local
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# pytest
+.pytest_cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+# mypy
+.mypy_cache/
+
+# Git
+.git/

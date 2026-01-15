@@ -1,0 +1,3434 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Rotas Hospitalares - Chatbot Inteligente</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ============================================
+           DESIGN SYSTEM - VARIÁVEIS CSS
+           ============================================ */
+        :root {
+            /* Tipografia */
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-size-xs: 11px;
+            --font-size-sm: 12px;
+            --font-size-base: 14px;
+            --font-size-lg: 16px;
+            --font-size-xl: 18px;
+
+            /* Pesos */
+            --font-normal: 400;
+            --font-medium: 500;
+            --font-semibold: 600;
+            --font-bold: 700;
+
+            /* Cores Neutras */
+            --color-white: #FFFFFF;
+            --color-gray-50: #F9FAFB;
+            --color-gray-100: #F3F4F6;
+            --color-gray-200: #E5E7EB;
+            --color-gray-300: #D1D5DB;
+            --color-gray-400: #9CA3AF;
+            --color-gray-500: #6B7280;
+            --color-gray-600: #4B5563;
+            --color-gray-700: #374151;
+            --color-gray-800: #1F2937;
+            --color-gray-900: #111827;
+
+            /* Cores Semânticas */
+            --color-primary: #2563EB;
+            --color-primary-hover: #1D4ED8;
+            --color-success: #10B981;
+            --color-warning: #F59E0B;
+            --color-danger: #EF4444;
+
+            /* Cores Legacy (compatibilidade) */
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* ============================================
+           HEADER PROFISSIONAL - 3 SEÇÕES
+           ============================================ */
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 10px 24px;
+            /* Reduzido de 16px para 10px - versão slim */
+            background: var(--color-white);
+            border-bottom: 1px solid var(--color-gray-200);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            font-family: var(--font-family);
+        }
+
+        /* ============================================
+           SEÇÃO 1: BRANDING (Esquerda)
+           ============================================ */
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .header-title {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .header-title-main {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-bold);
+            color: var(--color-gray-900);
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-title-main i {
+            font-size: 18px;
+            /* Reduzido de 20px para 18px - versão slim */
+            line-height: 1;
+            color: var(--color-primary);
+        }
+
+        .header-title-sub {
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-normal);
+            color: var(--color-gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ============================================
+           SEPARADORES VISUAIS
+           ============================================ */
+
+        .header-divider {
+            width: 1px;
+            height: 28px;
+            /* Reduzido de 32px para 28px - versão slim */
+            background: linear-gradient(to bottom,
+                    transparent 0%,
+                    #E5E7EB 20%,
+                    #E5E7EB 80%,
+                    transparent 100%);
+            flex-shrink: 0;
+        }
+
+        /* ============================================
+           GRUPO 2 & 3: MÉTRICAS E BADGES
+           ============================================ */
+
+        .header-stats {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            /* Removido flex-shrink: 0 para permitir que as métricas ocupem o espaço central */
+        }
+
+        /* ============================================
+           METRIC CARDS - HIERARQUIA CLARA
+           ============================================ */
+
+        .stat-badge {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            /* Reduzido de 4px para 3px */
+            padding: 8px 14px;
+            /* Reduzido de 10px 16px para 8px 14px - versão slim */
+            background: var(--color-gray-50);
+            border: 1px solid var(--color-gray-200);
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            position: relative;
+            cursor: pointer;
+            min-width: 95px;
+            /* Reduzido de 100px para 95px */
+            height: 52px;
+            /* Reduzido de 60px para 52px - versão slim */
+            justify-content: center;
+        }
+
+        .stat-badge:hover {
+            background: var(--color-white);
+            border-color: var(--color-gray-300);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Label (superior, pequeno, cinza) */
+        .stat-badge .badge-label {
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-normal);
+            color: var(--color-gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            line-height: 1;
+        }
+
+        /* Valor (inferior, grande, escuro) */
+        .stat-badge .badge-count {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-bold);
+            color: var(--color-gray-900);
+            letter-spacing: -0.02em;
+            line-height: 1;
+        }
+
+        /* Ícones nos labels */
+        .stat-badge i {
+            font-size: 11px;
+            opacity: 0.7;
+        }
+
+        /* Strong para valores não-count */
+        .stat-badge strong {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-bold);
+            color: var(--color-gray-900);
+            letter-spacing: -0.02em;
+        }
+
+        .stat-badge:active {
+            transform: translateY(0);
+        }
+
+        /* Badges interativos (com dropdown) */
+        .stat-badge[onclick] {
+            cursor: pointer;
+        }
+
+        .stat-badge[onclick]:hover {
+            border-color: var(--color-primary);
+            background: var(--color-white);
+        }
+
+        /* Indicador de dropdown - Chevron integrado ao label */
+        .dropdown-indicator {
+            display: inline-flex;
+            /* Reativado e integrado ao label */
+            align-items: center;
+            font-size: 10px;
+            color: var(--color-gray-400);
+            margin-left: 4px;
+            transition: all 0.2s;
+            opacity: 0.7;
+        }
+
+        .stat-badge:hover .dropdown-indicator {
+            color: var(--color-primary);
+            opacity: 1;
+        }
+
+        /* Badge ativo (dropdown aberto) */
+        .stat-badge.is-active {
+            border-color: var(--color-primary);
+            background: var(--color-white);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+        }
+
+        .stat-badge.is-active .dropdown-indicator {
+            transform: rotate(180deg);
+            color: var(--color-primary);
+            opacity: 1;
+        }
+
+        /* Cores semânticas apenas em badges críticos */
+        #badge-vehicles .badge-count {
+            color: var(--color-primary);
+        }
+
+        #badge-deliveries .badge-count {
+            color: var(--color-success);
+        }
+
+        #badge-critical .badge-count {
+            color: var(--color-danger);
+            font-weight: var(--font-bold);
+        }
+
+        #badge-critical .badge-label {
+            color: var(--color-danger);
+        }
+
+        /* ============================================
+           ESTILO ALTERNATIVO: BARRA ÚNICA COM DIVIDERS
+           Descomente esta seção para usar dividers verticais
+           ao invés de cards individuais
+           ============================================ */
+
+        /*
+        .header-stats {
+            background: var(--color-gray-50);
+            border: 1px solid var(--color-gray-200);
+            border-radius: 8px;
+            padding: 8px 0;
+        }
+
+        .stat-badge {
+            border: none;
+            border-radius: 0;
+            background: transparent;
+            border-right: 1px solid var(--color-gray-200);
+        }
+
+        .stat-badge:last-child {
+            border-right: none;
+        }
+
+        .stat-badge:hover {
+            background: var(--color-white);
+            border-right-color: var(--color-gray-200);
+        }
+        */
+
+        /* Indicador de notificação para críticas */
+        #badge-critical::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 8px;
+            height: 8px;
+            background: #EF4444;
+            border: 2px solid white;
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 0 4px rgba(239, 68, 68, 0);
+            }
+        }
+
+        /* ============================================
+           SEÇÃO 3: BOTÕES DE AÇÃO (Direita)
+           ============================================ */
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .action-header-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: transparent;
+            border: 1px solid var(--color-gray-300);
+            border-radius: 6px;
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-medium);
+            font-family: var(--font-family);
+            letter-spacing: -0.01em;
+            color: var(--color-gray-600);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            text-decoration: none;
+            outline: none;
+        }
+
+        .action-header-btn:hover {
+            background: var(--color-gray-100);
+            border-color: var(--color-gray-400);
+            color: var(--color-gray-900);
+        }
+
+        .action-header-btn:active {
+            transform: scale(0.98);
+        }
+
+        .action-header-btn .icon {
+            font-size: 13px;
+            line-height: 1;
+            opacity: 0.8;
+        }
+
+        .action-header-btn .icon i {
+            font-size: 13px;
+        }
+
+        .action-header-btn:hover .icon {
+            opacity: 1;
+        }
+
+        /* Botão Primário (destaque) */
+        .action-header-btn.btn-primary {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        .action-header-btn.btn-primary:hover {
+            background: var(--color-primary-hover);
+            border-color: var(--color-primary-hover);
+            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+        }
+
+        /* Botão Ghost (menos destaque) */
+        .action-header-btn.btn-ghost {
+            border-color: transparent;
+        }
+
+        .action-header-btn.btn-ghost:hover {
+            background: var(--color-gray-100);
+            border-color: transparent;
+        }
+
+        /* Focus (acessibilidade) */
+        .action-header-btn:focus-visible,
+        .stat-badge:focus-visible {
+            outline: 2px solid #4F46E5;
+            outline-offset: 2px;
+        }
+
+        /* ============================================
+           RESPONSIVIDADE
+           ============================================ */
+
+        /* Tablet (até 1024px) */
+        @media (max-width: 1024px) {
+            .header {
+                gap: 12px;
+                padding: 12px 16px;
+            }
+
+            .header-title {
+                font-size: 15px;
+            }
+
+            .header-stats {
+                gap: 10px;
+            }
+
+            .stat-badge {
+                font-size: 13px;
+            }
+
+            .action-header-btn .text {
+                display: none;
+                /* Mostrar apenas ícones */
+            }
+
+            .action-header-btn {
+                padding: 8px 10px;
+            }
+
+            .action-header-btn .icon i {
+                font-size: 16px;
+            }
+        }
+
+        /* Mobile (até 768px) */
+        @media (max-width: 768px) {
+            .header {
+                gap: 8px;
+                padding: 10px 12px;
+                overflow-x: auto;
+                overflow-y: hidden;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+
+            .header::-webkit-scrollbar {
+                display: none;
+            }
+
+            .header-title {
+                font-size: 14px;
+            }
+
+            .header-title i {
+                font-size: 20px;
+            }
+
+            .header-divider {
+                height: 24px;
+            }
+
+            /* Métricas mais compactas */
+            .stat-badge {
+                padding: 4px 8px;
+                font-size: 12px;
+            }
+
+            .stat-badge i {
+                font-size: 14px;
+            }
+
+            /* Botões apenas ícones */
+            .action-header-btn .text {
+                display: none;
+            }
+
+            .action-header-btn {
+                padding: 8px;
+                width: 32px;
+                height: 32px;
+                justify-content: center;
+            }
+        }
+
+        /* Mobile muito pequeno (até 480px) */
+        @media (max-width: 480px) {
+
+            /* Ocultar separadores para ganhar espaço */
+            .header-divider {
+                display: none;
+            }
+
+            .header {
+                gap: 6px;
+            }
+
+            /* Título ainda mais curto */
+            .header-title {
+                max-width: 100px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        /* ============================================
+           ANIMAÇÃO DE ENTRADA
+           ============================================ */
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .modal-large {
+            max-width: 1000px;
+        }
+
+        .export-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+
+        .export-btn {
+            padding: 1.5rem;
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            color: var(--text);
+        }
+
+        .export-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .export-btn i {
+            font-size: 2rem;
+        }
+
+        /* Timeline Styles */
+        .timeline-container {
+            padding: 1.5rem;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .timeline-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-stat-item {
+            padding: 0.75rem 1rem;
+            background: var(--bg);
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .timeline-events {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .timeline-event {
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            background: var(--bg);
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .timeline-event.critical {
+            border-left-color: var(--danger);
+            background: #fee2e2;
+        }
+
+        .timeline-time {
+            font-weight: 600;
+            font-size: 1.125rem;
+            color: var(--primary);
+        }
+
+        .timeline-event-info {
+            flex: 1;
+            margin-left: 1rem;
+        }
+
+        /* Comparison Styles */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:hover {
+            background: var(--bg);
+        }
+
+        .savings-section {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: var(--bg);
+            border-radius: 0.5rem;
+        }
+
+        /* Tracking Styles */
+        .tracking-vehicle {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: var(--bg);
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .tracking-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar-tracking {
+            width: 100%;
+            height: 20px;
+            background: var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+
+        .progress-fill-tracking {
+            height: 100%;
+            background: var(--primary);
+            transition: width 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .stat-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-light);
+            position: relative;
+            cursor: pointer;
+            user-select: none;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        /* Hover state com feedback visual claro */
+        .stat-badge:hover {
+            color: var(--primary);
+            background: #EEF2FF;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Active state */
+        .stat-badge:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Badge ativo (com dropdown aberto) */
+        .stat-badge.active {
+            color: var(--primary);
+            background: #EEF2FF;
+        }
+
+        .stat-badge i {
+            color: var(--primary);
+            transition: transform 0.2s;
+        }
+
+        .stat-badge.active i {
+            transform: rotate(180deg);
+        }
+
+        /* Indicador de dropdown (▼) */
+        .stat-badge .dropdown-indicator {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-left: 0.25rem;
+            transition: all 0.2s;
+            opacity: 0.6;
+        }
+
+        .stat-badge:hover .dropdown-indicator {
+            color: var(--primary);
+            opacity: 1;
+        }
+
+        .stat-badge.active .dropdown-indicator {
+            color: var(--primary);
+            opacity: 1;
+            transform: rotate(180deg);
+        }
+
+        .stat-badge strong {
+            color: var(--text);
+            margin-left: 0.25rem;
+        }
+
+        /* Dropdowns Interativos */
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--surface);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            min-width: 400px;
+            max-width: 600px;
+            max-height: 500px;
+            overflow-y: auto;
+            z-index: 1000;
+            animation: slideDown 0.3s;
+        }
+
+        /* Ajuste para dropdowns próximos às bordas */
+        .dropdown.dropdown-left {
+            left: 0;
+            transform: translateX(0);
+        }
+
+        .dropdown.dropdown-right {
+            left: auto;
+            right: 0;
+            transform: translateX(0);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dropdown.active {
+            display: block;
+        }
+
+        .dropdown-header {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .vehicle-item,
+        .delivery-item,
+        .critical-item {
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            background: var(--bg);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .vehicle-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .vehicle-id {
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .vehicle-color-badge {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+        }
+
+        .progress-bar-container {
+            margin: 0.5rem 0;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-bottom: 0.25rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            transition: width 0.3s;
+            border-radius: 4px;
+        }
+
+        .progress-fill.ok {
+            background: var(--success);
+        }
+
+        .progress-fill.warning {
+            background: var(--warning);
+        }
+
+        .progress-fill.critical {
+            background: var(--danger);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-badge.ok {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-badge.warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-badge.critical {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .delivery-list {
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .delivery-list-item {
+            padding: 0.25rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 0.5rem 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .action-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .action-btn.secondary {
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .action-btn.secondary:hover {
+            background: var(--bg);
+        }
+
+        .insights-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--border);
+        }
+
+        .insight-item {
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: var(--bg);
+            border-radius: 6px;
+            font-size: 0.875rem;
+        }
+
+        .insight-item.warning {
+            border-left: 4px solid var(--warning);
+        }
+
+        .insight-item.info {
+            border-left: 4px solid var(--primary);
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .modal-close:hover {
+            color: var(--text);
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .dropdown {
+                min-width: calc(100vw - 2rem);
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                max-width: calc(100vw - 2rem);
+            }
+        }
+
+        /* Click outside para fechar */
+        .dropdown-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+            display: none;
+        }
+
+        .dropdown-overlay.active {
+            display: block;
+        }
+
+        /* Main Layout */
+        .main-layout {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Mapa - 100% da tela */
+        .map-section {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: var(--surface);
+            position: relative;
+            transition: margin-left 0.3s ease-out;
+        }
+
+        /* Ajustar margem do mapa quando chat está aberto (apenas desktop) */
+        @media (min-width: 769px) {
+            body.chat-open .map-section {
+                margin-left: 420px;
+            }
+        }
+
+        .map-header {
+            padding: 0.75rem 1rem;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .map-header h2 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .map-fullscreen-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: background 0.2s;
+        }
+
+        .map-fullscreen-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .map-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ==============================================
+           CHAT COLAPSÁVEL - BOTÃO FLUTUANTE
+           ============================================== */
+        .chat-fab {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4F46E5, #6366F1);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .chat-fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.6);
+        }
+
+        .chat-fab:active {
+            transform: scale(0.95);
+        }
+
+        .chat-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #EF4444;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+        }
+
+        /* Sidebar - quando chat está ABERTO */
+        .sidebar.chat-open {
+            display: flex;
+        }
+
+        /* Sidebar - quando chat está FECHADO */
+        .sidebar.chat-closed {
+            display: none;
+        }
+
+        /* Animação de entrada do chat */
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .sidebar.chat-open {
+            animation: slideInLeft 0.3s ease-out;
+        }
+
+        /* Sidebar - Position Fixed à Esquerda */
+        .sidebar {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            bottom: 0 !important;
+            width: 420px !important;
+            max-width: 420px !important;
+            height: 100vh !important;
+            display: flex;
+            flex-direction: column;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            z-index: 1001 !important;
+        }
+
+        /* Chat Section */
+        .chat-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .chat-header {
+            padding: 1rem;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .chat-toggle {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            padding: 0.25rem;
+            font-size: 1.25rem;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            background: var(--bg);
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            text-align: right;
+        }
+
+        .message.assistant {
+            text-align: left;
+        }
+
+        .message-bubble {
+            display: inline-block;
+            max-width: 85%;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            word-wrap: break-word;
+            line-height: 1.5;
+        }
+
+        .message.user .message-bubble {
+            background: var(--primary);
+            color: white;
+            border-bottom-right-radius: 0.25rem;
+        }
+
+        .message.assistant .message-bubble {
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-bottom-left-radius: 0.25rem;
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 0.75rem 1rem;
+            color: var(--text-light);
+            font-size: 0.875rem;
+            font-style: italic;
+        }
+
+        .typing-indicator.active {
+            display: block;
+        }
+
+        .typing-dots {
+            display: inline-block;
+        }
+
+        .typing-dots span {
+            animation: typing 1.4s infinite;
+            display: inline-block;
+        }
+
+        .typing-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+
+            0%,
+            60%,
+            100% {
+                transform: translateY(0);
+            }
+
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .chat-input-container {
+            padding: 1rem;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-end;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            resize: none;
+            outline: none;
+            transition: border-color 0.2s;
+            font-family: inherit;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+
+        .chat-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .send-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .send-button:hover:not(:disabled) {
+            background: var(--primary-dark);
+        }
+
+        .send-button:disabled {
+            background: var(--secondary);
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .quick-actions {
+            padding: 0.75rem 1rem;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .quick-btn {
+            padding: 0.5rem 0.75rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text);
+        }
+
+        .quick-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 1rem;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .stat-card-label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-card-value {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* Scrollbar */
+        .chat-messages::-webkit-scrollbar,
+        .stats-section::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track,
+        .stats-section::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb,
+        .stats-section::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 3px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb:hover,
+        .stats-section::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .map-section {
+                height: 100%;
+            }
+        }
+
+        /* Telas grandes (4K, ultrawide) */
+        @media (min-width: 1920px) {
+            .sidebar {
+                width: 480px !important;
+                max-width: 480px !important;
+            }
+
+            body.chat-open .map-section {
+                margin-left: 480px;
+            }
+        }
+
+        /* Mobile: Chat ocupa tela toda */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            body.chat-open .map-section {
+                margin-left: 0 !important;
+            }
+        }
+
+        /* Fullscreen map */
+        .map-fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1000;
+            background: var(--surface);
+        }
+
+        .map-fullscreen .map-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1001;
+        }
+
+        .map-fullscreen .map-container {
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header Profissional com 3 Seções -->
+        <div class="header">
+            <!-- Seção 1: Branding (Esquerda) -->
+            <div class="header-left">
+                <div class="header-title">
+                    <div class="header-title-main">
+                        <i class="fas fa-hospital"></i>
+                        Rotas Hospitalares
+                    </div>
+                    <div class="header-title-sub">Sistema Inteligente</div>
+                </div>
+            </div>
+
+            <!-- Separador Visual -->
+            <div class="header-divider"></div>
+
+            <!-- Seção 2: Todas as Métricas Unificadas -->
+            <div class="header-stats">
+                <!-- Métrica 1: Distância -->
+                <div class="stat-badge" title="Distância total">
+                    <div class="badge-label">
+                        <i class="fas fa-route"></i>
+                        Distância
+                    </div>
+                    <strong>102.2 km</strong>
+                </div>
+
+                <!-- Métrica 2: Custo -->
+                <div class="stat-badge" title="Custo total">
+                    <div class="badge-label">
+                        <i class="fas fa-dollar-sign"></i>
+                        Custo Total
+                    </div>
+                    <strong>R$ 333.03</strong>
+                </div>
+
+                <!-- Métrica 3: Veículos (Interativo) -->
+                <div class="stat-badge" onclick="toggleDropdown('vehicles')" id="badge-vehicles" title="Ver veículos">
+                    <div class="badge-label">
+                        <i class="fas fa-truck"></i>
+                        Veículos
+                        <span class="dropdown-indicator">▼</span>
+                    </div>
+                    <span class="badge-count">3</span>
+                    <div class="dropdown" id="dropdown-vehicles">
+                        <div class="dropdown-header">🚚 Veículos (3)</div>
+                        <div id="vehicles-list">
+                            <!-- Preenchido via JavaScript -->
+                        </div>
+                        <div class="insights-section" id="vehicles-insights">
+                            <!-- Insights preenchidos via JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Métrica 4: Entregas (Interativo) -->
+                <div class="stat-badge" onclick="toggleDropdown('deliveries')" id="badge-deliveries" title="Ver entregas">
+                    <div class="badge-label">
+                        <i class="fas fa-box"></i>
+                        Entregas
+                        <span class="dropdown-indicator">▼</span>
+                    </div>
+                    <span class="badge-count">12</span>
+                    <div class="dropdown" id="dropdown-deliveries">
+                        <div class="dropdown-header">📦 Entregas (12)</div>
+                        <div id="deliveries-list">
+                            <!-- Preenchido via JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Métrica 5: Críticas (Interativo) -->
+                <div class="stat-badge" onclick="toggleDropdown('critical')" id="badge-critical" title="Ver entregas críticas">
+                    <div class="badge-label">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Críticas
+                        <span class="dropdown-indicator">▼</span>
+                    </div>
+                    <span class="badge-count">5</span>
+                    <div class="dropdown" id="dropdown-critical">
+                        <div class="dropdown-header">⚠️ Entregas Críticas (5)</div>
+                        <div id="critical-list">
+                            <!-- Preenchido via JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Separador Visual -->
+            <div class="header-divider"></div>
+
+            <!-- Seção 4: Botões de Ação (Direita) -->
+            <div class="header-actions">
+                <button class="action-header-btn" onclick="showTimeline()" aria-label="Ver timeline de entregas" title="Visualizar linha do tempo das entregas">
+                    <span class="icon"><i class="fas fa-calendar-alt"></i></span>
+                    <span class="text">Timeline</span>
+                </button>
+
+                <button class="action-header-btn" onclick="showComparison()" aria-label="Comparar cenários de otimização" title="Comparar diferentes cenários de otimização">
+                    <span class="icon"><i class="fas fa-balance-scale"></i></span>
+                    <span class="text">Comparar</span>
+                </button>
+
+                <button class="action-header-btn" onclick="showTracking()" aria-label="Rastrear veículos em tempo real" title="Rastrear veículos em tempo real">
+                    <span class="icon"><i class="fas fa-search-location"></i></span>
+                    <span class="text">Rastrear</span>
+                </button>
+
+                <button class="action-header-btn btn-ghost" onclick="showExportMenu()" aria-label="Exportar relatórios" title="Exportar relatórios em diferentes formatos">
+                    <span class="icon"><i class="fas fa-download"></i></span>
+                    <span class="text">Exportar</span>
+                </button>
+            </div>
+
+            <!-- Overlay para fechar dropdowns ao clicar fora -->
+            <div class="dropdown-overlay" id="dropdown-overlay" onclick="closeAllDropdowns()"></div>
+
+            <!-- Modal para detalhes completos -->
+            <div class="modal" id="details-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 id="modal-title">Detalhes</h2>
+                        <button class="modal-close" onclick="closeModal()">&times;</button>
+                    </div>
+                    <div id="modal-body">
+                        <!-- Conteúdo preenchido via JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Timeline -->
+            <div class="modal modal-large" id="timeline-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>📅 Timeline de Entregas</h2>
+                        <button class="modal-close" onclick="closeModal('timeline-modal')">&times;</button>
+                    </div>
+                    <div id="timeline-body">
+                        <!-- Conteúdo preenchido via JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Comparação -->
+            <div class="modal modal-large" id="comparison-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>⚖️ Comparação de Cenários</h2>
+                        <button class="modal-close" onclick="closeModal('comparison-modal')">&times;</button>
+                    </div>
+                    <div id="comparison-body">
+                        <!-- Conteúdo preenchido via JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Rastreamento -->
+            <div class="modal modal-large" id="tracking-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>📍 Rastreamento em Tempo Real</h2>
+                        <button class="modal-close" onclick="closeModal('tracking-modal')">&times;</button>
+                    </div>
+                    <div id="tracking-body">
+                        <!-- Conteúdo preenchido via JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Exportação -->
+            <div class="modal" id="export-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>📥 Exportar Relatórios</h2>
+                        <button class="modal-close" onclick="closeModal('export-modal')">&times;</button>
+                    </div>
+                    <div id="export-body">
+                        <!-- Conteúdo preenchido via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Layout -->
+        <div class="main-layout">
+            <!-- Mapa (70%) -->
+            <div class="map-section" id="map-section">
+                <div class="map-header">
+                    <h2><i class="fas fa-map"></i> Mapa das Rotas Otimizadas</h2>
+                    <button class="map-fullscreen-btn" onclick="toggleFullscreen()">
+                        <i class="fas fa-expand"></i> Tela Cheia
+                    </button>
+                </div>
+                <div class="map-container">
+                    <iframe src="file://E:\hospital_routes\route_map.html" title="Mapa de Rotas" id="map-iframe"></iframe>
+                </div>
+            </div>
+
+            <!-- Sidebar (30%) -->
+            <div class="sidebar chat-closed" id="chat-sidebar">
+                <!-- Chat Section -->
+                <div class="chat-section">
+                    <div class="chat-header">
+                        <h3><i class="fas fa-robot"></i> Assistente Inteligente</h3>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="chat-toggle" onclick="clearChat()" title="Limpar chat">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                            <button class="chat-toggle" onclick="toggleChat()" title="Fechar chat">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message assistant">
+                            <div class="message-bubble">
+                                <strong>👋 Olá!</strong> Sou seu assistente de rotas.<br><br>
+                                <strong>Posso ajudar com:</strong><br>
+                                • 📊 Análises de eficiência<br>
+                                • 🚚 Informações de veículos<br>
+                                • ⚠️ Entregas críticas<br>
+                                • 💡 Sugestões de otimização<br><br>
+                                <strong>💬 Faça sua pergunta!</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="typing-indicator" id="typing-indicator">
+                        <div class="message assistant">
+                            <div class="message-bubble">
+                                Assistente está digitando<span class="typing-dots"><span>.</span><span>.</span><span>.</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input-container">
+                        <div class="chat-input-wrapper">
+                            <textarea class="chat-input" id="chat-input" placeholder="Digite sua pergunta..." rows="1" onkeydown="handleKeyDown(event)"></textarea>
+                            <button class="send-button" onclick="sendMessage()" id="send-btn">
+                                <i class="fas fa-paper-plane"></i> Enviar
+                            </button>
+                        </div>
+                        <div class="quick-actions">
+                            <button class="quick-btn" onclick="askQuick('Qual veículo está mais sobrecarregado?')">
+                                <i class="fas fa-truck"></i> Veículo Sobrecarregado
+                            </button>
+                            <button class="quick-btn" onclick="askQuick('Mostre as entregas críticas')">
+                                <i class="fas fa-exclamation-triangle"></i> Ver Críticas
+                            </button>
+                            <button class="quick-btn" onclick="askQuick('Como economizar mais combustível?')">
+                                <i class="fas fa-leaf"></i> Economizar
+                            </button>
+                            <button class="quick-btn" onclick="askQuick('Analise a distribuição de carga')">
+                                <i class="fas fa-balance-scale"></i> Balanceamento
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Section -->
+                <div class="stats-section">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-card-label">Distância Total</div>
+                            <div class="stat-card-value">102.25 km</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-label">Custo Total</div>
+                            <div class="stat-card-value">R$ 333.03</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-label">Tempo Execução</div>
+                            <div class="stat-card-value">0.22s</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-label">Fitness Score</div>
+                            <div class="stat-card-value">36024.99</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão Flutuante para Abrir Chat -->
+    <button class="chat-fab" id="chat-fab" onclick="toggleChat()" title="Abrir assistente">
+        <i class="fas fa-comments"></i>
+        <span class="chat-badge" id="chat-badge">3</span>
+    </button>
+
+    <script>
+        // Configuração
+        const API_URL = 'http://127.0.0.1:5000';
+        const driversData = [
+            {
+                "driver_id": 1,
+                "route": [
+                    "HOSP_002",
+                    "HOSP_003",
+                    "HOSP_012"
+                ],
+                "num_deliveries": 3,
+                "critical_deliveries": 2,
+                "total_weight": 50.0,
+                "max_capacity": 50.0,
+                "capacity_percent": 100.0,
+                "capacity_status": "critical",
+                "distance": 8.050217936294748,
+                "max_range": 150.0,
+                "range_percent": 5.3668119575298325,
+                "range_status": "ok",
+                "cost": 20.125544840736872,
+                "color": "blue"
+            },
+            {
+                "driver_id": 2,
+                "route": [
+                    "HOSP_005",
+                    "HOSP_009",
+                    "HOSP_001",
+                    "HOSP_006"
+                ],
+                "num_deliveries": 4,
+                "critical_deliveries": 2,
+                "total_weight": 78.0,
+                "max_capacity": 50.0,
+                "capacity_percent": 156.0,
+                "capacity_status": "critical",
+                "distance": 55.96125583779953,
+                "max_range": 150.0,
+                "range_percent": 37.307503891866354,
+                "range_status": "ok",
+                "cost": 139.9031395944988,
+                "color": "red"
+            },
+            {
+                "driver_id": 3,
+                "route": [
+                    "HOSP_004",
+                    "HOSP_011",
+                    "HOSP_010",
+                    "HOSP_008",
+                    "HOSP_007"
+                ],
+                "num_deliveries": 5,
+                "critical_deliveries": 1,
+                "total_weight": 105.0,
+                "max_capacity": 100.0,
+                "capacity_percent": 105.0,
+                "capacity_status": "critical",
+                "distance": 18.889728247688012,
+                "max_range": 200.0,
+                "range_percent": 9.444864123844006,
+                "range_status": "ok",
+                "cost": 66.11404886690804,
+                "color": "green"
+            }
+        ];
+        const criticalData = [
+            {
+                "id": "HOSP_001",
+                "location": [
+                    -23.5928,
+                    -46.6889
+                ],
+                "weight": 15.0,
+                "vehicle_id": 2,
+                "vehicle_color": "red"
+            },
+            {
+                "id": "HOSP_002",
+                "location": [
+                    -23.556,
+                    -46.6566
+                ],
+                "weight": 12.0,
+                "vehicle_id": 1,
+                "vehicle_color": "blue"
+            },
+            {
+                "id": "HOSP_003",
+                "location": [
+                    -23.5558,
+                    -46.6732
+                ],
+                "weight": 20.0,
+                "vehicle_id": 1,
+                "vehicle_color": "blue"
+            },
+            {
+                "id": "HOSP_004",
+                "location": [
+                    -23.5558,
+                    -46.6732
+                ],
+                "weight": 18.0,
+                "vehicle_id": 3,
+                "vehicle_color": "green"
+            },
+            {
+                "id": "HOSP_005",
+                "location": [
+                    -23.556,
+                    -46.6566
+                ],
+                "weight": 10.0,
+                "vehicle_id": 2,
+                "vehicle_color": "red"
+            }
+        ];
+        const allDeliveriesData = [
+            {
+                "id": "HOSP_001",
+                "location": [
+                    -23.5928,
+                    -46.6889
+                ],
+                "priority": 1,
+                "weight": 15.0,
+                "is_critical": true
+            },
+            {
+                "id": "HOSP_002",
+                "location": [
+                    -23.556,
+                    -46.6566
+                ],
+                "priority": 1,
+                "weight": 12.0,
+                "is_critical": true
+            },
+            {
+                "id": "HOSP_003",
+                "location": [
+                    -23.5558,
+                    -46.6732
+                ],
+                "priority": 1,
+                "weight": 20.0,
+                "is_critical": true
+            },
+            {
+                "id": "HOSP_004",
+                "location": [
+                    -23.5558,
+                    -46.6732
+                ],
+                "priority": 1,
+                "weight": 18.0,
+                "is_critical": true
+            },
+            {
+                "id": "HOSP_005",
+                "location": [
+                    -23.556,
+                    -46.6566
+                ],
+                "priority": 1,
+                "weight": 10.0,
+                "is_critical": true
+            },
+            {
+                "id": "HOSP_006",
+                "location": [
+                    -23.4859,
+                    -46.6333
+                ],
+                "priority": 2,
+                "weight": 25.0,
+                "is_critical": false
+            },
+            {
+                "id": "HOSP_007",
+                "location": [
+                    -23.5431,
+                    -46.6367
+                ],
+                "priority": 2,
+                "weight": 30.0,
+                "is_critical": false
+            },
+            {
+                "id": "HOSP_008",
+                "location": [
+                    -23.6028,
+                    -46.6703
+                ],
+                "priority": 2,
+                "weight": 22.0,
+                "is_critical": false
+            },
+            {
+                "id": "HOSP_009",
+                "location": [
+                    -23.5631,
+                    -46.4642
+                ],
+                "priority": 2,
+                "weight": 28.0,
+                "is_critical": false
+            },
+            {
+                "id": "HOSP_010",
+                "location": [
+                    -23.5489,
+                    -46.6388
+                ],
+                "priority": 2,
+                "weight": 15.0,
+                "is_critical": false
+            },
+            {
+                "id": "HOSP_011",
+                "location": [
+                    -23.5431,
+                    -46.6367
+                ],
+                "priority": 2,
+                "weight": 20.0,
+                "is_critical": false
+            },
+            {
+                "id": "HOSP_012",
+                "location": [
+                    -23.5431,
+                    -46.6125
+                ],
+                "priority": 2,
+                "weight": 18.0,
+                "is_critical": false
+            }
+        ];
+        const statsData = {
+            "total_distance": 102.24943965816568,
+            "total_cost": 333.0335311069911,
+            "num_vehicles": 3,
+            "num_deliveries": 12,
+            "critical_deliveries": 5,
+            "execution_time": 0.2165677547454834,
+            "fitness_score": 36024.99409253145
+        };
+
+        // Estado
+        let conversationHistory = [];
+        let isProcessing = false;
+        let chatInitialized = false;
+        let openDropdown = null;
+        let chatOpen = false;
+
+        // ==============================================
+        // CONTROLE DO CHAT COLAPSÁVEL
+        // ==============================================
+        function toggleChat() {
+            const chatSidebar = document.getElementById('chat-sidebar');
+            const chatFab = document.getElementById('chat-fab');
+            const body = document.body;
+
+            chatOpen = !chatOpen;
+
+            if (chatOpen) {
+                // Abrir chat
+                chatSidebar.classList.remove('chat-closed');
+                chatSidebar.classList.add('chat-open');
+                chatFab.style.display = 'none';
+                body.classList.add('chat-open');
+
+                // Focar no input após animação
+                setTimeout(() => {
+                    const input = document.getElementById('chat-input');
+                    if (input) input.focus();
+                }, 300);
+            } else {
+                // Fechar chat
+                chatSidebar.classList.remove('chat-open');
+                chatSidebar.classList.add('chat-closed');
+                chatFab.style.display = 'flex';
+                body.classList.remove('chat-open');
+            }
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeChat();
+            autoResizeTextarea();
+            renderDropdowns();
+        });
+
+        // Renderizar dropdowns
+        function renderDropdowns() {
+            renderVehiclesDropdown();
+            renderDeliveriesDropdown();
+            renderCriticalDropdown();
+        }
+
+        // Toggle dropdown com novo design
+        function toggleDropdown(type) {
+            const badge = document.getElementById(`badge-${type}`);
+            const dropdown = document.getElementById(`dropdown-${type}`);
+            const overlay = document.getElementById('dropdown-overlay');
+
+            if (openDropdown === type) {
+                // Fechar
+                badge.classList.remove('active');
+                badge.classList.remove('is-active');
+                dropdown.classList.remove('active');
+                overlay.classList.remove('active');
+                openDropdown = null;
+            } else {
+                // Fechar anterior e abrir novo
+                closeAllDropdowns();
+
+                badge.classList.add('active');
+                badge.classList.add('is-active');
+                dropdown.classList.add('active');
+                overlay.classList.add('active');
+                openDropdown = type;
+
+                // Ajustar posicionamento do dropdown
+                adjustDropdownPosition(dropdown, badge);
+
+                // Emitir evento customizado
+                const event = new CustomEvent('badgeToggle', {
+                    detail: {
+                        type: type,
+                        isOpen: true
+                    }
+                });
+                window.dispatchEvent(event);
+            }
+        }
+
+        // Ajustar posicionamento do dropdown para não ultrapassar limites da tela
+        function adjustDropdownPosition(dropdown, badge) {
+            // Remover classes de posicionamento anteriores
+            dropdown.classList.remove('dropdown-left', 'dropdown-right');
+
+            // Resetar estilos inline
+            dropdown.style.top = '';
+            dropdown.style.bottom = '';
+
+            // Aguardar renderização
+            setTimeout(() => {
+                const badgeRect = badge.getBoundingClientRect();
+                const dropdownRect = dropdown.getBoundingClientRect();
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+
+                // Calcular posição central do badge
+                const badgeCenterX = badgeRect.left + (badgeRect.width / 2);
+                const dropdownHalfWidth = dropdownRect.width / 2;
+
+                // Verificar se ultrapassa à esquerda
+                if (badgeCenterX - dropdownHalfWidth < 10) {
+                    dropdown.classList.add('dropdown-left');
+                }
+                // Verificar se ultrapassa à direita
+                else if (badgeCenterX + dropdownHalfWidth > viewportWidth - 10) {
+                    dropdown.classList.add('dropdown-right');
+                }
+
+                // Verificar se ultrapassa na parte inferior
+                if (dropdownRect.bottom > viewportHeight - 10) {
+                    // Ajustar para aparecer acima do badge
+                    dropdown.style.top = 'auto';
+                    dropdown.style.bottom = 'calc(100% + 0.5rem)';
+                } else {
+                    dropdown.style.top = 'calc(100% + 0.5rem)';
+                    dropdown.style.bottom = 'auto';
+                }
+            }, 10);
+        }
+
+        // Ajustar posição ao redimensionar janela
+        window.addEventListener('resize', function () {
+            if (openDropdown) {
+                const badge = document.getElementById(`badge-${openDropdown}`);
+                const dropdown = document.getElementById(`dropdown-${openDropdown}`);
+                if (badge && dropdown && dropdown.classList.contains('active')) {
+                    adjustDropdownPosition(dropdown, badge);
+                }
+            }
+        });
+
+        // Fechar todos os dropdowns
+        function closeAllDropdowns() {
+            document.querySelectorAll('.stat-badge').forEach(badge => {
+                badge.classList.remove('active');
+                badge.classList.remove('is-active');
+            });
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+            document.getElementById('dropdown-overlay').classList.remove('active');
+            openDropdown = null;
+        }
+
+        // Renderizar dropdown de veículos
+        function renderVehiclesDropdown() {
+            const container = document.getElementById('vehicles-list');
+            if (!container) return;
+            container.innerHTML = '';
+
+            driversData.forEach(vehicle => {
+                const item = document.createElement('div');
+                item.className = 'vehicle-item';
+                item.style.borderLeftColor = getColorCode(vehicle.color);
+
+                const statusIcon = vehicle.range_status === 'ok' ? '✅' :
+                    vehicle.range_status === 'warning' ? '⚠️' : '🚨';
+
+                item.innerHTML = `
+                    <div class="vehicle-item-header">
+                        <div class="vehicle-id">
+                            Veículo ${vehicle.driver_id}
+                            <span class="vehicle-color-badge" style="background-color: ${getColorCode(vehicle.color)}"></span>
+                        </div>
+                        <span class="status-badge ${vehicle.range_status}">
+                            ${statusIcon} ${vehicle.range_status === 'ok' ? 'OK' : vehicle.range_status === 'warning' ? 'Atenção' : 'Crítico'}
+                        </span>
+                    </div>
+                    
+                    <div class="progress-bar-container">
+                        <div class="progress-label">
+                            <span>Capacidade</span>
+                            <span>${vehicle.total_weight.toFixed(1)} / ${vehicle.max_capacity.toFixed(1)} kg (${vehicle.capacity_percent.toFixed(1)}%)</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill ${vehicle.capacity_status}" style="width: ${Math.min(vehicle.capacity_percent, 100)}%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-bar-container">
+                        <div class="progress-label">
+                            <span>Autonomia</span>
+                            <span>${vehicle.distance.toFixed(2)} / ${vehicle.max_range.toFixed(1)} km (${vehicle.range_percent.toFixed(1)}%)</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill ${vehicle.range_status}" style="width: ${Math.min(vehicle.range_percent, 100)}%"></div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-light);">
+                        <div>📦 ${vehicle.num_deliveries} entregas (${vehicle.critical_deliveries} críticas)</div>
+                        <div>💰 Custo: R$ ${vehicle.cost.toFixed(2)}</div>
+                    </div>
+                    
+                    <div class="delivery-list">
+                        <strong>Entregas:</strong>
+                        <div style="margin-top: 0.25rem;">
+                            ${vehicle.route.map(id => `<div class="delivery-list-item"><i class="fas fa-map-marker-alt"></i> ${id}</div>`).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="highlightRoute(${vehicle.driver_id})">
+                            <i class="fas fa-eye"></i> Ver Rota no Mapa
+                        </button>
+                        <button class="action-btn secondary" onclick="showVehicleDetails(${vehicle.driver_id})">
+                            <i class="fas fa-chart-bar"></i> Detalhes Completos
+                        </button>
+                    </div>
+                `;
+
+                container.appendChild(item);
+            });
+
+            // Renderizar insights
+            renderVehicleInsights();
+        }
+
+        // Renderizar insights de veículos
+        function renderVehicleInsights() {
+            const container = document.getElementById('vehicles-insights');
+            if (!container) return;
+            container.innerHTML = '<div class="dropdown-header" style="margin-top: 0;">💡 Insights</div>';
+
+            const insights = [];
+
+            // Veículos próximos do limite de autonomia
+            const highRange = driversData.filter(v => v.range_percent > 90);
+            if (highRange.length > 0) {
+                insights.push({
+                    type: 'warning',
+                    message: `⚠️ ${highRange.length} veículo(s) próximo(s) do limite de autonomia (>90%): ${highRange.map(v => `Veículo ${v.driver_id}`).join(', ')}`
+                });
+            }
+
+            // Veículos subutilizados
+            const underutilized = driversData.filter(v => v.capacity_percent < 70);
+            if (underutilized.length > 0) {
+                insights.push({
+                    type: 'info',
+                    message: `ℹ️ ${underutilized.length} veículo(s) subutilizado(s) (<70% capacidade): ${underutilized.map(v => `Veículo ${v.driver_id}`).join(', ')}`
+                });
+            }
+
+            // Sugestões de rebalanceamento
+            if (driversData.length > 1) {
+                const avgCapacity = driversData.reduce((sum, v) => sum + v.capacity_percent, 0) / driversData.length;
+                const unbalanced = driversData.filter(v => Math.abs(v.capacity_percent - avgCapacity) > 15);
+                if (unbalanced.length > 0) {
+                    insights.push({
+                        type: 'info',
+                        message: `💡 Considere rebalancear carga entre veículos para melhor distribuição`
+                    });
+                }
+            }
+
+            if (insights.length === 0) {
+                insights.push({
+                    type: 'info',
+                    message: '✅ Todos os veículos estão bem balanceados!'
+                });
+            }
+
+            insights.forEach(insight => {
+                const item = document.createElement('div');
+                item.className = `insight-item ${insight.type}`;
+                item.textContent = insight.message;
+                container.appendChild(item);
+            });
+        }
+
+        // Renderizar dropdown de entregas
+        function renderDeliveriesDropdown() {
+            const container = document.getElementById('deliveries-list');
+            if (!container) return;
+            container.innerHTML = '';
+
+            allDeliveriesData.forEach(delivery => {
+                const item = document.createElement('div');
+                item.className = 'delivery-item';
+
+                const badge = delivery.is_critical
+                    ? '<span class="status-badge critical">⚠️ CRÍTICA</span>'
+                    : '<span class="status-badge ok">✓ Normal</span>';
+
+                item.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <div style="font-weight: 600;">${delivery.id}</div>
+                        ${badge}
+                    </div>
+                    <div style="font-size: 0.875rem; color: var(--text-light);">
+                        <div>📍 Localização: (${delivery.location[0].toFixed(4)}, ${delivery.location[1].toFixed(4)})</div>
+                        <div>⚖️ Peso: ${delivery.weight} kg</div>
+                        <div>🔢 Prioridade: ${delivery.priority}</div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn secondary" onclick="showDeliveryOnMap([${delivery.location[0]}, ${delivery.location[1]}])">
+                            <i class="fas fa-map-marker-alt"></i> Ver no Mapa
+                        </button>
+                    </div>
+                `;
+
+                container.appendChild(item);
+            });
+        }
+
+        // Renderizar dropdown de críticas
+        function renderCriticalDropdown() {
+            const container = document.getElementById('critical-list');
+            if (!container) return;
+            container.innerHTML = '';
+
+            if (criticalData.length === 0) {
+                container.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--text-light);">Nenhuma entrega crítica</div>';
+                return;
+            }
+
+            criticalData.forEach(delivery => {
+                const item = document.createElement('div');
+                item.className = 'critical-item';
+                item.style.borderLeftColor = getColorCode(delivery.vehicle_color);
+
+                item.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <div style="font-weight: 600; font-size: 1rem;">${delivery.id}</div>
+                        <span class="status-badge critical">⚠️ CRÍTICA</span>
+                    </div>
+                    <div style="font-size: 0.875rem; color: var(--text-light); margin-bottom: 0.5rem;">
+                        <div>📍 Localização: (${delivery.location[0].toFixed(4)}, ${delivery.location[1].toFixed(4)})</div>
+                        <div>⚖️ Peso: ${delivery.weight} kg</div>
+                        ${delivery.vehicle_id ? `<div>🚚 Veículo: <span style="color: ${getColorCode(delivery.vehicle_color)}; font-weight: 600;">Veículo ${delivery.vehicle_id}</span></div>` : '<div>⚠️ Não atribuída a nenhum veículo</div>'}
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="showDeliveryOnMap([${delivery.location[0]}, ${delivery.location[1]}])">
+                            <i class="fas fa-map-marker-alt"></i> Ver no Mapa
+                        </button>
+                        ${delivery.vehicle_id ? `<button class="action-btn secondary" onclick="highlightRoute(${delivery.vehicle_id})"><i class="fas fa-route"></i> Ver Rota do Veículo</button>` : ''}
+                    </div>
+                `;
+
+                container.appendChild(item);
+            });
+        }
+
+        // Funções auxiliares
+        function getColorCode(colorName) {
+            const colors = {
+                'blue': '#3b82f6',
+                'red': '#ef4444',
+                'green': '#10b981',
+                'purple': '#a855f7',
+                'orange': '#f59e0b',
+                'darkred': '#dc2626',
+                'lightred': '#f87171',
+                'beige': '#f5f5dc',
+                'darkblue': '#1e40af',
+                'darkgreen': '#059669',
+                'cadetblue': '#5f9ea0',
+                'darkpurple': '#7c3aed',
+                'white': '#ffffff',
+                'pink': '#ec4899',
+                'lightblue': '#60a5fa',
+                'lightgreen': '#34d399',
+                'gray': '#6b7280',
+                'black': '#000000',
+                'lightgray': '#d1d5db',
+            };
+            return colors[colorName] || '#6b7280';
+        }
+
+        // Destacar rota no mapa
+        function highlightRoute(vehicleId) {
+            const mapIframe = document.getElementById('map-iframe');
+            if (!mapIframe) {
+                console.warn('Mapa não encontrado');
+                return;
+            }
+
+            // Enviar mensagem para o iframe do mapa
+            mapIframe.contentWindow.postMessage({
+                type: 'highlight_route',
+                vehicle_id: vehicleId
+            }, '*');
+
+            closeAllDropdowns();
+        }
+
+        // Restaurar todas as rotas no mapa
+        function restoreAllRoutes() {
+            const mapIframe = document.getElementById('map-iframe');
+            if (!mapIframe) return;
+
+            mapIframe.contentWindow.postMessage({
+                type: 'restore_routes'
+            }, '*');
+        }
+
+        // Mostrar detalhes do veículo
+        function showVehicleDetails(vehicleId) {
+            const vehicle = driversData.find(v => v.driver_id === vehicleId);
+            if (!vehicle) return;
+
+            const modal = document.getElementById('details-modal');
+            const title = document.getElementById('modal-title');
+            const body = document.getElementById('modal-body');
+
+            title.textContent = `Veículo ${vehicleId} - Detalhes Completos`;
+
+            body.innerHTML = `
+                <div style="display: grid; gap: 1rem;">
+                    <div>
+                        <h3 style="margin-bottom: 0.5rem;">Informações Gerais</h3>
+                        <div style="background: var(--bg); padding: 1rem; border-radius: 8px;">
+                            <div><strong>ID:</strong> Veículo ${vehicleId}</div>
+                            <div><strong>Cor:</strong> <span style="display: inline-block; width: 20px; height: 20px; background: ${getColorCode(vehicle.color)}; border-radius: 50%; border: 2px solid var(--border);"></span> ${vehicle.color}</div>
+                            <div><strong>Número de Entregas:</strong> ${vehicle.num_deliveries}</div>
+                            <div><strong>Entregas Críticas:</strong> ${vehicle.critical_deliveries}</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 style="margin-bottom: 0.5rem;">Capacidade</h3>
+                        <div style="background: var(--bg); padding: 1rem; border-radius: 8px;">
+                            <div><strong>Peso Total:</strong> ${vehicle.total_weight.toFixed(2)} kg</div>
+                            <div><strong>Capacidade Máxima:</strong> ${vehicle.max_capacity.toFixed(2)} kg</div>
+                            <div><strong>Utilização:</strong> ${vehicle.capacity_percent.toFixed(1)}%</div>
+                            <div><strong>Status:</strong> <span class="status-badge ${vehicle.capacity_status}">${vehicle.capacity_status === 'ok' ? 'OK' : vehicle.capacity_status === 'warning' ? 'Atenção' : 'Crítico'}</span></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 style="margin-bottom: 0.5rem;">Autonomia</h3>
+                        <div style="background: var(--bg); padding: 1rem; border-radius: 8px;">
+                            <div><strong>Distância Percorrida:</strong> ${vehicle.distance.toFixed(2)} km</div>
+                            <div><strong>Autonomia Máxima:</strong> ${vehicle.max_range.toFixed(2)} km</div>
+                            <div><strong>Utilização:</strong> ${vehicle.range_percent.toFixed(1)}%</div>
+                            <div><strong>Status:</strong> <span class="status-badge ${vehicle.range_status}">${vehicle.range_status === 'ok' ? 'OK' : vehicle.range_status === 'warning' ? 'Atenção' : 'Crítico'}</span></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 style="margin-bottom: 0.5rem;">Custo</h3>
+                        <div style="background: var(--bg); padding: 1rem; border-radius: 8px;">
+                            <div><strong>Custo Estimado:</strong> R$ ${vehicle.cost.toFixed(2)}</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 style="margin-bottom: 0.5rem;">Rota Completa</h3>
+                        <div style="background: var(--bg); padding: 1rem; border-radius: 8px;">
+                            <div style="font-family: monospace; font-size: 0.875rem;">
+                                Depósito → ${vehicle.route.join(' → ')} → Depósito
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.add('active');
+            closeAllDropdowns();
+        }
+
+        // Mostrar entrega no mapa
+        function showDeliveryOnMap(location) {
+            const mapIframe = document.getElementById('map-iframe');
+            if (!mapIframe) {
+                console.warn('Mapa não encontrado');
+                alert(`Centralizando mapa na localização: (${location[0].toFixed(4)}, ${location[1].toFixed(4)})\n\nErro: Mapa não encontrado.`);
+                return;
+            }
+
+            // Garantir que o iframe está carregado
+            if (!mapIframe.contentWindow) {
+                console.warn('Iframe ainda não carregado, aguardando...');
+                setTimeout(() => showDeliveryOnMap(location), 500);
+                return;
+            }
+
+            // Validar formato da localização [latitude, longitude]
+            if (!Array.isArray(location) || location.length !== 2) {
+                console.error('Formato de localização inválido:', location);
+                alert('Erro: Formato de localização inválido.');
+                return;
+            }
+
+            console.log('Enviando localização para o mapa:', location);
+
+            // Enviar mensagem para o iframe do mapa
+            try {
+                mapIframe.contentWindow.postMessage({
+                    type: 'show_delivery',
+                    location: [parseFloat(location[0]), parseFloat(location[1])]
+                }, '*');
+
+                console.log('Mensagem enviada com sucesso');
+            } catch (error) {
+                console.error('Erro ao enviar mensagem para o mapa:', error);
+                alert('Erro ao comunicar com o mapa. Tente recarregar a página.');
+            }
+
+            closeAllDropdowns();
+        }
+
+        // Fechar modal
+        function closeModal(modalId = 'details-modal') {
+            document.getElementById(modalId).classList.remove('active');
+            if (window.trackingInterval) {
+                clearInterval(window.trackingInterval);
+                window.trackingInterval = null;
+            }
+        }
+
+        // Mostrar Timeline
+        function showTimeline() {
+            const modal = document.getElementById('timeline-modal');
+            const body = document.getElementById('timeline-body');
+
+            // Simular dados da timeline (em produção, viria do backend)
+            const timelineData = generateTimelineData();
+
+            body.innerHTML = `
+                <div class="timeline-container">
+                    <div class="timeline-header">
+                        <h3>📅 Timeline de Entregas - ${new Date().toLocaleDateString('pt-BR')}</h3>
+                        <div>
+                            <button class="action-btn secondary" onclick="exportTimeline()">
+                                <i class="fas fa-download"></i> Exportar
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-stats">
+                        <div class="timeline-stat-item">
+                            <strong>✅ ${timelineData.onTime}</strong> dentro do prazo
+                        </div>
+                        <div class="timeline-stat-item">
+                            <strong>⚠️ ${timelineData.nearLimit}</strong> próximas ao limite
+                        </div>
+                        <div class="timeline-stat-item">
+                            <strong>🚨 ${timelineData.late}</strong> atrasadas
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-events">
+                        ${timelineData.events.map(event => `
+                            <div class="timeline-event ${event.isCritical ? 'critical' : ''}">
+                                <div class="timeline-time">${event.time}</div>
+                                <div class="timeline-event-info">
+                                    <div><strong>${event.vehicle}</strong> → ${event.deliveryId} ${event.isCritical ? '⚠️ CRÍTICA' : ''}</div>
+                                    <div style="font-size: 0.875rem; color: var(--text-light);">${event.location}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            modal.classList.add('active');
+        }
+
+        // Gerar dados da timeline (simulado)
+        function generateTimelineData() {
+            const events = [];
+            const vehicles = ['🔵 V1', '🔴 V2', '🟢 V3'];
+            const deliveries = ['D001', 'D002', 'D003', 'D004', 'D005', 'D006'];
+            const locations = ['Hospital das Clínicas', 'Hospital Sírio-Libanês', 'Santa Casa', 'Hospital Einstein', 'Hospital Israelita', 'Hospital Alemão'];
+
+            let currentTime = new Date();
+            currentTime.setHours(9, 0, 0, 0);
+
+            for (let i = 0; i < 12; i++) {
+                const vehicleIdx = i % 3;
+                const deliveryIdx = i % 6;
+                const isCritical = i % 3 === 0;
+
+                events.push({
+                    time: currentTime.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+                    vehicle: vehicles[vehicleIdx],
+                    deliveryId: deliveries[deliveryIdx],
+                    location: locations[deliveryIdx],
+                    isCritical: isCritical,
+                });
+
+                currentTime.setMinutes(currentTime.getMinutes() + 15);
+            }
+
+            return {
+                events: events,
+                onTime: 10,
+                nearLimit: 2,
+                late: 0,
+            };
+        }
+
+        // Mostrar Comparação
+        function showComparison() {
+            const modal = document.getElementById('comparison-modal');
+            const body = document.getElementById('comparison-body');
+
+            // Simular dados de comparação (em produção, viria do backend)
+            const comparisonData = {
+                distance: { current: 81.7, greedy: 95.3, baseline: 120.5 },
+                cost: { current: 299, greedy: 340, baseline: 450 },
+                vehicles: { current: 3, greedy: 3, baseline: 4 },
+                time: { current: 3.2, greedy: 3.8, baseline: 5.1 },
+                violations: { current: 0, greedy: 1, baseline: 3 },
+            };
+
+            const savings = {
+                vsGreedy: { cost: 41, percent: 12.1, distance: 13.6 },
+                vsBaseline: { cost: 151, percent: 33.6, distance: 38.8, co2: 9.2 },
+            };
+
+            body.innerHTML = `
+                <div style="padding: 1.5rem;">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Métrica</th>
+                                <th>Atual</th>
+                                <th>Greedy</th>
+                                <th>Baseline</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>📏 Distância Total</td>
+                                <td><strong>${comparisonData.distance.current} km</strong></td>
+                                <td>${comparisonData.distance.greedy} km</td>
+                                <td>${comparisonData.distance.baseline} km</td>
+                            </tr>
+                            <tr>
+                                <td>💰 Custo Total</td>
+                                <td><strong>R$ ${comparisonData.cost.current}</strong></td>
+                                <td>R$ ${comparisonData.cost.greedy}</td>
+                                <td>R$ ${comparisonData.cost.baseline}</td>
+                            </tr>
+                            <tr>
+                                <td>🚚 Veículos Usados</td>
+                                <td><strong>${comparisonData.vehicles.current}</strong></td>
+                                <td>${comparisonData.vehicles.greedy}</td>
+                                <td>${comparisonData.vehicles.baseline}</td>
+                            </tr>
+                            <tr>
+                                <td>⏱️ Tempo Entrega</td>
+                                <td><strong>${comparisonData.time.current}h</strong></td>
+                                <td>${comparisonData.time.greedy}h</td>
+                                <td>${comparisonData.time.baseline}h</td>
+                            </tr>
+                            <tr>
+                                <td>⚠️ Violações</td>
+                                <td><strong>${comparisonData.violations.current}</strong></td>
+                                <td>${comparisonData.violations.greedy}</td>
+                                <td>${comparisonData.violations.baseline}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="savings-section">
+                        <h3>📊 ECONOMIA GERADA:</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin: 0.5rem 0;">• vs. Greedy: R$ ${savings.vsGreedy.cost} (${savings.vsGreedy.percent}% melhor) ✅</li>
+                            <li style="margin: 0.5rem 0;">• vs. Baseline: R$ ${savings.vsBaseline.cost} (${savings.vsBaseline.percent}% melhor) ✅</li>
+                            <li style="margin: 0.5rem 0;">• Distância economizada: ${savings.vsBaseline.distance} km</li>
+                            <li style="margin: 0.5rem 0;">• CO₂ evitado: ~${savings.vsBaseline.co2} kg 🌱</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                        <button class="action-btn" onclick="alert('Funcionalidade de gráfico em desenvolvimento')">
+                            <i class="fas fa-chart-bar"></i> Visualizar Gráfico
+                        </button>
+                        <button class="action-btn secondary" onclick="exportReport('comparison')">
+                            <i class="fas fa-download"></i> Exportar Relatório
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.add('active');
+        }
+
+        // Mostrar Rastreamento - Redirecionar para página de rastreamento ao vivo
+        function showTracking() {
+            // Verificar se está rodando via servidor Flask
+            if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
+                // Servidor Flask - usar rota /rastreamento
+                window.open('/rastreamento', '_blank');
+            } else {
+                // Arquivo local - abrir rastreamento_mapbox.html diretamente
+                window.open('rastreamento_mapbox.html', '_blank');
+            }
+        }
+
+        // Função antiga do modal (comentada)
+        function showTrackingModal() {
+            const modal = document.getElementById('tracking-modal');
+            const body = document.getElementById('tracking-body');
+
+            // Simular dados de rastreamento (em produção, viria do backend)
+            const trackingData = [
+                {
+                    vehicleId: 1,
+                    color: 'blue',
+                    status: 'Em trânsito 🚚',
+                    nextStop: 'D004 (Hospital Einstein)',
+                    distance: 3.2,
+                    eta: '09:45 (em 8 minutos)',
+                    speed: 45,
+                    progress: 35,
+                },
+                {
+                    vehicleId: 2,
+                    color: 'red',
+                    status: 'Entregando 📦',
+                    nextStop: 'D002 (Sírio-Libanês)',
+                    distance: 0,
+                    eta: 'Agora',
+                    speed: 0,
+                    progress: 15,
+                },
+                {
+                    vehicleId: 3,
+                    color: 'green',
+                    status: 'Aguardando início 🕐',
+                    nextStop: 'D003 (Santa Casa)',
+                    distance: 0,
+                    eta: '09:30',
+                    speed: 0,
+                    progress: 0,
+                },
+            ];
+
+            body.innerHTML = `
+                <div style="padding: 1.5rem;">
+                    ${trackingData.map(vehicle => `
+                        <div class="tracking-vehicle" style="border-left-color: ${getColorCode(vehicle.color)};">
+                            <div class="tracking-status">
+                                <span style="font-size: 1.5rem;">${vehicle.color === 'blue' ? '🔵' : vehicle.color === 'red' ? '🔴' : '🟢'}</span>
+                                <h3>VEÍCULO ${vehicle.vehicleId} (${vehicle.color === 'blue' ? 'Azul' : vehicle.color === 'red' ? 'Vermelho' : 'Verde'})</h3>
+                            </div>
+                            <div style="margin: 0.5rem 0;">
+                                <div><strong>Status:</strong> ${vehicle.status}</div>
+                                <div><strong>Próxima parada:</strong> ${vehicle.nextStop}</div>
+                                ${vehicle.distance > 0 ? `<div><strong>Distância:</strong> ${vehicle.distance} km</div>` : ''}
+                                <div><strong>ETA:</strong> ${vehicle.eta}</div>
+                                ${vehicle.speed > 0 ? `<div><strong>Velocidade:</strong> ${vehicle.speed} km/h</div>` : ''}
+                            </div>
+                            <div class="progress-bar-tracking">
+                                <div class="progress-fill-tracking" style="width: ${vehicle.progress}%;">
+                                    ${vehicle.progress}% concluído
+                                </div>
+                            </div>
+                            <div style="margin-top: 0.75rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                <button class="action-btn secondary" style="font-size: 0.75rem;">
+                                    <i class="fas fa-phone"></i> Contatar Motorista
+                                </button>
+                                <button class="action-btn secondary" style="font-size: 0.75rem;">
+                                    <i class="fas fa-sync-alt"></i> Atualizar
+                                </button>
+                            </div>
+                        </div>
+                    `).join('')}
+                    
+                    <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                        <button class="action-btn" onclick="alert('Funcionalidade de mapa em desenvolvimento')">
+                            <i class="fas fa-map"></i> Ver Todos no Mapa
+                        </button>
+                        <button class="action-btn secondary">
+                            <i class="fas fa-chart-line"></i> Dashboard Completo
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.add('active');
+
+            // Atualizar rastreamento a cada 5 segundos
+            if (window.trackingInterval) {
+                clearInterval(window.trackingInterval);
+            }
+            window.trackingInterval = setInterval(() => {
+                showTracking(); // Recarregar dados
+            }, 5000);
+        }
+
+        // Mostrar Menu de Exportação
+        function showExportMenu() {
+            const modal = document.getElementById('export-modal');
+            const body = document.getElementById('export-body');
+
+            body.innerHTML = `
+                <div style="padding: 1.5rem;">
+                    <h3 style="margin-bottom: 1rem;">Escolha o formato de exportação:</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <button class="action-btn" onclick="exportReport('pdf-executive')" style="flex-direction: column; padding: 1.5rem;">
+                            <i class="fas fa-file-pdf" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <strong>PDF Executivo</strong>
+                            <small style="font-size: 0.75rem; opacity: 0.8;">Relatório resumido para gestão</small>
+                        </button>
+                        <button class="action-btn" onclick="exportReport('pdf-driver')" style="flex-direction: column; padding: 1.5rem;">
+                            <i class="fas fa-file-pdf" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <strong>PDF Motoristas</strong>
+                            <small style="font-size: 0.75rem; opacity: 0.8;">Instruções detalhadas por veículo</small>
+                        </button>
+                        <button class="action-btn" onclick="exportReport('excel')" style="flex-direction: column; padding: 1.5rem;">
+                            <i class="fas fa-file-excel" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <strong>Excel</strong>
+                            <small style="font-size: 0.75rem; opacity: 0.8;">Planilha completa com dados</small>
+                        </button>
+                        <button class="action-btn" onclick="exportReport('json')" style="flex-direction: column; padding: 1.5rem;">
+                            <i class="fas fa-code" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <strong>JSON/API</strong>
+                            <small style="font-size: 0.75rem; opacity: 0.8;">Dados estruturados para integração</small>
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.add('active');
+        }
+
+        // Exportar Relatório
+        async function exportReport(type) {
+            try {
+                // Mostrar indicador de carregamento
+                const loadingMsg = document.createElement('div');
+                loadingMsg.id = 'export-loading';
+                loadingMsg.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 10000;';
+                loadingMsg.innerHTML = '<div style="text-align: center;"><div class="spinner" style="border: 4px solid #f3f3f3; border-top: 4px solid var(--primary); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 1rem;"></div><p>Gerando relatório...</p></div>';
+                document.body.appendChild(loadingMsg);
+
+                // Fazer requisição ao backend
+                const response = await fetch(`${API_URL}/api/export/${type}`, {
+                    method: 'GET',
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error || 'Erro ao exportar relatório');
+                }
+
+                // Obter blob do arquivo
+                const blob = await response.blob();
+
+                // Criar link de download
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+
+                // Determinar nome do arquivo baseado no tipo
+                const fileNames = {
+                    'pdf-executive': 'relatorio_executivo.pdf',
+                    'pdf-driver': 'instrucoes_motoristas.pdf',
+                    'excel': 'rotas_otimizadas.xlsx',
+                    'json': 'dados_rotas.json',
+                };
+
+                // Se for HTML (fallback do PDF), ajustar extensão
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('text/html')) {
+                    a.download = fileNames[type]?.replace('.pdf', '.html') || 'relatorio.html';
+                } else {
+                    a.download = fileNames[type] || 'relatorio';
+                }
+
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+
+                // Remover indicador de carregamento
+                document.body.removeChild(loadingMsg);
+
+                // Mostrar mensagem de sucesso
+                alert('✅ Relatório exportado com sucesso!');
+                closeModal('export-modal');
+
+            } catch (error) {
+                // Remover indicador de carregamento se existir
+                const loadingMsg = document.getElementById('export-loading');
+                if (loadingMsg) {
+                    document.body.removeChild(loadingMsg);
+                }
+
+                console.error('Erro ao exportar:', error);
+                alert(`❌ Erro ao exportar relatório: ${error.message}\n\nVerifique o console para mais detalhes.`);
+            }
+        }
+
+        // Exportar Timeline
+        function exportTimeline() {
+            alert('Exportando timeline...\n\nEm produção, isso baixaria um arquivo PDF ou Excel.');
+        }
+
+        // Fechar modal ao clicar fora
+        document.addEventListener('DOMContentLoaded', function () {
+            ['details-modal', 'timeline-modal', 'comparison-modal', 'tracking-modal', 'export-modal'].forEach(modalId => {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.addEventListener('click', function (e) {
+                        if (e.target === this) {
+                            closeModal(modalId);
+                        }
+                    });
+                }
+            });
+        });
+
+        // Auto-resize textarea
+        function autoResizeTextarea() {
+            const textarea = document.getElementById('chat-input');
+            textarea.addEventListener('input', function () {
+                this.style.height = 'auto';
+                this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+            });
+        }
+
+        // Inicializar chatbot
+        async function initializeChat() {
+            try {
+                const response = await fetch(`${API_URL}/api/init`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                if (response.ok) {
+                    chatInitialized = true;
+                    console.log('Chatbot inicializado');
+                }
+            } catch (error) {
+                console.warn('Não foi possível inicializar chatbot via API:', error);
+                // Continuar mesmo sem API
+            }
+        }
+
+        // Enviar mensagem
+        async function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+
+            if (!message || isProcessing) return;
+
+            // Adicionar mensagem do usuário
+            addMessage('user', message);
+            input.value = '';
+            input.style.height = 'auto';
+
+            // Mostrar typing indicator
+            showTyping();
+
+            // Processar
+            isProcessing = true;
+            const sendBtn = document.getElementById('send-btn');
+            sendBtn.disabled = true;
+
+            try {
+                const response = await callChatbotAPI(message);
+                hideTyping();
+                addMessage('assistant', response);
+            } catch (error) {
+                hideTyping();
+                addMessage('assistant', 'Desculpe, ocorreu um erro ao processar sua pergunta. Tente novamente ou verifique se o servidor está rodando.');
+                console.error('Erro:', error);
+            } finally {
+                isProcessing = false;
+                sendBtn.disabled = false;
+            }
+        }
+
+        // Chamar API do chatbot
+        async function callChatbotAPI(message) {
+            try {
+                const response = await fetch(`${API_URL}/api/chat`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: message })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+
+                const data = await response.json();
+                return data.response || 'Desculpe, não consegui processar sua pergunta.';
+            } catch (error) {
+                // Fallback para respostas simuladas se API não disponível
+                return getFallbackResponse(message);
+            }
+        }
+
+        // Resposta de fallback inteligente usando dados reais
+        function getFallbackResponse(message) {
+            const msg = message.toLowerCase();
+
+            // 1. Consultas sobre VEÍCULOS
+            if (msg.includes('veículo') || msg.includes('motorista') || msg.includes('sobrecarregado') || msg.includes('capacidade')) {
+                let response = `<strong>🚚 VEÍCULOS NA OPERAÇÃO:</strong><br><br>`;
+                driversData.forEach(v => {
+                    const status = v.capacity_percent >= 90 ? '⚠️ SOBRECARREGADO' : v.capacity_percent >= 70 ? '🟡 NORMAL' : '🟢 FOLGA';
+                    response += `<strong>Veículo ${v.driver_id}</strong> ${status}<br>`;
+                    response += `• Capacidade: ${v.capacity_percent.toFixed(0)}%<br>`;
+                    response += `• Distância: ${v.distance.toFixed(1)} km<br>`;
+                    response += `• Entregas: ${v.num_deliveries}<br><br>`;
+                });
+                const maxLoaded = driversData.reduce((max, v) => v.capacity_percent > max.capacity_percent ? v : max);
+                response += `<strong>🔴 Mais carregado:</strong> Veículo ${maxLoaded.driver_id} (${maxLoaded.capacity_percent.toFixed(0)}%)`;
+                return response;
+            }
+
+            // 2. Consultas sobre ENTREGAS CRÍTICAS
+            if (msg.includes('crítica') || msg.includes('urgente') || msg.includes('prioridade')) {
+                let response = `<strong>⚠️ ENTREGAS CRÍTICAS (${statsData.critical_deliveries}):</strong><br><br>`;
+                driversData.forEach(v => {
+                    if (v.critical_deliveries > 0) {
+                        response += `<strong>Veículo ${v.driver_id}:</strong> ${v.critical_deliveries} críticas<br>`;
+                        v.route.forEach((stop, idx) => {
+                            const delivery = deliveriesData.find(d => d.id === stop);
+                            if (delivery && delivery.is_critical) {
+                                response += `• Parada ${idx + 1}: ${delivery.location}<br>`;
+                            }
+                        });
+                        response += `<br>`;
+                    }
+                });
+                return response;
+            }
+
+            // 3. Consultas sobre DISTÂNCIA
+            if (msg.includes('distância') || msg.includes('km') || msg.includes('percorr')) {
+                let response = `<strong>📍 DISTÂNCIAS:</strong><br><br>`;
+                response += `<strong>Total:</strong> ${statsData.total_distance.toFixed(2)} km<br><br>`;
+                driversData.forEach(v => {
+                    response += `Veículo ${v.driver_id}: ${v.distance.toFixed(2)} km<br>`;
+                });
+                const baseline = 120;
+                const savings = baseline - statsData.total_distance;
+                response += `<br><strong>🎯 Economia:</strong> ${savings.toFixed(1)} km vs cenário base (${(savings / baseline * 100).toFixed(1)}%)`;
+                return response;
+            }
+
+            // 4. Consultas sobre CUSTO
+            if (msg.includes('custo') || msg.includes('preço') || msg.includes('valor') || msg.includes('R$')) {
+                let response = `<strong>💰 CUSTOS OPERACIONAIS:</strong><br><br>`;
+                response += `<strong>Total:</strong> R$ ${statsData.total_cost.toFixed(2)}<br><br>`;
+                driversData.forEach(v => {
+                    response += `Veículo ${v.driver_id}: R$ ${v.cost.toFixed(2)}<br>`;
+                });
+                response += `<br><em>Inclui combustível, desgaste e custos operacionais</em>`;
+                return response;
+            }
+
+            // 5. Consultas sobre EFICIÊNCIA
+            if (msg.includes('eficiência') || msg.includes('otimiza') || msg.includes('desempenho')) {
+                const avgCapacity = driversData.reduce((sum, v) => sum + v.capacity_percent, 0) / driversData.length;
+                let response = `<strong>🎯 ANÁLISE DE EFICIÊNCIA:</strong><br><br>`;
+                response += `• Fitness Score: ${statsData.fitness_score.toFixed(2)}<br>`;
+                response += `• Capacidade Média: ${avgCapacity.toFixed(1)}%<br>`;
+                response += `• Veículos Utilizados: ${statsData.num_vehicles}<br>`;
+                response += `• Entregas Totais: ${statsData.num_deliveries}<br><br>`;
+
+                if (avgCapacity > 85) {
+                    response += `<strong>⚠️ Insight:</strong> Veículos próximos do limite. Considerar veículo adicional.`;
+                } else if (avgCapacity < 60) {
+                    response += `<strong>💡 Insight:</strong> Capacidade subutilizada. Possível reduzir veículos.`;
+                } else {
+                    response += `<strong>✅ Insight:</strong> Distribuição equilibrada e eficiente!`;
+                }
+                return response;
+            }
+
+            // 6. Consultas sobre ECONOMIA/SUSTENTABILIDADE
+            if (msg.includes('econom') || msg.includes('combustível') || msg.includes('sustent') || msg.includes('verde')) {
+                const co2Saved = (120 - statsData.total_distance) * 0.24;
+                const treesEquiv = (co2Saved / 2.3).toFixed(1);
+                let response = `<strong>🌱 ECONOMIA & SUSTENTABILIDADE:</strong><br><br>`;
+                response += `• Distância otimizada: ${statsData.total_distance.toFixed(1)} km<br>`;
+                response += `• Redução vs base: ${(120 - statsData.total_distance).toFixed(1)} km<br>`;
+                response += `• CO₂ evitado: ${co2Saved.toFixed(1)} kg<br>`;
+                response += `• Equivalente a: ${treesEquiv} árvores/ano<br><br>`;
+                response += `<strong>💡 Dica:</strong> Rotas otimizadas economizam combustível e reduzem emissões!`;
+                return response;
+            }
+
+            // 7. Resposta genérica com dados estruturados
+            return `<strong>📊 RESUMO DA OPERAÇÃO:</strong><br><br>
+                    • <strong>${statsData.num_vehicles} veículos</strong> em operação<br>
+                    • <strong>${statsData.num_deliveries} entregas</strong> (${statsData.critical_deliveries} críticas)<br>
+                    • <strong>${statsData.total_distance.toFixed(1)} km</strong> de distância total<br>
+                    • <strong>R$ ${statsData.total_cost.toFixed(2)}</strong> de custo operacional<br><br>
+                    <strong>Pergunte sobre:</strong><br>
+                    • Veículos e capacidade<br>
+                    • Entregas críticas<br>
+                    • Custos e eficiência<br>
+                    • Economia de combustível`;
+        }
+
+        // Adicionar mensagem
+        function addMessage(role, content) {
+            const container = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${role}`;
+
+            const roleLabel = role === 'user' ? 'Você' : '🤖 Assistente';
+            const formattedContent = formatMessage(content);
+
+            messageDiv.innerHTML = `
+                <div class="message-bubble">
+                    <strong>${roleLabel}:</strong> ${formattedContent}
+                </div>
+            `;
+
+            container.appendChild(messageDiv);
+            scrollToBottom();
+
+            // Salvar no histórico
+            conversationHistory.push({ role, content, timestamp: new Date() });
+        }
+
+        // Formatar mensagem (markdown básico)
+        function formatMessage(text) {
+            return text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/\n/g, '<br>');
+        }
+
+        // Mostrar typing indicator
+        function showTyping() {
+            document.getElementById('typing-indicator').classList.add('active');
+            scrollToBottom();
+        }
+
+        // Esconder typing indicator
+        function hideTyping() {
+            document.getElementById('typing-indicator').classList.remove('active');
+        }
+
+        // Scroll para baixo
+        function scrollToBottom() {
+            const container = document.getElementById('chat-messages');
+            container.scrollTop = container.scrollHeight;
+        }
+
+        // Pergunta rápida
+        function askQuick(question) {
+            document.getElementById('chat-input').value = question;
+            sendMessage();
+        }
+
+        // Limpar chat
+        function clearChat() {
+            if (confirm('Deseja limpar o histórico de conversa?')) {
+                const container = document.getElementById('chat-messages');
+                container.innerHTML = `
+                    <div class="message assistant">
+                        <div class="message-bubble">
+                            <strong>🤖 Assistente:</strong> Histórico limpo! Como posso ajudar?
+                        </div>
+                    </div>
+                `;
+                conversationHistory = [];
+            }
+        }
+
+        // Toggle fullscreen
+        function toggleFullscreen() {
+            const mapSection = document.getElementById('map-section');
+            if (mapSection.classList.contains('map-fullscreen')) {
+                mapSection.classList.remove('map-fullscreen');
+            } else {
+                mapSection.classList.add('map-fullscreen');
+            }
+        }
+
+        // Handle Enter key
+        function handleKeyDown(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+
+        /**
+         * ============================================
+         * FUNÇÕES EXTRAS PARA HEADER PROFISSIONAL
+         * ============================================
+         */
+
+        /**
+         * Atualizar métricas com animação
+         * @param {string} selector - Seletor CSS do badge
+         * @param {string} newValue - Novo valor a ser exibido
+         */
+        function updateMetricWithAnimation(selector, newValue) {
+            const badge = document.querySelector(selector);
+            if (!badge) return;
+
+            const valueElement = badge.querySelector('strong');
+            if (!valueElement) return;
+
+            // Adicionar classe de loading
+            badge.style.position = 'relative';
+            badge.style.pointerEvents = 'none';
+
+            // Criar loading overlay
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 6px;
+            `;
+            overlay.innerHTML = '<div style="width: 12px; height: 12px; border: 2px solid #E5E7EB; border-top-color: #4F46E5; border-radius: 50%; animation: spin 0.6s linear infinite;"></div>';
+            badge.appendChild(overlay);
+
+            setTimeout(() => {
+                valueElement.textContent = newValue;
+                badge.removeChild(overlay);
+                badge.style.pointerEvents = '';
+
+                // Animação de destaque
+                badge.style.animation = 'none';
+                setTimeout(() => {
+                    badge.style.animation = 'highlight 0.5s ease';
+                }, 10);
+            }, 500);
+        }
+
+        /**
+         * Adicionar tooltips nos botões de ação (se não tiverem)
+         */
+        function initializeHeaderTooltips() {
+            const buttons = document.querySelectorAll('.action-header-btn');
+            buttons.forEach(btn => {
+                const text = btn.querySelector('.text')?.textContent;
+                if (text && !btn.hasAttribute('title')) {
+                    btn.setAttribute('title', text);
+                }
+            });
+        }
+
+        /**
+         * Fechar badges ao clicar fora
+         */
+        function initializeBadgeClickOutside() {
+            document.addEventListener('click', (e) => {
+                const clickedBadge = e.target.closest('.stat-badge');
+                if (!clickedBadge) {
+                    closeAllDropdowns();
+                }
+            });
+        }
+
+        // Adicionar animação de destaque ao CSS dinamicamente
+        const highlightStyle = document.createElement('style');
+        highlightStyle.textContent = `
+            @keyframes highlight {
+                0%, 100% { background: white; }
+                50% { background: #FEF3C7; }
+            }
+            @keyframes spin {
+                to { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(highlightStyle);
+
+        // Inicializar funcionalidades extras do header
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeHeaderTooltips();
+            initializeBadgeClickOutside();
+        });
+
+        /**
+         * Exemplo de uso da atualização de métrica:
+         * updateMetricWithAnimation('.stat-badge:nth-child(1)', '92.5 km');
+         * updateMetricWithAnimation('.stat-badge:nth-child(2)', 'R$ 350.00');
+         */
+    </script>
+</body>
+
+</html>

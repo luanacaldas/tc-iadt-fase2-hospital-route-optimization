@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot - Sistema de Rotas Hospitalares</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        .header h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .header .stats {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .stat-item i {
+            color: #667eea;
+        }
+        
+        .container {
+            display: flex;
+            flex: 1;
+            gap: 20px;
+            padding: 20px;
+            overflow: hidden;
+        }
+        
+        .left-panel {
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow-y: auto;
+        }
+        
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-width: 0;
+        }
+        
+        .right-panel {
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow-y: auto;
+        }
+        
+        .panel {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .panel-header h2 {
+            color: #333;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .panel-header i {
+            color: #667eea;
+        }
+        
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .message.user {
+            text-align: right;
+        }
+        
+        .message.assistant {
+            text-align: left;
+        }
+        
+        .message-bubble {
+            display: inline-block;
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            word-wrap: break-word;
+        }
+        
+        .message.user .message-bubble {
+            background: #667eea;
+            color: white;
+        }
+        
+        .message.assistant .message-bubble {
+            background: white;
+            color: #333;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .chat-input-container {
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        
+        .chat-input:focus {
+            border-color: #667eea;
+        }
+        
+        .send-button {
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .send-button:hover {
+            background: #5568d3;
+        }
+        
+        .send-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .driver-card, .hospital-card {
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .driver-card:hover, .hospital-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .driver-card h3, .hospital-card h3 {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .driver-card .info, .hospital-card .info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        .badge-critical {
+            background: #fee;
+            color: #c33;
+        }
+        
+        .badge-normal {
+            background: #eef;
+            color: #336;
+        }
+        
+        .badge-success {
+            background: #efe;
+            color: #363;
+        }
+        
+        .map-container {
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .quick-action-btn {
+            padding: 6px 12px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quick-action-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .scrollbar-custom::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .scrollbar-custom::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .scrollbar-custom::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        
+        .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        @media (max-width: 1200px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .left-panel, .right-panel {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1><i class="fas fa-robot"></i> Chatbot - Sistema de Rotas Hospitalares</h1>
+        <div class="stats">
+            <div class="stat-item">
+                <i class="fas fa-truck"></i>
+                <span>3 Veículos</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-box"></i>
+                <span>12 Entregas</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>5 Críticas</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-route"></i>
+                <span>87.1 km</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-dollar-sign"></i>
+                <span>R$ 330.32</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Painel Esquerdo: Motoristas -->
+        <div class="left-panel scrollbar-custom">
+            <div class="panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-users"></i> Motoristas</h2>
+                </div>
+                <div id="drivers-list">
+                    <!-- Preenchido via JavaScript -->
+                </div>
+            </div>
+            
+            <div class="panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-hospital"></i> Hospitais</h2>
+                </div>
+                <div id="hospitals-list">
+                    <!-- Preenchido via JavaScript -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Conteúdo Principal: Chatbot -->
+        <div class="main-content">
+            <div class="chat-container">
+                <div class="chat-messages scrollbar-custom" id="chat-messages">
+                    <div class="message assistant">
+                        <div class="message-bubble">
+                            <strong>🤖 Assistente:</strong> Olá! Sou o assistente do sistema de rotas hospitalares. 
+                            Posso ajudar você com informações sobre rotas, entregas, veículos e muito mais. 
+                            Faça sua pergunta!
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-container">
+                    <input 
+                        type="text" 
+                        class="chat-input" 
+                        id="chat-input" 
+                        placeholder="Digite sua pergunta..."
+                        onkeypress="if(event.key === 'Enter') sendMessage()"
+                    >
+                    <button class="send-button" onclick="sendMessage()" id="send-btn">
+                        <i class="fas fa-paper-plane"></i> Enviar
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Ações Rápidas -->
+            <div class="panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-bolt"></i> Perguntas Rápidas</h2>
+                </div>
+                <div class="quick-actions">
+                    <button class="quick-action-btn" onclick="askQuick('Quantos veículos foram usados?')">
+                        Quantos veículos?
+                    </button>
+                    <button class="quick-action-btn" onclick="askQuick('Há entregas críticas?')">
+                        Entregas críticas?
+                    </button>
+                    <button class="quick-action-btn" onclick="askQuick('Qual a distância total?')">
+                        Distância total?
+                    </button>
+                    <button class="quick-action-btn" onclick="askQuick('Analise a eficiência das rotas')">
+                        Análise de eficiência
+                    </button>
+                    <button class="quick-action-btn" onclick="askQuick('Quais hospitais serão visitados?')">
+                        Hospitais visitados?
+                    </button>
+                    <button class="quick-action-btn" onclick="askQuick('Há melhorias possíveis?')">
+                        Sugestões de melhoria
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mapa (se incluído) -->
+            
+            <div class="panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-map"></i> Mapa das Rotas</h2>
+                </div>
+                <div class="map-container">
+                    <iframe src="file://E:\hospital_routes\route_map.html" title="Mapa de Rotas"></iframe>
+                </div>
+            </div>
+        
+        </div>
+        
+        <!-- Painel Direito: Estatísticas e Informações -->
+        <div class="right-panel scrollbar-custom">
+            <div class="panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-chart-bar"></i> Estatísticas</h2>
+                </div>
+                <div class="info">
+                    <div style="margin-bottom: 15px;">
+                        <strong>Distância Total:</strong><br>
+                        <span style="color: #667eea; font-size: 20px; font-weight: bold;">
+                            87.07 km
+                        </span>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <strong>Custo Total:</strong><br>
+                        <span style="color: #667eea; font-size: 20px; font-weight: bold;">
+                            R$ 330.32
+                        </span>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <strong>Tempo de Execução:</strong><br>
+                        <span style="color: #667eea; font-size: 20px; font-weight: bold;">
+                            0.24s
+                        </span>
+                    </div>
+                    <div>
+                        <strong>Fitness Score:</strong><br>
+                        <span style="color: #667eea; font-size: 20px; font-weight: bold;">
+                            37843.40
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-pills"></i> Medicamentos</h2>
+                </div>
+                <div id="medications-list">
+                    <!-- Preenchido via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Dados
+        const driversData = [
+  {
+    "driver_id": 1,
+    "route": [
+      "HOSP_002",
+      "HOSP_004",
+      "HOSP_003"
+    ],
+    "num_deliveries": 3,
+    "critical_deliveries": 3,
+    "total_weight": 50.0,
+    "distance": 1.6949698874373984
+  },
+  {
+    "driver_id": 2,
+    "route": [
+      "HOSP_001",
+      "HOSP_010",
+      "HOSP_011"
+    ],
+    "num_deliveries": 3,
+    "critical_deliveries": 1,
+    "total_weight": 50.0,
+    "distance": 7.7339416029883745
+  },
+  {
+    "driver_id": 3,
+    "route": [
+      "HOSP_009",
+      "HOSP_008",
+      "HOSP_005",
+      "HOSP_012",
+      "HOSP_006",
+      "HOSP_007"
+    ],
+    "num_deliveries": 6,
+    "critical_deliveries": 1,
+    "total_weight": 133.0,
+    "distance": 44.611268059188
+  }
+];
+        const hospitalsData = [
+  {
+    "id": "HOSP_001",
+    "location": [
+      -23.5928,
+      -46.6889
+    ],
+    "priority": 1,
+    "weight": 15.0,
+    "is_critical": true
+  },
+  {
+    "id": "HOSP_002",
+    "location": [
+      -23.556,
+      -46.6566
+    ],
+    "priority": 1,
+    "weight": 12.0,
+    "is_critical": true
+  },
+  {
+    "id": "HOSP_003",
+    "location": [
+      -23.5558,
+      -46.6732
+    ],
+    "priority": 1,
+    "weight": 20.0,
+    "is_critical": true
+  },
+  {
+    "id": "HOSP_004",
+    "location": [
+      -23.5558,
+      -46.6732
+    ],
+    "priority": 1,
+    "weight": 18.0,
+    "is_critical": true
+  },
+  {
+    "id": "HOSP_005",
+    "location": [
+      -23.556,
+      -46.6566
+    ],
+    "priority": 1,
+    "weight": 10.0,
+    "is_critical": true
+  },
+  {
+    "id": "HOSP_006",
+    "location": [
+      -23.4859,
+      -46.6333
+    ],
+    "priority": 2,
+    "weight": 25.0,
+    "is_critical": false
+  },
+  {
+    "id": "HOSP_007",
+    "location": [
+      -23.5431,
+      -46.6367
+    ],
+    "priority": 2,
+    "weight": 30.0,
+    "is_critical": false
+  },
+  {
+    "id": "HOSP_008",
+    "location": [
+      -23.6028,
+      -46.6703
+    ],
+    "priority": 2,
+    "weight": 22.0,
+    "is_critical": false
+  },
+  {
+    "id": "HOSP_009",
+    "location": [
+      -23.5631,
+      -46.4642
+    ],
+    "priority": 2,
+    "weight": 28.0,
+    "is_critical": false
+  },
+  {
+    "id": "HOSP_010",
+    "location": [
+      -23.5489,
+      -46.6388
+    ],
+    "priority": 2,
+    "weight": 15.0,
+    "is_critical": false
+  },
+  {
+    "id": "HOSP_011",
+    "location": [
+      -23.5431,
+      -46.6367
+    ],
+    "priority": 2,
+    "weight": 20.0,
+    "is_critical": false
+  },
+  {
+    "id": "HOSP_012",
+    "location": [
+      -23.5431,
+      -46.6125
+    ],
+    "priority": 2,
+    "weight": 18.0,
+    "is_critical": false
+  }
+];
+        const statsData = {
+  "total_distance": 87.07239742054709,
+  "total_cost": 330.32168513070974,
+  "num_vehicles": 3,
+  "num_deliveries": 12,
+  "critical_deliveries": 5,
+  "execution_time": 0.24491047859191895
+};
+        
+        // Estado do chatbot
+        let conversationHistory = [];
+        let isProcessing = false;
+        
+        // Inicializar interface
+        document.addEventListener('DOMContentLoaded', function() {
+            renderDrivers();
+            renderHospitals();
+            renderMedications();
+        });
+        
+        // Renderizar motoristas
+        function renderDrivers() {
+            const container = document.getElementById('drivers-list');
+            container.innerHTML = '';
+            
+            driversData.forEach(driver => {
+                const card = document.createElement('div');
+                card.className = 'driver-card';
+                card.innerHTML = `
+                    <h3><i class="fas fa-user"></i> Motorista ${driver.driver_id}</h3>
+                    <div class="info">
+                        <div><i class="fas fa-box"></i> ${driver.num_deliveries} entregas</div>
+                        <div><i class="fas fa-exclamation-triangle"></i> ${driver.critical_deliveries} críticas</div>
+                        <div><i class="fas fa-weight"></i> ${driver.total_weight.toFixed(1)} kg</div>
+                        <div><i class="fas fa-route"></i> ${driver.distance.toFixed(2)} km</div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+        
+        // Renderizar hospitais
+        function renderHospitals() {
+            const container = document.getElementById('hospitals-list');
+            container.innerHTML = '';
+            
+            hospitalsData.forEach(hospital => {
+                const card = document.createElement('div');
+                card.className = 'hospital-card';
+                const badge = hospital.is_critical 
+                    ? '<span class="badge badge-critical">CRÍTICA</span>'
+                    : '<span class="badge badge-normal">Normal</span>';
+                card.innerHTML = `
+                    <h3><i class="fas fa-hospital"></i> ${hospital.id}</h3>
+                    <div class="info">
+                        <div>Prioridade: ${hospital.priority}</div>
+                        <div>Peso: ${hospital.weight} kg</div>
+                        <div>Localização: (${hospital.location[0].toFixed(4)}, ${hospital.location[1].toFixed(4)})</div>
+                        ${badge}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+        
+        // Renderizar medicamentos
+        function renderMedications() {
+            const container = document.getElementById('medications-list');
+            container.innerHTML = '';
+            
+            const critical = hospitalsData.filter(h => h.is_critical);
+            const normal = hospitalsData.filter(h => !h.is_critical);
+            
+            if (critical.length > 0) {
+                const section = document.createElement('div');
+                section.innerHTML = '<strong style="color: #c33;">Medicamentos Críticos:</strong>';
+                container.appendChild(section);
+                
+                critical.forEach(h => {
+                    const item = document.createElement('div');
+                    item.style.cssText = 'padding: 8px; margin: 5px 0; background: #fee; border-radius: 5px;';
+                    item.innerHTML = `<i class="fas fa-exclamation-circle" style="color: #c33;"></i> ${h.id} - ${h.weight}kg`;
+                    container.appendChild(item);
+                });
+            }
+            
+            if (normal.length > 0) {
+                const section = document.createElement('div');
+                section.style.marginTop = '15px';
+                section.innerHTML = '<strong>Insumos Normais:</strong>';
+                container.appendChild(section);
+                
+                normal.forEach(h => {
+                    const item = document.createElement('div');
+                    item.style.cssText = 'padding: 8px; margin: 5px 0; background: #eef; border-radius: 5px;';
+                    item.innerHTML = `<i class="fas fa-box"></i> ${h.id} - ${h.weight}kg`;
+                    container.appendChild(item);
+                });
+            }
+        }
+        
+        // Enviar mensagem
+        async function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+            
+            if (!message || isProcessing) return;
+            
+            // Adicionar mensagem do usuário
+            addMessage('user', message);
+            input.value = '';
+            
+            // Mostrar loading
+            isProcessing = true;
+            const sendBtn = document.getElementById('send-btn');
+            sendBtn.disabled = true;
+            sendBtn.innerHTML = '<div class="loading"></div>';
+            
+            // Chamar API do chatbot (via backend ou direto)
+            try {
+                const response = await callChatbotAPI(message);
+                addMessage('assistant', response);
+            } catch (error) {
+                addMessage('assistant', 'Desculpe, ocorreu um erro. Tente novamente.');
+                console.error('Erro:', error);
+            } finally {
+                isProcessing = false;
+                sendBtn.disabled = false;
+                sendBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar';
+            }
+        }
+        
+        // Chamar API do chatbot
+        
+        // Chamar API do chatbot
+        async function callChatbotAPI(message) {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: message })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Erro na API');
+                }
+                
+                const data = await response.json();
+                return data.response || 'Desculpe, não consegui processar sua pergunta.';
+            } catch (error) {
+                console.error('Erro ao chamar API:', error);
+                // Fallback para respostas simuladas
+                return getFallbackResponse(message);
+            }
+        }
+        
+        // Resposta de fallback
+        function getFallbackResponse(message) {
+            const msg = message.toLowerCase();
+            if (msg.includes('veículo') || msg.includes('motorista')) {
+                return `Foram utilizados ${statsData.num_vehicles} veículos na otimização. Cada veículo foi responsável por distribuir as entregas de forma eficiente.`;
+            } else if (msg.includes('crítica') || msg.includes('medicamento')) {
+                return `Há ${statsData.critical_deliveries} entregas críticas (medicamentos) que precisam de atenção especial. Estas entregas foram priorizadas nas rotas.`;
+            } else if (msg.includes('distância')) {
+                return `A distância total percorrida é de ${statsData.total_distance.toFixed(2)} km, distribuída de forma otimizada entre os veículos.`;
+            } else if (msg.includes('custo')) {
+                return `O custo total estimado é de R$ ${statsData.total_cost.toFixed(2)}, incluindo combustível e custos de motorista.`;
+            } else {
+                return `Com base nos dados da otimização: ${statsData.num_vehicles} veículos, ${statsData.num_deliveries} entregas, distância total de ${statsData.total_distance.toFixed(2)} km. Como posso ajudar mais?`;
+            }
+        }
+         veículos na otimização. Cada veículo foi responsável por distribuir as entregas de forma eficiente.`);
+                    } else if (msg.includes('crítica') || msg.includes('medicamento')) {
+                        resolve(`Há ${statsData.critical_deliveries} entregas críticas (medicamentos) que precisam de atenção especial. Estas entregas foram priorizadas nas rotas.`);
+                    } else if (msg.includes('distância')) {
+                        resolve(`A distância total percorrida é de ${statsData.total_distance.toFixed(2)} km, distribuída de forma otimizada entre os veículos.`);
+                    } else if (msg.includes('custo')) {
+                        resolve(`O custo total estimado é de R$ ${statsData.total_cost.toFixed(2)}, incluindo combustível e custos de motorista.`);
+                    } else {
+                        resolve(`Com base nos dados da otimização: ${statsData.num_vehicles} veículos, ${statsData.num_deliveries} entregas, distância total de ${statsData.total_distance.toFixed(2)} km. Como posso ajudar mais?`);
+                    }
+                }, 1000);
+            });
+        }
+        
+        // Adicionar mensagem ao chat
+        function addMessage(role, content) {
+            const container = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${role}`;
+            
+            const roleLabel = role === 'user' ? 'Você' : '🤖 Assistente';
+            messageDiv.innerHTML = `
+                <div class="message-bubble">
+                    <strong>${roleLabel}:</strong> ${content}
+                </div>
+            `;
+            
+            container.appendChild(messageDiv);
+            container.scrollTop = container.scrollHeight;
+            
+            // Salvar no histórico
+            conversationHistory.push({role, content, timestamp: new Date()});
+        }
+        
+        // Pergunta rápida
+        function askQuick(question) {
+            document.getElementById('chat-input').value = question;
+            sendMessage();
+        }
+    
+        // Inicializar chatbot ao carregar
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/api/init', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                if (response.ok) {
+                    console.log('Chatbot inicializado via API');
+                }
+            } catch (error) {
+                console.warn('Não foi possível inicializar chatbot via API:', error);
+            }
+        });
+        
+</script>
+</body>
+</html>
