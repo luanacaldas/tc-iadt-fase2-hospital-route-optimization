@@ -227,6 +227,19 @@ class GeneticAlgorithmOptimizer(BaseOptimizer):
                 best_individual, deliveries, vehicles, depot_location
             )
             
+            # Aplicar busca local para melhorar solução final
+            try:
+                from hospital_routes.optimization.local_search import LocalSearch
+                local_search = LocalSearch(
+                    deliveries, vehicles, depot_location, distance_matrix
+                )
+                solution = local_search.improve_solution(
+                    solution, max_iterations=30, fitness_calculator=self.composite_fitness
+                )
+            except Exception as e:
+                # Se busca local falhar, continuar com solução do GA
+                pass
+            
             execution_time = time.time() - start_time
             
             return OptimizationResult(
@@ -563,9 +576,12 @@ class GeneticAlgorithmOptimizer(BaseOptimizer):
         """Operador de crossover."""
         for i in range(0, len(offspring) - 1, 2):
             if random.random() < config.crossover_rate:
-                offspring[i], offspring[i + 1] = self._route_crossover(
+                child1, child2 = self._route_crossover(
                     offspring[i], offspring[i + 1]
                 )
+                # Converter listas para DEAP Individual objects
+                offspring[i] = creator.Individual(child1)
+                offspring[i + 1] = creator.Individual(child2)
                 del offspring[i].fitness.values
                 del offspring[i + 1].fitness.values
         

@@ -12,6 +12,7 @@ from hospital_routes.optimization.fitness.distance_fitness import DistanceFitnes
 from hospital_routes.optimization.fitness.capacity_penalty import CapacityPenalty
 from hospital_routes.optimization.fitness.autonomy_penalty import AutonomyPenalty
 from hospital_routes.optimization.fitness.priority_penalty import PriorityPenalty
+from hospital_routes.optimization.fitness.load_balance_penalty import LoadBalancePenalty
 
 __all__ = [
     "CompositeFitness",
@@ -19,5 +20,6 @@ __all__ = [
     "CapacityPenalty",
     "AutonomyPenalty",
     "PriorityPenalty",
+    "LoadBalancePenalty",
 ]
 

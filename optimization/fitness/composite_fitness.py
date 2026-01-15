@@ -14,6 +14,7 @@ from hospital_routes.optimization.fitness.distance_fitness import DistanceFitnes
 from hospital_routes.optimization.fitness.capacity_penalty import CapacityPenalty
 from hospital_routes.optimization.fitness.autonomy_penalty import AutonomyPenalty
 from hospital_routes.optimization.fitness.priority_penalty import PriorityPenalty
+from hospital_routes.optimization.fitness.load_balance_penalty import LoadBalancePenalty
 from hospital_routes.utils.config import FitnessWeights
 
 
@@ -43,6 +44,9 @@ class CompositeFitness:
         self.capacity_penalty = CapacityPenalty(weights.capacity_penalty)
         self.autonomy_penalty = AutonomyPenalty(weights.autonomy_penalty)
         self.priority_penalty = PriorityPenalty(weights.priority_penalty)
+        self.load_balance_penalty = LoadBalancePenalty(
+            getattr(weights, 'load_balance_penalty', 0.5)
+        )
     
     def calculate(
         self,
@@ -85,6 +89,11 @@ class CompositeFitness:
             solution, deliveries
         )
         
+        # Penalidade por desbalanceamento de carga
+        load_balance_component = self.load_balance_penalty.calculate(
+            solution, deliveries, vehicles
+        )
+        
         # Penalidade por número de veículos (ε * vehicle_count)
         vehicle_component = self.weights.vehicle_penalty * len(solution.routes)
         
@@ -94,6 +103,7 @@ class CompositeFitness:
             + capacity_component
             + autonomy_component
             + priority_component
+            + load_balance_component
             + vehicle_component
         )
         
@@ -127,6 +137,9 @@ class CompositeFitness:
             ),
             "priority_penalty": self.priority_penalty.calculate(
                 solution, deliveries
+            ),
+            "load_balance_penalty": self.load_balance_penalty.calculate(
+                solution, deliveries, vehicles
             ),
             "vehicle_penalty": self.weights.vehicle_penalty * len(solution.routes),
         }

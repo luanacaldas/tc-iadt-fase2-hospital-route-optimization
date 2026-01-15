@@ -34,6 +34,7 @@ class FitnessWeights:
     capacity_penalty: float = 1000.0  # β - alto para desencorajar violações
     autonomy_penalty: float = 1000.0  # γ - alto para desencorajar violações
     priority_penalty: float = 500.0  # δ - penaliza atraso em entregas críticas
+    load_balance_penalty: float = 50.0  # ζ - penaliza desbalanceamento de carga
     vehicle_penalty: float = 100.0  # ε - penaliza uso de mais veículos
     
     def __post_init__(self):
@@ -43,6 +44,7 @@ class FitnessWeights:
             self.capacity_penalty,
             self.autonomy_penalty,
             self.priority_penalty,
+            self.load_balance_penalty,
             self.vehicle_penalty,
         ]):
             raise ValueError("Todos os pesos devem ser não-negativos")
