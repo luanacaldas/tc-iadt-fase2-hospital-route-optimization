@@ -77,6 +77,32 @@ Sistema completo para otimizar distribuição de medicamentos hospitalares que r
 - ✅ **Mapa interativo Folium**: rotas otimizadas coloridas
 - ✅ **Chatbot integrado**: análise conversacional das rotas
 
+
+DIFERENCIAIS (13:15)
+### 🌟 DIFERENCIAIS - ALÉM DOS REQUISITOS
+
+1. ⭐⭐⭐ RASTREAMENTO TEMPO REAL
+  └─ MapBox GL JS 3.0
+  └─ Atualização 100ms (10 FPS)
+  └─ Popups dinâmicos
+  └─ Trails/rastros
+  └─ Controle velocidade
+
+2. ⭐⭐ BALANCEAMENTO DE CARGA
+  └─ 6º componente fitness
+  └─ Distribui equitativamente
+
+3. ⭐⭐ BUSCA LOCAL
+  └─ 2-opt + inter-route swap
+  └─ Refina soluções GA
+
+4. ⭐⭐ INTERFACE PROFISSIONAL
+  └─ Design system completo
+  └─ Responsivo mobile-first
+
+5. ⭐⭐ ANÁLISE INTELIGENTE
+  └─ RouteAnalyzer
+  └─ Sugestões acionáveis
 ---
 
 ## 🎬 Demo Interativa
@@ -666,6 +692,7 @@ print(response.json()['response'])
 ```
 
 ---
+
 
 ## 🤝 Contribuindo
 

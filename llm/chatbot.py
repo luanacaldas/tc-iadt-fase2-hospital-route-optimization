@@ -163,12 +163,14 @@ class RouteChatbot:
         routes_details = []
         total_weight = 0
         total_critical = 0
+        all_deliveries_info = []
         
         for i, route in enumerate(solution.routes):
             # Calcular distância da rota
             route_distance = 0.0
             route_weight = 0.0
             route_critical = 0
+            route_deliveries_info = []
             
             # Se temos acesso às entregas, calcular métricas
             if hasattr(self, '_deliveries_cache') and self._deliveries_cache:
@@ -186,15 +188,30 @@ class RouteChatbot:
                     if delivery_id in delivery_dict:
                         d = delivery_dict[delivery_id]
                         route_weight += d.weight
-                        if d.priority == 1:
+                        is_critical = d.priority == 1
+                        
+                        if is_critical:
                             route_critical += 1
-                        total_weight += d.weight
-                        if d.priority == 1:
                             total_critical += 1
+                        
+                        total_weight += d.weight
+                        
+                        # Adicionar informação detalhada da entrega
+                        delivery_info = {
+                            "id": d.id,
+                            "vehicle": i + 1,
+                            "weight": d.weight,
+                            "priority": "Crítica" if is_critical else "Normal",
+                            "is_critical": is_critical,
+                            "location": f"({d.location[0]:.4f}, {d.location[1]:.4f})"
+                        }
+                        route_deliveries_info.append(delivery_info)
+                        all_deliveries_info.append(delivery_info)
             
             routes_details.append({
                 "vehicle_id": i + 1,
                 "deliveries": route,
+                "deliveries_details": route_deliveries_info,
                 "num_deliveries": len(route),
                 "distance": route_distance if route_distance > 0 else solution.total_distance / len(solution.routes),
                 "weight": route_weight,
@@ -212,6 +229,7 @@ class RouteChatbot:
             "execution_time": result.execution_time,
             "generations": result.generations_evolved,
             "routes": routes_details,
+            "all_deliveries": all_deliveries_info,
             "violations": solution.violations,
             "average_distance_per_vehicle": solution.total_distance / len(solution.routes) if solution.routes else 0,
             "average_deliveries_per_vehicle": sum(len(r) for r in solution.routes) / len(solution.routes) if solution.routes else 0,
@@ -269,6 +287,23 @@ Seja claro, objetivo e útil. SEMPRE use os dados concretos fornecidos."""
             
             routes_str = "\n".join(routes_info) if routes_info else "Nenhuma rota detalhada disponível"
             
+            # Construir lista detalhada de entregas críticas
+            critical_deliveries = [d for d in context.get('all_deliveries', []) if d.get('is_critical', False)]
+            critical_str = ""
+            if critical_deliveries:
+                critical_str = "\n=== LISTA DE ENTREGAS CRÍTICAS ===\n"
+                for delivery in critical_deliveries:
+                    critical_str += f"- {delivery['id']}: Veículo {delivery['vehicle']}, {delivery['weight']} kg, Localização {delivery['location']}\n"
+            else:
+                critical_str = "\n=== ENTREGAS CRÍTICAS ===\nNenhuma entrega crítica identificada.\n"
+            
+            # Construir lista de todas as entregas
+            all_deliveries_str = ""
+            if context.get('all_deliveries'):
+                all_deliveries_str = "\n=== TODAS AS ENTREGAS (DETALHES) ===\n"
+                for delivery in context.get('all_deliveries', []):
+                    all_deliveries_str += f"- {delivery['id']}: Veículo {delivery['vehicle']}, {delivery['weight']} kg, {delivery['priority']}, Loc {delivery['location']}\n"
+            
             context_str = f"""
 === CONTEXTO DA OTIMIZAÇÃO (USE ESTES DADOS REAIS) ===
 
@@ -290,7 +325,8 @@ Métricas Médias:
 
 Detalhes por Rota:
 {routes_str}
-
+{critical_str}
+{all_deliveries_str}
 === MELHORIAS JÁ IMPLEMENTADAS NO SISTEMA ===
 ✅ Balanceamento de carga: O algoritmo já penaliza desbalanceamento na função de fitness
 ✅ Busca local: Após o GA, busca local (2-opt) é aplicada automaticamente para refinar rotas

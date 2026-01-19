@@ -95,7 +95,6 @@ class Route:
 class GeneticAlgorithmOptimizer(BaseOptimizer):
     """
     Otimizador de rotas usando Algoritmo Genético.
-    
     Implementa o BaseOptimizer usando DEAP para evolução genética.
     """
     
@@ -592,7 +591,6 @@ class GeneticAlgorithmOptimizer(BaseOptimizer):
     ) -> Tuple[List[List[str]], List[List[str]]]:
         """
         Crossover específico para rotas VRP.
-        
         Usa Order Crossover (OX) adaptado para múltiplas rotas.
         """
         # Flatten rotas
@@ -787,3 +785,32 @@ class GeneticAlgorithmOptimizer(BaseOptimizer):
             RouteSolution: Solução de rota
         """
         return self._routes_list_to_solution(individual)
+
+
+
+
+# optimization/genetic_algorithm.py (linhas ~560-580)
+# ORDER CROSSOVER ADAPTADO PARA VRP
+
+def _route_crossover(self, ind1, ind2):
+    """
+    Order Crossover (OX) adaptado para VRP. 
+    Preserva ordem parcial e respeita capacidade dos veículos.
+    """
+    # Flatten todas as rotas em uma lista única
+    flat1 = [delivery_id for route in ind1 for delivery_id in route]
+    flat2 = [delivery_id for route in ind2 for delivery_id in route]
+    
+    # Aplicar Order Crossover clássico
+    size = len(flat1)
+    cx_point1 = random.randint(0, size)
+    cx_point2 = random.randint(0, size - 1)
+    # ...  lógica OX ... 
+    
+    # Redistribuir respeitando capacidade de cada veículo
+    child1_routes = self._redistribute_to_routes(child1_flat, vehicles)
+    return child1_routes
+
+
+
+

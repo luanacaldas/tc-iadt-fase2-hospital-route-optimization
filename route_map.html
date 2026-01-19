@@ -17,7 +17,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_5ed796bdc8c4bf8966eb237a556c911b {
+                #map_90c001504f5c4c6656e7fb82415039d8 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -104,28 +104,6 @@
         </p>
         
         <hr style="margin: 8px 0; border-color: #ddd;">
-        <p style="margin:3px 0; font-weight: bold; color: #555;">⚠️ Níveis de Risco:</p>
-        <p style="margin:3px 0; padding-left: 5px;">
-            <span style="color: #28a745; font-weight: bold;">●</span>
-            <b>Baixo</b> (Low)
-        </p>
-        <p style="margin:3px 0; padding-left: 5px;">
-            <span style="color: #ffc107; font-weight: bold;">●</span>
-            <b>Médio</b> (Medium)
-        </p>
-        <p style="margin:3px 0; padding-left: 5px;">
-            <span style="color: #fd7e14; font-weight: bold;">●</span>
-            <b>Alto</b> (High)
-        </p>
-        <p style="margin:3px 0; padding-left: 5px;">
-            <span style="color: #dc3545; font-weight: bold;">●</span>
-            <b>Crítico</b> (Critical)
-        </p>
-        <p style="margin:3px 0; font-size: 10px; color: #666; padding-left: 5px;">
-            <i>Ative a camada "Pontos de Acidentes" para ver todos os pontos</i>
-        </p>
-        
-        <hr style="margin: 8px 0; border-color: #ddd;">
         <p style="margin:3px 0; font-size: 10px; color: #666;">
             💡 <i>Clique nas linhas coloridas para ver detalhes das rotas</i>
         </p>
@@ -151,7 +129,7 @@
         <script>
         (function() {
             // Dados das rotas
-            const routesData = [{'vehicle_id': 1, 'coordinates': [(-23.5505, -46.6333), (-23.556, -46.6566), (-23.5558, -46.6732), (-23.5558, -46.6732), (-23.5505, -46.6333)], 'delivery_ids': ['HOSP_002', 'HOSP_004', 'HOSP_003']}, {'vehicle_id': 2, 'coordinates': [(-23.5505, -46.6333), (-23.5928, -46.6889), (-23.5489, -46.6388), (-23.5431, -46.6367), (-23.5505, -46.6333)], 'delivery_ids': ['HOSP_001', 'HOSP_010', 'HOSP_011']}, {'vehicle_id': 3, 'coordinates': [(-23.5505, -46.6333), (-23.5631, -46.4642), (-23.6028, -46.6703), (-23.556, -46.6566), (-23.5431, -46.6125), (-23.4859, -46.6333), (-23.5431, -46.6367), (-23.5505, -46.6333)], 'delivery_ids': ['HOSP_009', 'HOSP_008', 'HOSP_005', 'HOSP_012', 'HOSP_006', 'HOSP_007']}];
+            const routesData = [{'vehicle_id': 1, 'coordinates': [(-23.5505, -46.6333), (-23.5558, -46.6732), (-23.5928, -46.6889), (-23.5489, -46.6388), (-23.5505, -46.6333)], 'delivery_ids': ['HOSP_003', 'HOSP_001', 'HOSP_010']}, {'vehicle_id': 2, 'coordinates': [(-23.5505, -46.6333), (-23.556, -46.6566), (-23.5558, -46.6732), (-23.5431, -46.6367), (-23.5505, -46.6333)], 'delivery_ids': ['HOSP_002', 'HOSP_004', 'HOSP_011']}, {'vehicle_id': 3, 'coordinates': [(-23.5505, -46.6333), (-23.5431, -46.6125), (-23.556, -46.6566), (-23.5431, -46.6367), (-23.5631, -46.4642), (-23.6028, -46.6703), (-23.4859, -46.6333), (-23.5505, -46.6333)], 'delivery_ids': ['HOSP_012', 'HOSP_005', 'HOSP_007', 'HOSP_009', 'HOSP_008', 'HOSP_006']}];
             const depotLocation = [-23.5505, -46.6333];
             let highlightedVehicleId = null;
             let animationInterval = null;
@@ -420,14 +398,14 @@
         </script>
         
     
-            <div class="folium-map" id="map_5ed796bdc8c4bf8966eb237a556c911b" ></div>
+            <div class="folium-map" id="map_90c001504f5c4c6656e7fb82415039d8" ></div>
         
 </body>
 <script>
     
     
-            var map_5ed796bdc8c4bf8966eb237a556c911b = L.map(
-                "map_5ed796bdc8c4bf8966eb237a556c911b",
+            var map_90c001504f5c4c6656e7fb82415039d8 = L.map(
+                "map_90c001504f5c4c6656e7fb82415039d8",
                 {
                     center: [-23.553607692307693, -46.63648461538462],
                     crs: L.CRS.EPSG3857,
@@ -444,7 +422,7 @@
 
         
     
-            var tile_layer_7499cfb95fd8984d4b2d55de2904ddbd = L.tileLayer(
+            var tile_layer_d0ed0602caf08e8772c47055c845d516 = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 0,
@@ -461,17 +439,17 @@
             );
         
     
-            tile_layer_7499cfb95fd8984d4b2d55de2904ddbd.addTo(map_5ed796bdc8c4bf8966eb237a556c911b);
+            tile_layer_d0ed0602caf08e8772c47055c845d516.addTo(map_90c001504f5c4c6656e7fb82415039d8);
         
     
-            var marker_d499657d81e4032dc8dc2c86b17b06e5 = L.marker(
+            var marker_d774453ae49b140695a8a88fcc33f87c = L.marker(
                 [-23.5505, -46.6333],
                 {
 }
-            ).addTo(map_5ed796bdc8c4bf8966eb237a556c911b);
+            ).addTo(map_90c001504f5c4c6656e7fb82415039d8);
         
     
-            var div_icon_017cef178a6b66716023e761d3161c91 = L.divIcon({
+            var div_icon_26e1974773fbcce6f10aa7117e736dda = L.divIcon({
   "html": "\n        \u003cdiv style=\"\n            position: relative;\n            width: 50px;\n            height: 50px;\n            filter: drop-shadow(0 3px 10px rgba(0,0,0,0.5));\n        \"\u003e\n            \u003ci class=\"fas fa-hospital\" \n               style=\"\n                   font-size: 40px;\n                   color: #10B981;\n                   position: absolute;\n                   top: 0;\n                   left: 0;\n                   text-shadow: 0 0 0 white, 0 0 0 white, 0 0 8px white, 0 0 8px white;\n                   -webkit-text-stroke: 3px white;\n                   paint-order: stroke fill;\n               \"\u003e\u003c/i\u003e\n            \u003cdiv style=\"\n                position: absolute;\n                bottom: -8px;\n                left: 50%;\n                transform: translateX(-50%);\n                background-color: #10B981;\n                color: white;\n                padding: 2px 6px;\n                border-radius: 4px;\n                font-size: 9px;\n                font-weight: bold;\n                white-space: nowrap;\n                box-shadow: 0 2px 6px rgba(0,0,0,0.3);\n                border: 2px solid white;\n            \"\u003eDEP\u00d3SITO\u003c/div\u003e\n        \u003c/div\u003e\n        ",
   "iconSize": [50, 60],
   "iconAnchor": [25, 50],
@@ -479,24 +457,24 @@
 });
         
     
-        var popup_881a477e821fe8a321693ebac6a48f60 = L.popup({
+        var popup_b71cd24b1f45feb7c84daf2ce12e7a31 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_805e912d39bb43ebff6c0529c7e485cb = $(`<div id="html_805e912d39bb43ebff6c0529c7e485cb" style="width: 100.0%; height: 100.0%;"><b>🏥 DEPÓSITO</b><br>Ponto de partida e retorno das rotas</div>`)[0];
-                popup_881a477e821fe8a321693ebac6a48f60.setContent(html_805e912d39bb43ebff6c0529c7e485cb);
+                var html_1f3f5af4efaf6a1f48e7deb93b735459 = $(`<div id="html_1f3f5af4efaf6a1f48e7deb93b735459" style="width: 100.0%; height: 100.0%;"><b>🏥 DEPÓSITO</b><br>Ponto de partida e retorno das rotas</div>`)[0];
+                popup_b71cd24b1f45feb7c84daf2ce12e7a31.setContent(html_1f3f5af4efaf6a1f48e7deb93b735459);
             
         
 
-        marker_d499657d81e4032dc8dc2c86b17b06e5.bindPopup(popup_881a477e821fe8a321693ebac6a48f60)
+        marker_d774453ae49b140695a8a88fcc33f87c.bindPopup(popup_b71cd24b1f45feb7c84daf2ce12e7a31)
         ;
 
         
     
     
-            marker_d499657d81e4032dc8dc2c86b17b06e5.bindTooltip(
+            marker_d774453ae49b140695a8a88fcc33f87c.bindTooltip(
                 `<div>
                      🏥 DEPÓSITO - Ponto de partida
                  </div>`,
@@ -506,495 +484,39 @@
             );
         
     
-                marker_d499657d81e4032dc8dc2c86b17b06e5.setIcon(div_icon_017cef178a6b66716023e761d3161c91);
+                marker_d774453ae49b140695a8a88fcc33f87c.setIcon(div_icon_26e1974773fbcce6f10aa7117e736dda);
             
     
-            var feature_group_6bcb916e28d324a35a32db7db5f1f69b = L.featureGroup(
+            var feature_group_4b3fe195a0d57b52b83dca362c9fca4b = L.featureGroup(
                 {
 }
             );
         
     
-            var marker_9ecb10fd6d8672c167cbb0ddb2cf4207 = L.marker(
-                [-23.52, -46.62],
-                {
-}
-            ).addTo(feature_group_6bcb916e28d324a35a32db7db5f1f69b);
-        
-    
-            var div_icon_1793caeed092300abe8f76258bd3e597 = L.divIcon({
-  "html": "\n            \u003cdiv style=\"\n                background-color: #fd7e14;\n                border: 3px solid white;\n                border-radius: 50%;\n                width: 22px;\n                height: 22px;\n                display: flex;\n                align-items: center;\n                justify-content: center;\n                box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n            \"\u003e\n                \u003ci class=\"fas fa-exclamation-circle\" style=\"color: white; font-size: 10px;\"\u003e\u003c/i\u003e\n            \u003c/div\u003e\n            ",
-  "iconSize": [20, 20],
-  "iconAnchor": [10, 10],
-  "className": "empty",
-});
-        
-    
-        var popup_8ff2b0a02172439d77c7ef6c79ea2640 = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_050ec7728b0b66c66c0c026a6fc7ce30 = $(`<div id="html_050ec7728b0b66c66c0c026a6fc7ce30" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px;">                 <b>⚠️ Ponto de Acidente</b><br>                 <hr style="margin: 5px 0;">                 <b>Via:</b> Marginal Tietê<br>                 <b>Acidentes (último ano):</b> 25<br>                 <b>Severidade:</b> 4.2/5.0<br>                 <b>Nível de Risco:</b> <span style="color: #fd7e14; font-weight: bold;">HIGH</span>             </div>             </div>`)[0];
-                popup_8ff2b0a02172439d77c7ef6c79ea2640.setContent(html_050ec7728b0b66c66c0c026a6fc7ce30);
-            
-        
-
-        marker_9ecb10fd6d8672c167cbb0ddb2cf4207.bindPopup(popup_8ff2b0a02172439d77c7ef6c79ea2640)
-        ;
-
-        
-    
-    
-            marker_9ecb10fd6d8672c167cbb0ddb2cf4207.bindTooltip(
-                `<div>
-                     ⚠️ Marginal Tietê - Risco: high
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_9ecb10fd6d8672c167cbb0ddb2cf4207.setIcon(div_icon_1793caeed092300abe8f76258bd3e597);
-            
-    
-            var marker_83a0fb842f3007b25ac8be6f225a7020 = L.marker(
-                [-23.525, -46.625],
-                {
-}
-            ).addTo(feature_group_6bcb916e28d324a35a32db7db5f1f69b);
-        
-    
-            var div_icon_9b27e213f480eb12faeb5af6db3b4918 = L.divIcon({
-  "html": "\n            \u003cdiv style=\"\n                background-color: #fd7e14;\n                border: 3px solid white;\n                border-radius: 50%;\n                width: 22px;\n                height: 22px;\n                display: flex;\n                align-items: center;\n                justify-content: center;\n                box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n            \"\u003e\n                \u003ci class=\"fas fa-exclamation-circle\" style=\"color: white; font-size: 10px;\"\u003e\u003c/i\u003e\n            \u003c/div\u003e\n            ",
-  "iconSize": [20, 20],
-  "iconAnchor": [10, 10],
-  "className": "empty",
-});
-        
-    
-        var popup_34071acc3365cc1d2753d21adc34711b = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_a6f5bbdb5920efb054daff47e1765eec = $(`<div id="html_a6f5bbdb5920efb054daff47e1765eec" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px;">                 <b>⚠️ Ponto de Acidente</b><br>                 <hr style="margin: 5px 0;">                 <b>Via:</b> Marginal Tietê<br>                 <b>Acidentes (último ano):</b> 18<br>                 <b>Severidade:</b> 3.8/5.0<br>                 <b>Nível de Risco:</b> <span style="color: #fd7e14; font-weight: bold;">HIGH</span>             </div>             </div>`)[0];
-                popup_34071acc3365cc1d2753d21adc34711b.setContent(html_a6f5bbdb5920efb054daff47e1765eec);
-            
-        
-
-        marker_83a0fb842f3007b25ac8be6f225a7020.bindPopup(popup_34071acc3365cc1d2753d21adc34711b)
-        ;
-
-        
-    
-    
-            marker_83a0fb842f3007b25ac8be6f225a7020.bindTooltip(
-                `<div>
-                     ⚠️ Marginal Tietê - Risco: high
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_83a0fb842f3007b25ac8be6f225a7020.setIcon(div_icon_9b27e213f480eb12faeb5af6db3b4918);
-            
-    
-            var marker_2c10d3ab905ff19258242ba783f299f8 = L.marker(
-                [-23.555, -46.66],
-                {
-}
-            ).addTo(feature_group_6bcb916e28d324a35a32db7db5f1f69b);
-        
-    
-            var div_icon_a61b138a4154dc1b7f1fd9e49a223194 = L.divIcon({
-  "html": "\n            \u003cdiv style=\"\n                background-color: #ffc107;\n                border: 3px solid white;\n                border-radius: 50%;\n                width: 22px;\n                height: 22px;\n                display: flex;\n                align-items: center;\n                justify-content: center;\n                box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n            \"\u003e\n                \u003ci class=\"fas fa-exclamation-triangle\" style=\"color: white; font-size: 10px;\"\u003e\u003c/i\u003e\n            \u003c/div\u003e\n            ",
-  "iconSize": [20, 20],
-  "iconAnchor": [10, 10],
-  "className": "empty",
-});
-        
-    
-        var popup_94c8b44136190f057511ae6827b86e8a = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_5572eabd11642dd37fefb02638fc12af = $(`<div id="html_5572eabd11642dd37fefb02638fc12af" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px;">                 <b>⚠️ Ponto de Acidente</b><br>                 <hr style="margin: 5px 0;">                 <b>Via:</b> Av. Paulista<br>                 <b>Acidentes (último ano):</b> 15<br>                 <b>Severidade:</b> 3.5/5.0<br>                 <b>Nível de Risco:</b> <span style="color: #ffc107; font-weight: bold;">MEDIUM</span>             </div>             </div>`)[0];
-                popup_94c8b44136190f057511ae6827b86e8a.setContent(html_5572eabd11642dd37fefb02638fc12af);
-            
-        
-
-        marker_2c10d3ab905ff19258242ba783f299f8.bindPopup(popup_94c8b44136190f057511ae6827b86e8a)
-        ;
-
-        
-    
-    
-            marker_2c10d3ab905ff19258242ba783f299f8.bindTooltip(
-                `<div>
-                     ⚠️ Av. Paulista - Risco: medium
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_2c10d3ab905ff19258242ba783f299f8.setIcon(div_icon_a61b138a4154dc1b7f1fd9e49a223194);
-            
-    
-            var marker_89a65a0644957b6631d6567647e0069e = L.marker(
-                [-23.55, -46.655],
-                {
-}
-            ).addTo(feature_group_6bcb916e28d324a35a32db7db5f1f69b);
-        
-    
-            var div_icon_9606d945f37244075a6da9d901dd97d0 = L.divIcon({
-  "html": "\n            \u003cdiv style=\"\n                background-color: #ffc107;\n                border: 3px solid white;\n                border-radius: 50%;\n                width: 22px;\n                height: 22px;\n                display: flex;\n                align-items: center;\n                justify-content: center;\n                box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n            \"\u003e\n                \u003ci class=\"fas fa-exclamation-triangle\" style=\"color: white; font-size: 10px;\"\u003e\u003c/i\u003e\n            \u003c/div\u003e\n            ",
-  "iconSize": [20, 20],
-  "iconAnchor": [10, 10],
-  "className": "empty",
-});
-        
-    
-        var popup_c01f57e48bf284f4f07775f1b9df61e9 = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_6ada944c511a11c9eb77e555720cb47e = $(`<div id="html_6ada944c511a11c9eb77e555720cb47e" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px;">                 <b>⚠️ Ponto de Acidente</b><br>                 <hr style="margin: 5px 0;">                 <b>Via:</b> Av. Paulista<br>                 <b>Acidentes (último ano):</b> 12<br>                 <b>Severidade:</b> 3.2/5.0<br>                 <b>Nível de Risco:</b> <span style="color: #ffc107; font-weight: bold;">MEDIUM</span>             </div>             </div>`)[0];
-                popup_c01f57e48bf284f4f07775f1b9df61e9.setContent(html_6ada944c511a11c9eb77e555720cb47e);
-            
-        
-
-        marker_89a65a0644957b6631d6567647e0069e.bindPopup(popup_c01f57e48bf284f4f07775f1b9df61e9)
-        ;
-
-        
-    
-    
-            marker_89a65a0644957b6631d6567647e0069e.bindTooltip(
-                `<div>
-                     ⚠️ Av. Paulista - Risco: medium
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_89a65a0644957b6631d6567647e0069e.setIcon(div_icon_9606d945f37244075a6da9d901dd97d0);
-            
-    
-            var marker_8ef80a66f4569b2fb746a60475120023 = L.marker(
-                [-23.56, -46.67],
-                {
-}
-            ).addTo(feature_group_6bcb916e28d324a35a32db7db5f1f69b);
-        
-    
-            var div_icon_cf15f3ed0262dd668a04f05ea6f0142e = L.divIcon({
-  "html": "\n            \u003cdiv style=\"\n                background-color: #fd7e14;\n                border: 3px solid white;\n                border-radius: 50%;\n                width: 22px;\n                height: 22px;\n                display: flex;\n                align-items: center;\n                justify-content: center;\n                box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n            \"\u003e\n                \u003ci class=\"fas fa-exclamation-circle\" style=\"color: white; font-size: 10px;\"\u003e\u003c/i\u003e\n            \u003c/div\u003e\n            ",
-  "iconSize": [20, 20],
-  "iconAnchor": [10, 10],
-  "className": "empty",
-});
-        
-    
-        var popup_981603e8feabdbfe23a5c8b01ae538af = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_a91951fb2dd2b4cb5b59799125b79d4f = $(`<div id="html_a91951fb2dd2b4cb5b59799125b79d4f" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px;">                 <b>⚠️ Ponto de Acidente</b><br>                 <hr style="margin: 5px 0;">                 <b>Via:</b> Av. Rebouças<br>                 <b>Acidentes (último ano):</b> 20<br>                 <b>Severidade:</b> 4.0/5.0<br>                 <b>Nível de Risco:</b> <span style="color: #fd7e14; font-weight: bold;">HIGH</span>             </div>             </div>`)[0];
-                popup_981603e8feabdbfe23a5c8b01ae538af.setContent(html_a91951fb2dd2b4cb5b59799125b79d4f);
-            
-        
-
-        marker_8ef80a66f4569b2fb746a60475120023.bindPopup(popup_981603e8feabdbfe23a5c8b01ae538af)
-        ;
-
-        
-    
-    
-            marker_8ef80a66f4569b2fb746a60475120023.bindTooltip(
-                `<div>
-                     ⚠️ Av. Rebouças - Risco: high
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_8ef80a66f4569b2fb746a60475120023.setIcon(div_icon_cf15f3ed0262dd668a04f05ea6f0142e);
-            
-    
-            var marker_1313eb60af9ceca282a98c57002a4c63 = L.marker(
-                [-23.545, -46.64],
-                {
-}
-            ).addTo(feature_group_6bcb916e28d324a35a32db7db5f1f69b);
-        
-    
-            var div_icon_bf9fbb5c1306287cc2f3a48808ea31f7 = L.divIcon({
-  "html": "\n            \u003cdiv style=\"\n                background-color: #ffc107;\n                border: 3px solid white;\n                border-radius: 50%;\n                width: 22px;\n                height: 22px;\n                display: flex;\n                align-items: center;\n                justify-content: center;\n                box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n            \"\u003e\n                \u003ci class=\"fas fa-exclamation-triangle\" style=\"color: white; font-size: 10px;\"\u003e\u003c/i\u003e\n            \u003c/div\u003e\n            ",
-  "iconSize": [20, 20],
-  "iconAnchor": [10, 10],
-  "className": "empty",
-});
-        
-    
-        var popup_1f84d595257cc309616071b4916159cb = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_4821861fff0e5ecb94c196c2fe0346ca = $(`<div id="html_4821861fff0e5ecb94c196c2fe0346ca" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px;">                 <b>⚠️ Ponto de Acidente</b><br>                 <hr style="margin: 5px 0;">                 <b>Via:</b> Rua Augusta<br>                 <b>Acidentes (último ano):</b> 10<br>                 <b>Severidade:</b> 2.8/5.0<br>                 <b>Nível de Risco:</b> <span style="color: #ffc107; font-weight: bold;">MEDIUM</span>             </div>             </div>`)[0];
-                popup_1f84d595257cc309616071b4916159cb.setContent(html_4821861fff0e5ecb94c196c2fe0346ca);
-            
-        
-
-        marker_1313eb60af9ceca282a98c57002a4c63.bindPopup(popup_1f84d595257cc309616071b4916159cb)
-        ;
-
-        
-    
-    
-            marker_1313eb60af9ceca282a98c57002a4c63.bindTooltip(
-                `<div>
-                     ⚠️ Rua Augusta - Risco: medium
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_1313eb60af9ceca282a98c57002a4c63.setIcon(div_icon_bf9fbb5c1306287cc2f3a48808ea31f7);
-            
-    
-            var marker_a6f65fb0faa6e9474526074866576290 = L.marker(
-                [-23.54, -46.61],
-                {
-}
-            ).addTo(feature_group_6bcb916e28d324a35a32db7db5f1f69b);
-        
-    
-            var div_icon_c39743d0858ef90a11d28a0d72f3d10b = L.divIcon({
-  "html": "\n            \u003cdiv style=\"\n                background-color: #28a745;\n                border: 3px solid white;\n                border-radius: 50%;\n                width: 22px;\n                height: 22px;\n                display: flex;\n                align-items: center;\n                justify-content: center;\n                box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n            \"\u003e\n                \u003ci class=\"fas fa-check-circle\" style=\"color: white; font-size: 10px;\"\u003e\u003c/i\u003e\n            \u003c/div\u003e\n            ",
-  "iconSize": [20, 20],
-  "iconAnchor": [10, 10],
-  "className": "empty",
-});
-        
-    
-        var popup_74e0cb3ba65453a74d887ca89b04a8e3 = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_e3bc5ac58751f3e87ca018b917768bde = $(`<div id="html_e3bc5ac58751f3e87ca018b917768bde" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px;">                 <b>⚠️ Ponto de Acidente</b><br>                 <hr style="margin: 5px 0;">                 <b>Via:</b> Av. Celso Garcia<br>                 <b>Acidentes (último ano):</b> 8<br>                 <b>Severidade:</b> 2.5/5.0<br>                 <b>Nível de Risco:</b> <span style="color: #28a745; font-weight: bold;">LOW</span>             </div>             </div>`)[0];
-                popup_74e0cb3ba65453a74d887ca89b04a8e3.setContent(html_e3bc5ac58751f3e87ca018b917768bde);
-            
-        
-
-        marker_a6f65fb0faa6e9474526074866576290.bindPopup(popup_74e0cb3ba65453a74d887ca89b04a8e3)
-        ;
-
-        
-    
-    
-            marker_a6f65fb0faa6e9474526074866576290.bindTooltip(
-                `<div>
-                     ⚠️ Av. Celso Garcia - Risco: low
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_a6f65fb0faa6e9474526074866576290.setIcon(div_icon_c39743d0858ef90a11d28a0d72f3d10b);
-            
-    
-            var marker_c8fe7819b7ef07671f85b625d911022f = L.marker(
-                [-23.535, -46.605],
-                {
-}
-            ).addTo(feature_group_6bcb916e28d324a35a32db7db5f1f69b);
-        
-    
-            var div_icon_beeafde75dc47810a1376181e6d0db09 = L.divIcon({
-  "html": "\n            \u003cdiv style=\"\n                background-color: #28a745;\n                border: 3px solid white;\n                border-radius: 50%;\n                width: 22px;\n                height: 22px;\n                display: flex;\n                align-items: center;\n                justify-content: center;\n                box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n            \"\u003e\n                \u003ci class=\"fas fa-check-circle\" style=\"color: white; font-size: 10px;\"\u003e\u003c/i\u003e\n            \u003c/div\u003e\n            ",
-  "iconSize": [20, 20],
-  "iconAnchor": [10, 10],
-  "className": "empty",
-});
-        
-    
-        var popup_d1873c60aaf70fd9d46474f480e895b3 = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_527b5435a8be4e1f091cf372df3deab6 = $(`<div id="html_527b5435a8be4e1f091cf372df3deab6" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px;">                 <b>⚠️ Ponto de Acidente</b><br>                 <hr style="margin: 5px 0;">                 <b>Via:</b> Rua Tatuapé<br>                 <b>Acidentes (último ano):</b> 6<br>                 <b>Severidade:</b> 2.2/5.0<br>                 <b>Nível de Risco:</b> <span style="color: #28a745; font-weight: bold;">LOW</span>             </div>             </div>`)[0];
-                popup_d1873c60aaf70fd9d46474f480e895b3.setContent(html_527b5435a8be4e1f091cf372df3deab6);
-            
-        
-
-        marker_c8fe7819b7ef07671f85b625d911022f.bindPopup(popup_d1873c60aaf70fd9d46474f480e895b3)
-        ;
-
-        
-    
-    
-            marker_c8fe7819b7ef07671f85b625d911022f.bindTooltip(
-                `<div>
-                     ⚠️ Rua Tatuapé - Risco: low
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_c8fe7819b7ef07671f85b625d911022f.setIcon(div_icon_beeafde75dc47810a1376181e6d0db09);
-            
-    
-            var marker_ddf7a16f68e89143d21e1aa8d3d8f966 = L.marker(
-                [-23.59, -46.69],
-                {
-}
-            ).addTo(feature_group_6bcb916e28d324a35a32db7db5f1f69b);
-        
-    
-            var div_icon_017ea8f670467980a485015ed51ff432 = L.divIcon({
-  "html": "\n            \u003cdiv style=\"\n                background-color: #ffc107;\n                border: 3px solid white;\n                border-radius: 50%;\n                width: 22px;\n                height: 22px;\n                display: flex;\n                align-items: center;\n                justify-content: center;\n                box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n            \"\u003e\n                \u003ci class=\"fas fa-exclamation-triangle\" style=\"color: white; font-size: 10px;\"\u003e\u003c/i\u003e\n            \u003c/div\u003e\n            ",
-  "iconSize": [20, 20],
-  "iconAnchor": [10, 10],
-  "className": "empty",
-});
-        
-    
-        var popup_4c6296f4a5f5fd0fab59c56de5c66264 = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_4bf620b6efdb662947cd1e736ca0e961 = $(`<div id="html_4bf620b6efdb662947cd1e736ca0e961" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px;">                 <b>⚠️ Ponto de Acidente</b><br>                 <hr style="margin: 5px 0;">                 <b>Via:</b> Av. Morumbi<br>                 <b>Acidentes (último ano):</b> 14<br>                 <b>Severidade:</b> 3.3/5.0<br>                 <b>Nível de Risco:</b> <span style="color: #ffc107; font-weight: bold;">MEDIUM</span>             </div>             </div>`)[0];
-                popup_4c6296f4a5f5fd0fab59c56de5c66264.setContent(html_4bf620b6efdb662947cd1e736ca0e961);
-            
-        
-
-        marker_ddf7a16f68e89143d21e1aa8d3d8f966.bindPopup(popup_4c6296f4a5f5fd0fab59c56de5c66264)
-        ;
-
-        
-    
-    
-            marker_ddf7a16f68e89143d21e1aa8d3d8f966.bindTooltip(
-                `<div>
-                     ⚠️ Av. Morumbi - Risco: medium
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_ddf7a16f68e89143d21e1aa8d3d8f966.setIcon(div_icon_017ea8f670467980a485015ed51ff432);
-            
-    
-            var marker_e9d1b89718d3f665ec6465f39894229c = L.marker(
-                [-23.585, -46.685],
-                {
-}
-            ).addTo(feature_group_6bcb916e28d324a35a32db7db5f1f69b);
-        
-    
-            var div_icon_ef93aa273f7481be16131b85c749f06d = L.divIcon({
-  "html": "\n            \u003cdiv style=\"\n                background-color: #ffc107;\n                border: 3px solid white;\n                border-radius: 50%;\n                width: 22px;\n                height: 22px;\n                display: flex;\n                align-items: center;\n                justify-content: center;\n                box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n            \"\u003e\n                \u003ci class=\"fas fa-exclamation-triangle\" style=\"color: white; font-size: 10px;\"\u003e\u003c/i\u003e\n            \u003c/div\u003e\n            ",
-  "iconSize": [20, 20],
-  "iconAnchor": [10, 10],
-  "className": "empty",
-});
-        
-    
-        var popup_d8fdaf2e1352fee0eb176ffae8511c4e = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_5909602c1a4085c5d2bcad09403cbdf9 = $(`<div id="html_5909602c1a4085c5d2bcad09403cbdf9" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px;">                 <b>⚠️ Ponto de Acidente</b><br>                 <hr style="margin: 5px 0;">                 <b>Via:</b> Av. Morumbi<br>                 <b>Acidentes (último ano):</b> 11<br>                 <b>Severidade:</b> 3.0/5.0<br>                 <b>Nível de Risco:</b> <span style="color: #ffc107; font-weight: bold;">MEDIUM</span>             </div>             </div>`)[0];
-                popup_d8fdaf2e1352fee0eb176ffae8511c4e.setContent(html_5909602c1a4085c5d2bcad09403cbdf9);
-            
-        
-
-        marker_e9d1b89718d3f665ec6465f39894229c.bindPopup(popup_d8fdaf2e1352fee0eb176ffae8511c4e)
-        ;
-
-        
-    
-    
-            marker_e9d1b89718d3f665ec6465f39894229c.bindTooltip(
-                `<div>
-                     ⚠️ Av. Morumbi - Risco: medium
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_e9d1b89718d3f665ec6465f39894229c.setIcon(div_icon_ef93aa273f7481be16131b85c749f06d);
-            
-    
-            var feature_group_3d95f15ff3754b494af2a8f7db7e0572 = L.featureGroup(
-                {
-}
-            );
-        
-    
-            var poly_line_fa84250c2b4d00c44e012e86c6c20a2c = L.polyline(
-                [[-23.5505, -46.6333], [-23.556, -46.6566], [-23.5558, -46.6732], [-23.5558, -46.6732], [-23.5505, -46.6333]],
+            var poly_line_5f6c16aa38dcf20b5eda8d2c9716e0c8 = L.polyline(
+                [[-23.5505, -46.6333], [-23.5558, -46.6732], [-23.5928, -46.6889], [-23.5489, -46.6388], [-23.5505, -46.6333]],
                 {"bubblingMouseEvents": true, "color": "#0066FF", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#0066FF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 4}
-            ).addTo(feature_group_3d95f15ff3754b494af2a8f7db7e0572);
+            ).addTo(feature_group_4b3fe195a0d57b52b83dca362c9fca4b);
         
     
-        var popup_f9305bf57048138d6a7ed6b3ee406acd = L.popup({
+        var popup_b85601f698842ab0e1957c1ae27449b6 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_4d9be416acb61626d34b622b80921fa4 = $(`<div id="html_4d9be416acb61626d34b622b80921fa4" style="width: 100.0%; height: 100.0%;">         <div style="font-size: 12px;">             <b>🚚 Veículo 1</b><br>             <hr style="margin: 5px 0;">             <b>📦 Entregas:</b> 3<br>             <b>📏 Distância:</b> 8.27 km<br>             <b>📍 Paradas:</b> HOSP_002, HOSP_004, HOSP_003<br>             <b>🎨 Cor:</b> <span style="color: #0066FF; font-weight: bold;">#0066FF</span>                      <hr style="margin: 5px 0;">             <b>⚠️ Análise de Segurança:</b><br>             <b>Nível de Risco:</b> <span style="color: #28a745; font-weight: bold;">LOW</span><br>             <b>Acidentes no trajeto:</b> 0<br>             <b>Severidade média:</b> 0.0/5.0<br>             <b>Segmentos de alto risco:</b> 0             </div></div>`)[0];
-                popup_f9305bf57048138d6a7ed6b3ee406acd.setContent(html_4d9be416acb61626d34b622b80921fa4);
+                var html_accd2998445805e3e47abf4908f195f9 = $(`<div id="html_accd2998445805e3e47abf4908f195f9" style="width: 100.0%; height: 100.0%;">         <div style="font-size: 12px;">             <b>🚚 Veículo 1</b><br>             <hr style="margin: 5px 0;">             <b>📦 Entregas:</b> 3<br>             <b>📏 Distância:</b> 16.16 km<br>             <b>📍 Paradas:</b> HOSP_003, HOSP_001, HOSP_010<br>             <b>🎨 Cor:</b> <span style="color: #0066FF; font-weight: bold;">#0066FF</span>         </div></div>`)[0];
+                popup_b85601f698842ab0e1957c1ae27449b6.setContent(html_accd2998445805e3e47abf4908f195f9);
             
         
 
-        poly_line_fa84250c2b4d00c44e012e86c6c20a2c.bindPopup(popup_f9305bf57048138d6a7ed6b3ee406acd)
+        poly_line_5f6c16aa38dcf20b5eda8d2c9716e0c8.bindPopup(popup_b85601f698842ab0e1957c1ae27449b6)
         ;
 
         
     
     
-            poly_line_fa84250c2b4d00c44e012e86c6c20a2c.bindTooltip(
+            poly_line_5f6c16aa38dcf20b5eda8d2c9716e0c8.bindTooltip(
                 `<div>
                      🚚 Veículo 1 - 3 entregas - Clique para detalhes
                  </div>`,
@@ -1004,13 +526,13 @@
             );
         
     
-            var circle_marker_61bf707cf9867533094848a2122df9a9 = L.circleMarker(
-                [-23.55325, -46.644949999999994],
+            var circle_marker_fc4ccfab9b6b22a4287cbe9b789c494d = L.circleMarker(
+                [-23.553150000000002, -46.65325],
                 {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0066FF", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(feature_group_3d95f15ff3754b494af2a8f7db7e0572);
+            ).addTo(feature_group_4b3fe195a0d57b52b83dca362c9fca4b);
         
     
-            circle_marker_61bf707cf9867533094848a2122df9a9.bindTooltip(
+            circle_marker_fc4ccfab9b6b22a4287cbe9b789c494d.bindTooltip(
                 `<div>
                      Veículo 1 - Segmento 1
                  </div>`,
@@ -1020,13 +542,13 @@
             );
         
     
-            var circle_marker_d084eedf600f6d26f7e898da54ff7d27 = L.circleMarker(
-                [-23.5559, -46.6649],
+            var circle_marker_e1e2f99fbfd12c75f0a3c089b3753e51 = L.circleMarker(
+                [-23.5743, -46.68105],
                 {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0066FF", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(feature_group_3d95f15ff3754b494af2a8f7db7e0572);
+            ).addTo(feature_group_4b3fe195a0d57b52b83dca362c9fca4b);
         
     
-            circle_marker_d084eedf600f6d26f7e898da54ff7d27.bindTooltip(
+            circle_marker_e1e2f99fbfd12c75f0a3c089b3753e51.bindTooltip(
                 `<div>
                      Veículo 1 - Segmento 2
                  </div>`,
@@ -1036,13 +558,13 @@
             );
         
     
-            var circle_marker_6f0564ff760153d2dbc2dd02d5e87967 = L.circleMarker(
-                [-23.5558, -46.6732],
+            var circle_marker_da8d946a8c3d6708f5d69aae23602f4e = L.circleMarker(
+                [-23.57085, -46.66385],
                 {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0066FF", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(feature_group_3d95f15ff3754b494af2a8f7db7e0572);
+            ).addTo(feature_group_4b3fe195a0d57b52b83dca362c9fca4b);
         
     
-            circle_marker_6f0564ff760153d2dbc2dd02d5e87967.bindTooltip(
+            circle_marker_da8d946a8c3d6708f5d69aae23602f4e.bindTooltip(
                 `<div>
                      Veículo 1 - Segmento 3
                  </div>`,
@@ -1052,13 +574,13 @@
             );
         
     
-            var circle_marker_4fc481769fa1c86005b94c5a2c119dd2 = L.circleMarker(
-                [-23.553150000000002, -46.65325],
+            var circle_marker_e30abd830d76d118b28d4b6b0409838e = L.circleMarker(
+                [-23.5497, -46.63605],
                 {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0066FF", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(feature_group_3d95f15ff3754b494af2a8f7db7e0572);
+            ).addTo(feature_group_4b3fe195a0d57b52b83dca362c9fca4b);
         
     
-            circle_marker_4fc481769fa1c86005b94c5a2c119dd2.bindTooltip(
+            circle_marker_e30abd830d76d118b28d4b6b0409838e.bindTooltip(
                 `<div>
                      Veículo 1 - Segmento 4
                  </div>`,
@@ -1068,14 +590,14 @@
             );
         
     
-            var marker_ad8c1e3e89ea8ad0790ef9b93a25bf8f = L.marker(
-                [-23.556, -46.6566],
+            var marker_0cc9667c95d4727c1b9da2537657a6a6 = L.marker(
+                [-23.5558, -46.6732],
                 {
 }
-            ).addTo(feature_group_3d95f15ff3754b494af2a8f7db7e0572);
+            ).addTo(feature_group_4b3fe195a0d57b52b83dca362c9fca4b);
         
     
-            var div_icon_766dbf41870c92fa5fa16a03f494c997 = L.divIcon({
+            var div_icon_85c85c1f3c87844853711185a28d8772 = L.divIcon({
   "html": "\n            \u003cstyle\u003e\n                \n                @keyframes pulse {\n                    0%, 100% { transform: scale(1); opacity: 1; }\n                    50% { transform: scale(1.1); opacity: 0.9; }\n                }\n                .pulse-border {\n                    animation: pulse 2s ease-in-out infinite;\n                }\n                \n            \u003c/style\u003e\n            \u003cdiv class=\"pulse-border\" style=\"\n                position: relative;\n                width: 48px;\n                height: 48px;\n                filter: drop-shadow(0 3px 10px rgba(0,0,0,0.5));\n            \"\u003e\n                \u003ci class=\"fas fa-exclamation-triangle\" \n                   style=\"\n                       font-size: 36px;\n                       color: #EF4444;\n                       position: absolute;\n                       top: 50%;\n                       left: 50%;\n                       transform: translate(-50%, -50%);\n                       text-shadow: 0 0 0 white, 0 0 0 white, 0 0 8px white, 0 0 8px white;\n                       -webkit-text-stroke: 4px white;\n                       paint-order: stroke fill;\n                   \"\u003e\u003c/i\u003e\n                \u003cdiv style=\"\n                    position: absolute;\n                    top: 50%;\n                    left: 50%;\n                    transform: translate(-50%, -50%);\n                    background-color: #EF4444;\n                    color: white;\n                    border: 3px solid white;\n                    border-radius: 50%;\n                    width: 24px;\n                    height: 24px;\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-weight: bold;\n                    font-size: 14px;\n                    box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n                    text-shadow: 0 1px 3px rgba(0,0,0,0.5);\n                    margin-top: 8px;\n                \"\u003e1\u003c/div\u003e\n            \u003c/div\u003e\n            ",
   "iconSize": [48, 48],
   "iconAnchor": [24, 24],
@@ -1083,26 +605,26 @@
 });
         
     
-        var popup_614939ed1e6c0d9e0d27e6bc55a7e05b = L.popup({
+        var popup_86ecb02b967476b8c0379c6ef0df84d5 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_af28777438d2b4d3887eabcd0788d4f0 = $(`<div id="html_af28777438d2b4d3887eabcd0788d4f0" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_002</b><br>                 <b>Prioridade: CRÍTICA (Medicamentos)</b><br>                 Tipo: Medicamentos<br>                 Peso: 12.0 kg<br>                 Parada 1 na rota do Veículo 1             </div>             </div>`)[0];
-                popup_614939ed1e6c0d9e0d27e6bc55a7e05b.setContent(html_af28777438d2b4d3887eabcd0788d4f0);
+                var html_255d77e4616de9b83274c2d9f164df2c = $(`<div id="html_255d77e4616de9b83274c2d9f164df2c" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_003</b><br>                 <b>Prioridade: CRÍTICA (Medicamentos)</b><br>                 Tipo: Medicamentos<br>                 Peso: 20.0 kg<br>                 Parada 1 na rota do Veículo 1             </div>             </div>`)[0];
+                popup_86ecb02b967476b8c0379c6ef0df84d5.setContent(html_255d77e4616de9b83274c2d9f164df2c);
             
         
 
-        marker_ad8c1e3e89ea8ad0790ef9b93a25bf8f.bindPopup(popup_614939ed1e6c0d9e0d27e6bc55a7e05b)
+        marker_0cc9667c95d4727c1b9da2537657a6a6.bindPopup(popup_86ecb02b967476b8c0379c6ef0df84d5)
         ;
 
         
     
     
-            marker_ad8c1e3e89ea8ad0790ef9b93a25bf8f.bindTooltip(
+            marker_0cc9667c95d4727c1b9da2537657a6a6.bindTooltip(
                 `<div>
-                     ⚠️ CRÍTICA HOSP_002 - Parada 1 (Medicamentos) - Veículo 1
+                     ⚠️ CRÍTICA HOSP_003 - Parada 1 (Medicamentos) - Veículo 1
                  </div>`,
                 {
   "sticky": true,
@@ -1110,17 +632,17 @@
             );
         
     
-                marker_ad8c1e3e89ea8ad0790ef9b93a25bf8f.setIcon(div_icon_766dbf41870c92fa5fa16a03f494c997);
+                marker_0cc9667c95d4727c1b9da2537657a6a6.setIcon(div_icon_85c85c1f3c87844853711185a28d8772);
             
     
-            var marker_987045093301bf63e10c5b6f7cf7b1cd = L.marker(
-                [-23.5558, -46.6732],
+            var marker_6b1a3aa74ada52afc5610b13945f6b05 = L.marker(
+                [-23.5928, -46.6889],
                 {
 }
-            ).addTo(feature_group_3d95f15ff3754b494af2a8f7db7e0572);
+            ).addTo(feature_group_4b3fe195a0d57b52b83dca362c9fca4b);
         
     
-            var div_icon_a9da4febb10783f4c73d553da7fae0c7 = L.divIcon({
+            var div_icon_68a788eeba0822c4c73f61daa41f68bd = L.divIcon({
   "html": "\n            \u003cstyle\u003e\n                \n                @keyframes pulse {\n                    0%, 100% { transform: scale(1); opacity: 1; }\n                    50% { transform: scale(1.1); opacity: 0.9; }\n                }\n                .pulse-border {\n                    animation: pulse 2s ease-in-out infinite;\n                }\n                \n            \u003c/style\u003e\n            \u003cdiv class=\"pulse-border\" style=\"\n                position: relative;\n                width: 48px;\n                height: 48px;\n                filter: drop-shadow(0 3px 10px rgba(0,0,0,0.5));\n            \"\u003e\n                \u003ci class=\"fas fa-exclamation-triangle\" \n                   style=\"\n                       font-size: 36px;\n                       color: #EF4444;\n                       position: absolute;\n                       top: 50%;\n                       left: 50%;\n                       transform: translate(-50%, -50%);\n                       text-shadow: 0 0 0 white, 0 0 0 white, 0 0 8px white, 0 0 8px white;\n                       -webkit-text-stroke: 4px white;\n                       paint-order: stroke fill;\n                   \"\u003e\u003c/i\u003e\n                \u003cdiv style=\"\n                    position: absolute;\n                    top: 50%;\n                    left: 50%;\n                    transform: translate(-50%, -50%);\n                    background-color: #EF4444;\n                    color: white;\n                    border: 3px solid white;\n                    border-radius: 50%;\n                    width: 24px;\n                    height: 24px;\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-weight: bold;\n                    font-size: 14px;\n                    box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n                    text-shadow: 0 1px 3px rgba(0,0,0,0.5);\n                    margin-top: 8px;\n                \"\u003e2\u003c/div\u003e\n            \u003c/div\u003e\n            ",
   "iconSize": [48, 48],
   "iconAnchor": [24, 24],
@@ -1128,26 +650,26 @@
 });
         
     
-        var popup_9c4bd6f8a0ec2e85276e69a49e302940 = L.popup({
+        var popup_a141158be97cc6b3669151eb60345313 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_a18774d79966b39605ad3edd42ada1bb = $(`<div id="html_a18774d79966b39605ad3edd42ada1bb" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_004</b><br>                 <b>Prioridade: CRÍTICA (Medicamentos)</b><br>                 Tipo: Medicamentos<br>                 Peso: 18.0 kg<br>                 Parada 2 na rota do Veículo 1             </div>             </div>`)[0];
-                popup_9c4bd6f8a0ec2e85276e69a49e302940.setContent(html_a18774d79966b39605ad3edd42ada1bb);
+                var html_bd1b02b021af45ad4c3bfd1c325b9fb7 = $(`<div id="html_bd1b02b021af45ad4c3bfd1c325b9fb7" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_001</b><br>                 <b>Prioridade: CRÍTICA (Medicamentos)</b><br>                 Tipo: Medicamentos<br>                 Peso: 15.0 kg<br>                 Parada 2 na rota do Veículo 1             </div>             </div>`)[0];
+                popup_a141158be97cc6b3669151eb60345313.setContent(html_bd1b02b021af45ad4c3bfd1c325b9fb7);
             
         
 
-        marker_987045093301bf63e10c5b6f7cf7b1cd.bindPopup(popup_9c4bd6f8a0ec2e85276e69a49e302940)
+        marker_6b1a3aa74ada52afc5610b13945f6b05.bindPopup(popup_a141158be97cc6b3669151eb60345313)
         ;
 
         
     
     
-            marker_987045093301bf63e10c5b6f7cf7b1cd.bindTooltip(
+            marker_6b1a3aa74ada52afc5610b13945f6b05.bindTooltip(
                 `<div>
-                     ⚠️ CRÍTICA HOSP_004 - Parada 2 (Medicamentos) - Veículo 1
+                     ⚠️ CRÍTICA HOSP_001 - Parada 2 (Medicamentos) - Veículo 1
                  </div>`,
                 {
   "sticky": true,
@@ -1155,44 +677,44 @@
             );
         
     
-                marker_987045093301bf63e10c5b6f7cf7b1cd.setIcon(div_icon_a9da4febb10783f4c73d553da7fae0c7);
+                marker_6b1a3aa74ada52afc5610b13945f6b05.setIcon(div_icon_68a788eeba0822c4c73f61daa41f68bd);
             
     
-            var marker_f468459e1fb94a5d10c4f62aa1971166 = L.marker(
-                [-23.5558, -46.6732],
+            var marker_8894f8db81f0c5295e036345556ecc9b = L.marker(
+                [-23.5489, -46.6388],
                 {
 }
-            ).addTo(feature_group_3d95f15ff3754b494af2a8f7db7e0572);
+            ).addTo(feature_group_4b3fe195a0d57b52b83dca362c9fca4b);
         
     
-            var div_icon_a23fd766fdae13dc9b85a51bc3388b83 = L.divIcon({
-  "html": "\n            \u003cstyle\u003e\n                \n                @keyframes pulse {\n                    0%, 100% { transform: scale(1); opacity: 1; }\n                    50% { transform: scale(1.1); opacity: 0.9; }\n                }\n                .pulse-border {\n                    animation: pulse 2s ease-in-out infinite;\n                }\n                \n            \u003c/style\u003e\n            \u003cdiv class=\"pulse-border\" style=\"\n                position: relative;\n                width: 48px;\n                height: 48px;\n                filter: drop-shadow(0 3px 10px rgba(0,0,0,0.5));\n            \"\u003e\n                \u003ci class=\"fas fa-exclamation-triangle\" \n                   style=\"\n                       font-size: 36px;\n                       color: #EF4444;\n                       position: absolute;\n                       top: 50%;\n                       left: 50%;\n                       transform: translate(-50%, -50%);\n                       text-shadow: 0 0 0 white, 0 0 0 white, 0 0 8px white, 0 0 8px white;\n                       -webkit-text-stroke: 4px white;\n                       paint-order: stroke fill;\n                   \"\u003e\u003c/i\u003e\n                \u003cdiv style=\"\n                    position: absolute;\n                    top: 50%;\n                    left: 50%;\n                    transform: translate(-50%, -50%);\n                    background-color: #EF4444;\n                    color: white;\n                    border: 3px solid white;\n                    border-radius: 50%;\n                    width: 24px;\n                    height: 24px;\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-weight: bold;\n                    font-size: 14px;\n                    box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n                    text-shadow: 0 1px 3px rgba(0,0,0,0.5);\n                    margin-top: 8px;\n                \"\u003e3\u003c/div\u003e\n            \u003c/div\u003e\n            ",
-  "iconSize": [48, 48],
-  "iconAnchor": [24, 24],
+            var div_icon_72468d520dca2bc28de9ea65fb822e21 = L.divIcon({
+  "html": "\n            \u003cstyle\u003e\n                \n            \u003c/style\u003e\n            \u003cdiv class=\"\" style=\"\n                position: relative;\n                width: 44px;\n                height: 44px;\n                filter: drop-shadow(0 3px 10px rgba(0,0,0,0.5));\n            \"\u003e\n                \u003ci class=\"fas fa-box\" \n                   style=\"\n                       font-size: 32px;\n                       color: #3B82F6;\n                       position: absolute;\n                       top: 50%;\n                       left: 50%;\n                       transform: translate(-50%, -50%);\n                       text-shadow: 0 0 0 white, 0 0 0 white, 0 0 8px white, 0 0 8px white;\n                       -webkit-text-stroke: 4px white;\n                       paint-order: stroke fill;\n                   \"\u003e\u003c/i\u003e\n                \u003cdiv style=\"\n                    position: absolute;\n                    top: 50%;\n                    left: 50%;\n                    transform: translate(-50%, -50%);\n                    background-color: #3B82F6;\n                    color: white;\n                    border: 3px solid white;\n                    border-radius: 50%;\n                    width: 24px;\n                    height: 24px;\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-weight: bold;\n                    font-size: 14px;\n                    box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n                    text-shadow: 0 1px 3px rgba(0,0,0,0.5);\n                    margin-top: 8px;\n                \"\u003e3\u003c/div\u003e\n            \u003c/div\u003e\n            ",
+  "iconSize": [44, 44],
+  "iconAnchor": [22, 22],
   "className": "empty",
 });
         
     
-        var popup_a921595e48be93ca3987e08d438ceaab = L.popup({
+        var popup_b69da5f9b37cc16c1131b98794181e5a = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_a93fd21eb0a88af568ac1ae2d7be476e = $(`<div id="html_a93fd21eb0a88af568ac1ae2d7be476e" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_003</b><br>                 <b>Prioridade: CRÍTICA (Medicamentos)</b><br>                 Tipo: Medicamentos<br>                 Peso: 20.0 kg<br>                 Parada 3 na rota do Veículo 1             </div>             </div>`)[0];
-                popup_a921595e48be93ca3987e08d438ceaab.setContent(html_a93fd21eb0a88af568ac1ae2d7be476e);
+                var html_944d7671e07d1b5d79d8f214546923e7 = $(`<div id="html_944d7671e07d1b5d79d8f214546923e7" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_010</b><br>                 <b>Prioridade: Normal</b><br>                 Tipo: Insumos<br>                 Peso: 15.0 kg<br>                 Parada 3 na rota do Veículo 1             </div>             </div>`)[0];
+                popup_b69da5f9b37cc16c1131b98794181e5a.setContent(html_944d7671e07d1b5d79d8f214546923e7);
             
         
 
-        marker_f468459e1fb94a5d10c4f62aa1971166.bindPopup(popup_a921595e48be93ca3987e08d438ceaab)
+        marker_8894f8db81f0c5295e036345556ecc9b.bindPopup(popup_b69da5f9b37cc16c1131b98794181e5a)
         ;
 
         
     
     
-            marker_f468459e1fb94a5d10c4f62aa1971166.bindTooltip(
+            marker_8894f8db81f0c5295e036345556ecc9b.bindTooltip(
                 `<div>
-                     ⚠️ CRÍTICA HOSP_003 - Parada 3 (Medicamentos) - Veículo 1
+                     📦 HOSP_010 - Parada 3 (Insumos) - Veículo 1
                  </div>`,
                 {
   "sticky": true,
@@ -1200,42 +722,42 @@
             );
         
     
-                marker_f468459e1fb94a5d10c4f62aa1971166.setIcon(div_icon_a23fd766fdae13dc9b85a51bc3388b83);
+                marker_8894f8db81f0c5295e036345556ecc9b.setIcon(div_icon_72468d520dca2bc28de9ea65fb822e21);
             
     
-            feature_group_3d95f15ff3754b494af2a8f7db7e0572.addTo(map_5ed796bdc8c4bf8966eb237a556c911b);
+            feature_group_4b3fe195a0d57b52b83dca362c9fca4b.addTo(map_90c001504f5c4c6656e7fb82415039d8);
         
     
-            var feature_group_c797ac79c924b69c5f2908a5b11a9e88 = L.featureGroup(
+            var feature_group_be7dfe78a61b8fc6d2fe7b50c784db73 = L.featureGroup(
                 {
 }
             );
         
     
-            var poly_line_2b56e8c3c7d25006e6b57ae9f5cbf389 = L.polyline(
-                [[-23.5505, -46.6333], [-23.5928, -46.6889], [-23.5489, -46.6388], [-23.5431, -46.6367], [-23.5505, -46.6333]],
+            var poly_line_01ce5e49e5e21758e82963d165f2e901 = L.polyline(
+                [[-23.5505, -46.6333], [-23.556, -46.6566], [-23.5558, -46.6732], [-23.5431, -46.6367], [-23.5505, -46.6333]],
                 {"bubblingMouseEvents": true, "color": "#FF0055", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#FF0055", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 4}
-            ).addTo(feature_group_c797ac79c924b69c5f2908a5b11a9e88);
+            ).addTo(feature_group_be7dfe78a61b8fc6d2fe7b50c784db73);
         
     
-        var popup_b842e0de46d6bdd9abe23eb453cb8a21 = L.popup({
+        var popup_5c419a074a634d2fdd6da4823f605887 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_d7c8f9743b5071ff3c9482084b8205ac = $(`<div id="html_d7c8f9743b5071ff3c9482084b8205ac" style="width: 100.0%; height: 100.0%;">         <div style="font-size: 12px;">             <b>🚚 Veículo 2</b><br>             <hr style="margin: 5px 0;">             <b>📦 Entregas:</b> 3<br>             <b>📏 Distância:</b> 15.98 km<br>             <b>📍 Paradas:</b> HOSP_001, HOSP_010, HOSP_011<br>             <b>🎨 Cor:</b> <span style="color: #FF0055; font-weight: bold;">#FF0055</span>                      <hr style="margin: 5px 0;">             <b>⚠️ Análise de Segurança:</b><br>             <b>Nível de Risco:</b> <span style="color: #28a745; font-weight: bold;">LOW</span><br>             <b>Acidentes no trajeto:</b> 0<br>             <b>Severidade média:</b> 0.0/5.0<br>             <b>Segmentos de alto risco:</b> 0             </div></div>`)[0];
-                popup_b842e0de46d6bdd9abe23eb453cb8a21.setContent(html_d7c8f9743b5071ff3c9482084b8205ac);
+                var html_e8786fe9cf755489fe2cdfca47d8ce6a = $(`<div id="html_e8786fe9cf755489fe2cdfca47d8ce6a" style="width: 100.0%; height: 100.0%;">         <div style="font-size: 12px;">             <b>🚚 Veículo 2</b><br>             <hr style="margin: 5px 0;">             <b>📦 Entregas:</b> 3<br>             <b>📏 Distância:</b> 9.02 km<br>             <b>📍 Paradas:</b> HOSP_002, HOSP_004, HOSP_011<br>             <b>🎨 Cor:</b> <span style="color: #FF0055; font-weight: bold;">#FF0055</span>         </div></div>`)[0];
+                popup_5c419a074a634d2fdd6da4823f605887.setContent(html_e8786fe9cf755489fe2cdfca47d8ce6a);
             
         
 
-        poly_line_2b56e8c3c7d25006e6b57ae9f5cbf389.bindPopup(popup_b842e0de46d6bdd9abe23eb453cb8a21)
+        poly_line_01ce5e49e5e21758e82963d165f2e901.bindPopup(popup_5c419a074a634d2fdd6da4823f605887)
         ;
 
         
     
     
-            poly_line_2b56e8c3c7d25006e6b57ae9f5cbf389.bindTooltip(
+            poly_line_01ce5e49e5e21758e82963d165f2e901.bindTooltip(
                 `<div>
                      🚚 Veículo 2 - 3 entregas - Clique para detalhes
                  </div>`,
@@ -1245,13 +767,13 @@
             );
         
     
-            var circle_marker_5e54fdb3d720aede4a159cc8bc053ca5 = L.circleMarker(
-                [-23.571649999999998, -46.6611],
+            var circle_marker_860929fb533409e2312bc2bdce7ee1d6 = L.circleMarker(
+                [-23.55325, -46.644949999999994],
                 {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0055", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(feature_group_c797ac79c924b69c5f2908a5b11a9e88);
+            ).addTo(feature_group_be7dfe78a61b8fc6d2fe7b50c784db73);
         
     
-            circle_marker_5e54fdb3d720aede4a159cc8bc053ca5.bindTooltip(
+            circle_marker_860929fb533409e2312bc2bdce7ee1d6.bindTooltip(
                 `<div>
                      Veículo 2 - Segmento 1
                  </div>`,
@@ -1261,13 +783,13 @@
             );
         
     
-            var circle_marker_cfe34652cac42ef3432942dd1a64666d = L.circleMarker(
-                [-23.57085, -46.66385],
+            var circle_marker_12c17661b084ac2935cbb02089bfcc40 = L.circleMarker(
+                [-23.5559, -46.6649],
                 {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0055", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(feature_group_c797ac79c924b69c5f2908a5b11a9e88);
+            ).addTo(feature_group_be7dfe78a61b8fc6d2fe7b50c784db73);
         
     
-            circle_marker_cfe34652cac42ef3432942dd1a64666d.bindTooltip(
+            circle_marker_12c17661b084ac2935cbb02089bfcc40.bindTooltip(
                 `<div>
                      Veículo 2 - Segmento 2
                  </div>`,
@@ -1277,13 +799,13 @@
             );
         
     
-            var circle_marker_05fb86c4ba5f2fb0b4bfff739886d726 = L.circleMarker(
-                [-23.546, -46.63775],
+            var circle_marker_a0ec997319a4419e1616f2870852f276 = L.circleMarker(
+                [-23.54945, -46.65495],
                 {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0055", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(feature_group_c797ac79c924b69c5f2908a5b11a9e88);
+            ).addTo(feature_group_be7dfe78a61b8fc6d2fe7b50c784db73);
         
     
-            circle_marker_05fb86c4ba5f2fb0b4bfff739886d726.bindTooltip(
+            circle_marker_a0ec997319a4419e1616f2870852f276.bindTooltip(
                 `<div>
                      Veículo 2 - Segmento 3
                  </div>`,
@@ -1293,13 +815,13 @@
             );
         
     
-            var circle_marker_b4dacfb74b14509fb95e13d91610b191 = L.circleMarker(
+            var circle_marker_7e06b4db02f087664c26da221b80635c = L.circleMarker(
                 [-23.546799999999998, -46.635],
                 {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF0055", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(feature_group_c797ac79c924b69c5f2908a5b11a9e88);
+            ).addTo(feature_group_be7dfe78a61b8fc6d2fe7b50c784db73);
         
     
-            circle_marker_b4dacfb74b14509fb95e13d91610b191.bindTooltip(
+            circle_marker_7e06b4db02f087664c26da221b80635c.bindTooltip(
                 `<div>
                      Veículo 2 - Segmento 4
                  </div>`,
@@ -1309,14 +831,14 @@
             );
         
     
-            var marker_a0996bfd1e58a682129734a16851f6a3 = L.marker(
-                [-23.5928, -46.6889],
+            var marker_cdc9ab0b751c51b682e54d2f6ba86fb8 = L.marker(
+                [-23.556, -46.6566],
                 {
 }
-            ).addTo(feature_group_c797ac79c924b69c5f2908a5b11a9e88);
+            ).addTo(feature_group_be7dfe78a61b8fc6d2fe7b50c784db73);
         
     
-            var div_icon_8f237edb2742a9b05ca2337b4f046307 = L.divIcon({
+            var div_icon_9b0762b448d9f2afc169bc3a748e3e74 = L.divIcon({
   "html": "\n            \u003cstyle\u003e\n                \n                @keyframes pulse {\n                    0%, 100% { transform: scale(1); opacity: 1; }\n                    50% { transform: scale(1.1); opacity: 0.9; }\n                }\n                .pulse-border {\n                    animation: pulse 2s ease-in-out infinite;\n                }\n                \n            \u003c/style\u003e\n            \u003cdiv class=\"pulse-border\" style=\"\n                position: relative;\n                width: 48px;\n                height: 48px;\n                filter: drop-shadow(0 3px 10px rgba(0,0,0,0.5));\n            \"\u003e\n                \u003ci class=\"fas fa-exclamation-triangle\" \n                   style=\"\n                       font-size: 36px;\n                       color: #EF4444;\n                       position: absolute;\n                       top: 50%;\n                       left: 50%;\n                       transform: translate(-50%, -50%);\n                       text-shadow: 0 0 0 white, 0 0 0 white, 0 0 8px white, 0 0 8px white;\n                       -webkit-text-stroke: 4px white;\n                       paint-order: stroke fill;\n                   \"\u003e\u003c/i\u003e\n                \u003cdiv style=\"\n                    position: absolute;\n                    top: 50%;\n                    left: 50%;\n                    transform: translate(-50%, -50%);\n                    background-color: #EF4444;\n                    color: white;\n                    border: 3px solid white;\n                    border-radius: 50%;\n                    width: 24px;\n                    height: 24px;\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-weight: bold;\n                    font-size: 14px;\n                    box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n                    text-shadow: 0 1px 3px rgba(0,0,0,0.5);\n                    margin-top: 8px;\n                \"\u003e1\u003c/div\u003e\n            \u003c/div\u003e\n            ",
   "iconSize": [48, 48],
   "iconAnchor": [24, 24],
@@ -1324,26 +846,26 @@
 });
         
     
-        var popup_631a9b77d032b5f08cc6ca2a55bcb674 = L.popup({
+        var popup_7d3bf483f6c2131731a3f0793321c9ba = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_96789e834ac7da307665b6a89de4ef9c = $(`<div id="html_96789e834ac7da307665b6a89de4ef9c" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_001</b><br>                 <b>Prioridade: CRÍTICA (Medicamentos)</b><br>                 Tipo: Medicamentos<br>                 Peso: 15.0 kg<br>                 Parada 1 na rota do Veículo 2             </div>             </div>`)[0];
-                popup_631a9b77d032b5f08cc6ca2a55bcb674.setContent(html_96789e834ac7da307665b6a89de4ef9c);
+                var html_0c5a23407454599041a47241a50d4cb2 = $(`<div id="html_0c5a23407454599041a47241a50d4cb2" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_002</b><br>                 <b>Prioridade: CRÍTICA (Medicamentos)</b><br>                 Tipo: Medicamentos<br>                 Peso: 12.0 kg<br>                 Parada 1 na rota do Veículo 2             </div>             </div>`)[0];
+                popup_7d3bf483f6c2131731a3f0793321c9ba.setContent(html_0c5a23407454599041a47241a50d4cb2);
             
         
 
-        marker_a0996bfd1e58a682129734a16851f6a3.bindPopup(popup_631a9b77d032b5f08cc6ca2a55bcb674)
+        marker_cdc9ab0b751c51b682e54d2f6ba86fb8.bindPopup(popup_7d3bf483f6c2131731a3f0793321c9ba)
         ;
 
         
     
     
-            marker_a0996bfd1e58a682129734a16851f6a3.bindTooltip(
+            marker_cdc9ab0b751c51b682e54d2f6ba86fb8.bindTooltip(
                 `<div>
-                     ⚠️ CRÍTICA HOSP_001 - Parada 1 (Medicamentos) - Veículo 2
+                     ⚠️ CRÍTICA HOSP_002 - Parada 1 (Medicamentos) - Veículo 2
                  </div>`,
                 {
   "sticky": true,
@@ -1351,44 +873,44 @@
             );
         
     
-                marker_a0996bfd1e58a682129734a16851f6a3.setIcon(div_icon_8f237edb2742a9b05ca2337b4f046307);
+                marker_cdc9ab0b751c51b682e54d2f6ba86fb8.setIcon(div_icon_9b0762b448d9f2afc169bc3a748e3e74);
             
     
-            var marker_c9b445f103564eb8612772dc53a88a1f = L.marker(
-                [-23.5489, -46.6388],
+            var marker_b1db380b1eda3240bbb6e67529ada0fd = L.marker(
+                [-23.5558, -46.6732],
                 {
 }
-            ).addTo(feature_group_c797ac79c924b69c5f2908a5b11a9e88);
+            ).addTo(feature_group_be7dfe78a61b8fc6d2fe7b50c784db73);
         
     
-            var div_icon_c6bfafef2f7821a9822b975d55697ebe = L.divIcon({
-  "html": "\n            \u003cstyle\u003e\n                \n            \u003c/style\u003e\n            \u003cdiv class=\"\" style=\"\n                position: relative;\n                width: 44px;\n                height: 44px;\n                filter: drop-shadow(0 3px 10px rgba(0,0,0,0.5));\n            \"\u003e\n                \u003ci class=\"fas fa-box\" \n                   style=\"\n                       font-size: 32px;\n                       color: #3B82F6;\n                       position: absolute;\n                       top: 50%;\n                       left: 50%;\n                       transform: translate(-50%, -50%);\n                       text-shadow: 0 0 0 white, 0 0 0 white, 0 0 8px white, 0 0 8px white;\n                       -webkit-text-stroke: 4px white;\n                       paint-order: stroke fill;\n                   \"\u003e\u003c/i\u003e\n                \u003cdiv style=\"\n                    position: absolute;\n                    top: 50%;\n                    left: 50%;\n                    transform: translate(-50%, -50%);\n                    background-color: #3B82F6;\n                    color: white;\n                    border: 3px solid white;\n                    border-radius: 50%;\n                    width: 24px;\n                    height: 24px;\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-weight: bold;\n                    font-size: 14px;\n                    box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n                    text-shadow: 0 1px 3px rgba(0,0,0,0.5);\n                    margin-top: 8px;\n                \"\u003e2\u003c/div\u003e\n            \u003c/div\u003e\n            ",
-  "iconSize": [44, 44],
-  "iconAnchor": [22, 22],
+            var div_icon_4f462a7cf95da081f8884dc4e6055c3d = L.divIcon({
+  "html": "\n            \u003cstyle\u003e\n                \n                @keyframes pulse {\n                    0%, 100% { transform: scale(1); opacity: 1; }\n                    50% { transform: scale(1.1); opacity: 0.9; }\n                }\n                .pulse-border {\n                    animation: pulse 2s ease-in-out infinite;\n                }\n                \n            \u003c/style\u003e\n            \u003cdiv class=\"pulse-border\" style=\"\n                position: relative;\n                width: 48px;\n                height: 48px;\n                filter: drop-shadow(0 3px 10px rgba(0,0,0,0.5));\n            \"\u003e\n                \u003ci class=\"fas fa-exclamation-triangle\" \n                   style=\"\n                       font-size: 36px;\n                       color: #EF4444;\n                       position: absolute;\n                       top: 50%;\n                       left: 50%;\n                       transform: translate(-50%, -50%);\n                       text-shadow: 0 0 0 white, 0 0 0 white, 0 0 8px white, 0 0 8px white;\n                       -webkit-text-stroke: 4px white;\n                       paint-order: stroke fill;\n                   \"\u003e\u003c/i\u003e\n                \u003cdiv style=\"\n                    position: absolute;\n                    top: 50%;\n                    left: 50%;\n                    transform: translate(-50%, -50%);\n                    background-color: #EF4444;\n                    color: white;\n                    border: 3px solid white;\n                    border-radius: 50%;\n                    width: 24px;\n                    height: 24px;\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-weight: bold;\n                    font-size: 14px;\n                    box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n                    text-shadow: 0 1px 3px rgba(0,0,0,0.5);\n                    margin-top: 8px;\n                \"\u003e2\u003c/div\u003e\n            \u003c/div\u003e\n            ",
+  "iconSize": [48, 48],
+  "iconAnchor": [24, 24],
   "className": "empty",
 });
         
     
-        var popup_d4c263d478a565734669c266adba6485 = L.popup({
+        var popup_c04898bfca9edf8a26b6bf164017263b = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_d42da522efd674706986ba0eff7f7aed = $(`<div id="html_d42da522efd674706986ba0eff7f7aed" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_010</b><br>                 <b>Prioridade: Normal</b><br>                 Tipo: Insumos<br>                 Peso: 15.0 kg<br>                 Parada 2 na rota do Veículo 2             </div>             </div>`)[0];
-                popup_d4c263d478a565734669c266adba6485.setContent(html_d42da522efd674706986ba0eff7f7aed);
+                var html_c1c2fb4f546db75dc85ae88b061cd33a = $(`<div id="html_c1c2fb4f546db75dc85ae88b061cd33a" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_004</b><br>                 <b>Prioridade: CRÍTICA (Medicamentos)</b><br>                 Tipo: Medicamentos<br>                 Peso: 18.0 kg<br>                 Parada 2 na rota do Veículo 2             </div>             </div>`)[0];
+                popup_c04898bfca9edf8a26b6bf164017263b.setContent(html_c1c2fb4f546db75dc85ae88b061cd33a);
             
         
 
-        marker_c9b445f103564eb8612772dc53a88a1f.bindPopup(popup_d4c263d478a565734669c266adba6485)
+        marker_b1db380b1eda3240bbb6e67529ada0fd.bindPopup(popup_c04898bfca9edf8a26b6bf164017263b)
         ;
 
         
     
     
-            marker_c9b445f103564eb8612772dc53a88a1f.bindTooltip(
+            marker_b1db380b1eda3240bbb6e67529ada0fd.bindTooltip(
                 `<div>
-                     📦 HOSP_010 - Parada 2 (Insumos) - Veículo 2
+                     ⚠️ CRÍTICA HOSP_004 - Parada 2 (Medicamentos) - Veículo 2
                  </div>`,
                 {
   "sticky": true,
@@ -1396,17 +918,17 @@
             );
         
     
-                marker_c9b445f103564eb8612772dc53a88a1f.setIcon(div_icon_c6bfafef2f7821a9822b975d55697ebe);
+                marker_b1db380b1eda3240bbb6e67529ada0fd.setIcon(div_icon_4f462a7cf95da081f8884dc4e6055c3d);
             
     
-            var marker_e003940a2d5209854cdaa4d5787abc7f = L.marker(
+            var marker_ad3dee88dd17f35f3ee978f87f08520a = L.marker(
                 [-23.5431, -46.6367],
                 {
 }
-            ).addTo(feature_group_c797ac79c924b69c5f2908a5b11a9e88);
+            ).addTo(feature_group_be7dfe78a61b8fc6d2fe7b50c784db73);
         
     
-            var div_icon_d3d25b78c23af6313d3ecb9deb5b1e66 = L.divIcon({
+            var div_icon_18841486d66ac171ca6b8ded709bd3ff = L.divIcon({
   "html": "\n            \u003cstyle\u003e\n                \n            \u003c/style\u003e\n            \u003cdiv class=\"\" style=\"\n                position: relative;\n                width: 44px;\n                height: 44px;\n                filter: drop-shadow(0 3px 10px rgba(0,0,0,0.5));\n            \"\u003e\n                \u003ci class=\"fas fa-box\" \n                   style=\"\n                       font-size: 32px;\n                       color: #3B82F6;\n                       position: absolute;\n                       top: 50%;\n                       left: 50%;\n                       transform: translate(-50%, -50%);\n                       text-shadow: 0 0 0 white, 0 0 0 white, 0 0 8px white, 0 0 8px white;\n                       -webkit-text-stroke: 4px white;\n                       paint-order: stroke fill;\n                   \"\u003e\u003c/i\u003e\n                \u003cdiv style=\"\n                    position: absolute;\n                    top: 50%;\n                    left: 50%;\n                    transform: translate(-50%, -50%);\n                    background-color: #3B82F6;\n                    color: white;\n                    border: 3px solid white;\n                    border-radius: 50%;\n                    width: 24px;\n                    height: 24px;\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-weight: bold;\n                    font-size: 14px;\n                    box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n                    text-shadow: 0 1px 3px rgba(0,0,0,0.5);\n                    margin-top: 8px;\n                \"\u003e3\u003c/div\u003e\n            \u003c/div\u003e\n            ",
   "iconSize": [44, 44],
   "iconAnchor": [22, 22],
@@ -1414,24 +936,24 @@
 });
         
     
-        var popup_5d58e05ec3151b6f7d88d99bb0bc90c3 = L.popup({
+        var popup_9ac9267f0655dadf713a2e53c6dc2cf7 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_a9159a15554d2fb8c85a7fa3b77672ac = $(`<div id="html_a9159a15554d2fb8c85a7fa3b77672ac" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_011</b><br>                 <b>Prioridade: Normal</b><br>                 Tipo: Insumos<br>                 Peso: 20.0 kg<br>                 Parada 3 na rota do Veículo 2             </div>             </div>`)[0];
-                popup_5d58e05ec3151b6f7d88d99bb0bc90c3.setContent(html_a9159a15554d2fb8c85a7fa3b77672ac);
+                var html_6401b2c0cf7a06fccff9c6e64c180e3c = $(`<div id="html_6401b2c0cf7a06fccff9c6e64c180e3c" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_011</b><br>                 <b>Prioridade: Normal</b><br>                 Tipo: Insumos<br>                 Peso: 20.0 kg<br>                 Parada 3 na rota do Veículo 2             </div>             </div>`)[0];
+                popup_9ac9267f0655dadf713a2e53c6dc2cf7.setContent(html_6401b2c0cf7a06fccff9c6e64c180e3c);
             
         
 
-        marker_e003940a2d5209854cdaa4d5787abc7f.bindPopup(popup_5d58e05ec3151b6f7d88d99bb0bc90c3)
+        marker_ad3dee88dd17f35f3ee978f87f08520a.bindPopup(popup_9ac9267f0655dadf713a2e53c6dc2cf7)
         ;
 
         
     
     
-            marker_e003940a2d5209854cdaa4d5787abc7f.bindTooltip(
+            marker_ad3dee88dd17f35f3ee978f87f08520a.bindTooltip(
                 `<div>
                      📦 HOSP_011 - Parada 3 (Insumos) - Veículo 2
                  </div>`,
@@ -1441,42 +963,42 @@
             );
         
     
-                marker_e003940a2d5209854cdaa4d5787abc7f.setIcon(div_icon_d3d25b78c23af6313d3ecb9deb5b1e66);
+                marker_ad3dee88dd17f35f3ee978f87f08520a.setIcon(div_icon_18841486d66ac171ca6b8ded709bd3ff);
             
     
-            feature_group_c797ac79c924b69c5f2908a5b11a9e88.addTo(map_5ed796bdc8c4bf8966eb237a556c911b);
+            feature_group_be7dfe78a61b8fc6d2fe7b50c784db73.addTo(map_90c001504f5c4c6656e7fb82415039d8);
         
     
-            var feature_group_54d12761824c90f9e9acad95a9642a85 = L.featureGroup(
+            var feature_group_4a89d972506abedcd67bb1e1d8191f67 = L.featureGroup(
                 {
 }
             );
         
     
-            var poly_line_e1d47f8dce6f6a37c5b8a2ff5f33326c = L.polyline(
-                [[-23.5505, -46.6333], [-23.5631, -46.4642], [-23.6028, -46.6703], [-23.556, -46.6566], [-23.5431, -46.6125], [-23.4859, -46.6333], [-23.5431, -46.6367], [-23.5505, -46.6333]],
+            var poly_line_3405d693472a3f0444e438333c0c4beb = L.polyline(
+                [[-23.5505, -46.6333], [-23.5431, -46.6125], [-23.556, -46.6566], [-23.5431, -46.6367], [-23.5631, -46.4642], [-23.6028, -46.6703], [-23.4859, -46.6333], [-23.5505, -46.6333]],
                 {"bubblingMouseEvents": true, "color": "#00CC66", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#00CC66", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 4}
-            ).addTo(feature_group_54d12761824c90f9e9acad95a9642a85);
+            ).addTo(feature_group_4a89d972506abedcd67bb1e1d8191f67);
         
     
-        var popup_3b3e1cbf0144bea6774e60711b88ec48 = L.popup({
+        var popup_01b63bde44b6114d289a03cdea116434 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_165834f8e37169ee945743f910781ade = $(`<div id="html_165834f8e37169ee945743f910781ade" style="width: 100.0%; height: 100.0%;">         <div style="font-size: 12px;">             <b>🚚 Veículo 3</b><br>             <hr style="margin: 5px 0;">             <b>📦 Entregas:</b> 6<br>             <b>📏 Distância:</b> 62.82 km<br>             <b>📍 Paradas:</b> HOSP_009, HOSP_008, HOSP_005, HOSP_012, HOSP_006, HOSP_007<br>             <b>🎨 Cor:</b> <span style="color: #00CC66; font-weight: bold;">#00CC66</span>                      <hr style="margin: 5px 0;">             <b>⚠️ Análise de Segurança:</b><br>             <b>Nível de Risco:</b> <span style="color: #28a745; font-weight: bold;">LOW</span><br>             <b>Acidentes no trajeto:</b> 0<br>             <b>Severidade média:</b> 0.0/5.0<br>             <b>Segmentos de alto risco:</b> 0             </div></div>`)[0];
-                popup_3b3e1cbf0144bea6774e60711b88ec48.setContent(html_165834f8e37169ee945743f910781ade);
+                var html_b9704238166e779622366106dfadec4a = $(`<div id="html_b9704238166e779622366106dfadec4a" style="width: 100.0%; height: 100.0%;">         <div style="font-size: 12px;">             <b>🚚 Veículo 3</b><br>             <hr style="margin: 5px 0;">             <b>📦 Entregas:</b> 6<br>             <b>📏 Distância:</b> 69.37 km<br>             <b>📍 Paradas:</b> HOSP_012, HOSP_005, HOSP_007, HOSP_009, HOSP_008, HOSP_006<br>             <b>🎨 Cor:</b> <span style="color: #00CC66; font-weight: bold;">#00CC66</span>         </div></div>`)[0];
+                popup_01b63bde44b6114d289a03cdea116434.setContent(html_b9704238166e779622366106dfadec4a);
             
         
 
-        poly_line_e1d47f8dce6f6a37c5b8a2ff5f33326c.bindPopup(popup_3b3e1cbf0144bea6774e60711b88ec48)
+        poly_line_3405d693472a3f0444e438333c0c4beb.bindPopup(popup_01b63bde44b6114d289a03cdea116434)
         ;
 
         
     
     
-            poly_line_e1d47f8dce6f6a37c5b8a2ff5f33326c.bindTooltip(
+            poly_line_3405d693472a3f0444e438333c0c4beb.bindTooltip(
                 `<div>
                      🚚 Veículo 3 - 6 entregas - Clique para detalhes
                  </div>`,
@@ -1486,13 +1008,13 @@
             );
         
     
-            var circle_marker_22bd14a7eb20ae8b83995b2eab17a1ab = L.circleMarker(
-                [-23.5568, -46.54875],
+            var circle_marker_be9476522f5092266e998c0a892e014e = L.circleMarker(
+                [-23.546799999999998, -46.6229],
                 {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00CC66", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(feature_group_54d12761824c90f9e9acad95a9642a85);
+            ).addTo(feature_group_4a89d972506abedcd67bb1e1d8191f67);
         
     
-            circle_marker_22bd14a7eb20ae8b83995b2eab17a1ab.bindTooltip(
+            circle_marker_be9476522f5092266e998c0a892e014e.bindTooltip(
                 `<div>
                      Veículo 3 - Segmento 1
                  </div>`,
@@ -1502,13 +1024,13 @@
             );
         
     
-            var circle_marker_130354a339cca8375228d4ebbfb8f938 = L.circleMarker(
-                [-23.582949999999997, -46.56725],
+            var circle_marker_2afdbda1490215413e56203ba737a563 = L.circleMarker(
+                [-23.54955, -46.63455],
                 {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00CC66", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(feature_group_54d12761824c90f9e9acad95a9642a85);
+            ).addTo(feature_group_4a89d972506abedcd67bb1e1d8191f67);
         
     
-            circle_marker_130354a339cca8375228d4ebbfb8f938.bindTooltip(
+            circle_marker_2afdbda1490215413e56203ba737a563.bindTooltip(
                 `<div>
                      Veículo 3 - Segmento 2
                  </div>`,
@@ -1518,13 +1040,13 @@
             );
         
     
-            var circle_marker_c0c9910d623421349e63995e42185bee = L.circleMarker(
-                [-23.5794, -46.66345],
+            var circle_marker_e8a0ddbae20629d9e1b49ed92e07ebe4 = L.circleMarker(
+                [-23.54955, -46.646649999999994],
                 {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00CC66", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(feature_group_54d12761824c90f9e9acad95a9642a85);
+            ).addTo(feature_group_4a89d972506abedcd67bb1e1d8191f67);
         
     
-            circle_marker_c0c9910d623421349e63995e42185bee.bindTooltip(
+            circle_marker_e8a0ddbae20629d9e1b49ed92e07ebe4.bindTooltip(
                 `<div>
                      Veículo 3 - Segmento 3
                  </div>`,
@@ -1534,13 +1056,13 @@
             );
         
     
-            var circle_marker_ce1f289eae0a55d971d893054907890f = L.circleMarker(
-                [-23.54955, -46.63455],
+            var circle_marker_f4efe79cd614695c0825c29384368f77 = L.circleMarker(
+                [-23.5531, -46.55045],
                 {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00CC66", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(feature_group_54d12761824c90f9e9acad95a9642a85);
+            ).addTo(feature_group_4a89d972506abedcd67bb1e1d8191f67);
         
     
-            circle_marker_ce1f289eae0a55d971d893054907890f.bindTooltip(
+            circle_marker_f4efe79cd614695c0825c29384368f77.bindTooltip(
                 `<div>
                      Veículo 3 - Segmento 4
                  </div>`,
@@ -1550,13 +1072,13 @@
             );
         
     
-            var circle_marker_97c0cb754b1acfcab6dc0cf9459366d9 = L.circleMarker(
-                [-23.514499999999998, -46.6229],
+            var circle_marker_a6ee9a32ffe4b0e4eca5f2c852e3631d = L.circleMarker(
+                [-23.582949999999997, -46.56725],
                 {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00CC66", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(feature_group_54d12761824c90f9e9acad95a9642a85);
+            ).addTo(feature_group_4a89d972506abedcd67bb1e1d8191f67);
         
     
-            circle_marker_97c0cb754b1acfcab6dc0cf9459366d9.bindTooltip(
+            circle_marker_a6ee9a32ffe4b0e4eca5f2c852e3631d.bindTooltip(
                 `<div>
                      Veículo 3 - Segmento 5
                  </div>`,
@@ -1566,13 +1088,13 @@
             );
         
     
-            var circle_marker_2299381766d84c883c87082a9823647a = L.circleMarker(
-                [-23.514499999999998, -46.635],
+            var circle_marker_f2ac101bba5b018eb1ac4a5b959b8b9e = L.circleMarker(
+                [-23.54435, -46.651799999999994],
                 {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00CC66", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(feature_group_54d12761824c90f9e9acad95a9642a85);
+            ).addTo(feature_group_4a89d972506abedcd67bb1e1d8191f67);
         
     
-            circle_marker_2299381766d84c883c87082a9823647a.bindTooltip(
+            circle_marker_f2ac101bba5b018eb1ac4a5b959b8b9e.bindTooltip(
                 `<div>
                      Veículo 3 - Segmento 6
                  </div>`,
@@ -1582,13 +1104,13 @@
             );
         
     
-            var circle_marker_301901f60d0918e736a6aba1f2eac330 = L.circleMarker(
-                [-23.546799999999998, -46.635],
+            var circle_marker_5e99fd4029f8899a015631d42ea513ea = L.circleMarker(
+                [-23.5182, -46.6333],
                 {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00CC66", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
-            ).addTo(feature_group_54d12761824c90f9e9acad95a9642a85);
+            ).addTo(feature_group_4a89d972506abedcd67bb1e1d8191f67);
         
     
-            circle_marker_301901f60d0918e736a6aba1f2eac330.bindTooltip(
+            circle_marker_5e99fd4029f8899a015631d42ea513ea.bindTooltip(
                 `<div>
                      Veículo 3 - Segmento 7
                  </div>`,
@@ -1598,14 +1120,14 @@
             );
         
     
-            var marker_f4a999ff2a18a8d2e334223e55f09177 = L.marker(
-                [-23.5631, -46.4642],
+            var marker_42ae9cf7609bc3fee74434ca56ee913f = L.marker(
+                [-23.5431, -46.6125],
                 {
 }
-            ).addTo(feature_group_54d12761824c90f9e9acad95a9642a85);
+            ).addTo(feature_group_4a89d972506abedcd67bb1e1d8191f67);
         
     
-            var div_icon_d8a12ffb79185187590ed6f3c24787ef = L.divIcon({
+            var div_icon_a80f9029e4c145d47f35f3e9bc090675 = L.divIcon({
   "html": "\n            \u003cstyle\u003e\n                \n            \u003c/style\u003e\n            \u003cdiv class=\"\" style=\"\n                position: relative;\n                width: 44px;\n                height: 44px;\n                filter: drop-shadow(0 3px 10px rgba(0,0,0,0.5));\n            \"\u003e\n                \u003ci class=\"fas fa-box\" \n                   style=\"\n                       font-size: 32px;\n                       color: #3B82F6;\n                       position: absolute;\n                       top: 50%;\n                       left: 50%;\n                       transform: translate(-50%, -50%);\n                       text-shadow: 0 0 0 white, 0 0 0 white, 0 0 8px white, 0 0 8px white;\n                       -webkit-text-stroke: 4px white;\n                       paint-order: stroke fill;\n                   \"\u003e\u003c/i\u003e\n                \u003cdiv style=\"\n                    position: absolute;\n                    top: 50%;\n                    left: 50%;\n                    transform: translate(-50%, -50%);\n                    background-color: #3B82F6;\n                    color: white;\n                    border: 3px solid white;\n                    border-radius: 50%;\n                    width: 24px;\n                    height: 24px;\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-weight: bold;\n                    font-size: 14px;\n                    box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n                    text-shadow: 0 1px 3px rgba(0,0,0,0.5);\n                    margin-top: 8px;\n                \"\u003e1\u003c/div\u003e\n            \u003c/div\u003e\n            ",
   "iconSize": [44, 44],
   "iconAnchor": [22, 22],
@@ -1613,26 +1135,26 @@
 });
         
     
-        var popup_8a916053a1c38c2f3ab0e4d63c03e914 = L.popup({
+        var popup_7d72f8996a738224ee4992b5a0a36544 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_7447df322881da6c43a7f246c8168fd5 = $(`<div id="html_7447df322881da6c43a7f246c8168fd5" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_009</b><br>                 <b>Prioridade: Normal</b><br>                 Tipo: Insumos<br>                 Peso: 28.0 kg<br>                 Parada 1 na rota do Veículo 3             </div>             </div>`)[0];
-                popup_8a916053a1c38c2f3ab0e4d63c03e914.setContent(html_7447df322881da6c43a7f246c8168fd5);
+                var html_4d268f03b8e5b6af32125197dcc90546 = $(`<div id="html_4d268f03b8e5b6af32125197dcc90546" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_012</b><br>                 <b>Prioridade: Normal</b><br>                 Tipo: Insumos<br>                 Peso: 18.0 kg<br>                 Parada 1 na rota do Veículo 3             </div>             </div>`)[0];
+                popup_7d72f8996a738224ee4992b5a0a36544.setContent(html_4d268f03b8e5b6af32125197dcc90546);
             
         
 
-        marker_f4a999ff2a18a8d2e334223e55f09177.bindPopup(popup_8a916053a1c38c2f3ab0e4d63c03e914)
+        marker_42ae9cf7609bc3fee74434ca56ee913f.bindPopup(popup_7d72f8996a738224ee4992b5a0a36544)
         ;
 
         
     
     
-            marker_f4a999ff2a18a8d2e334223e55f09177.bindTooltip(
+            marker_42ae9cf7609bc3fee74434ca56ee913f.bindTooltip(
                 `<div>
-                     📦 HOSP_009 - Parada 1 (Insumos) - Veículo 3
+                     📦 HOSP_012 - Parada 1 (Insumos) - Veículo 3
                  </div>`,
                 {
   "sticky": true,
@@ -1640,89 +1162,44 @@
             );
         
     
-                marker_f4a999ff2a18a8d2e334223e55f09177.setIcon(div_icon_d8a12ffb79185187590ed6f3c24787ef);
+                marker_42ae9cf7609bc3fee74434ca56ee913f.setIcon(div_icon_a80f9029e4c145d47f35f3e9bc090675);
             
     
-            var marker_7bf8a3a5b461e7338e0e3ef4dc74594c = L.marker(
-                [-23.6028, -46.6703],
-                {
-}
-            ).addTo(feature_group_54d12761824c90f9e9acad95a9642a85);
-        
-    
-            var div_icon_b188939e18d109210f0f79426f9b8da3 = L.divIcon({
-  "html": "\n            \u003cstyle\u003e\n                \n            \u003c/style\u003e\n            \u003cdiv class=\"\" style=\"\n                position: relative;\n                width: 44px;\n                height: 44px;\n                filter: drop-shadow(0 3px 10px rgba(0,0,0,0.5));\n            \"\u003e\n                \u003ci class=\"fas fa-box\" \n                   style=\"\n                       font-size: 32px;\n                       color: #3B82F6;\n                       position: absolute;\n                       top: 50%;\n                       left: 50%;\n                       transform: translate(-50%, -50%);\n                       text-shadow: 0 0 0 white, 0 0 0 white, 0 0 8px white, 0 0 8px white;\n                       -webkit-text-stroke: 4px white;\n                       paint-order: stroke fill;\n                   \"\u003e\u003c/i\u003e\n                \u003cdiv style=\"\n                    position: absolute;\n                    top: 50%;\n                    left: 50%;\n                    transform: translate(-50%, -50%);\n                    background-color: #3B82F6;\n                    color: white;\n                    border: 3px solid white;\n                    border-radius: 50%;\n                    width: 24px;\n                    height: 24px;\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-weight: bold;\n                    font-size: 14px;\n                    box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n                    text-shadow: 0 1px 3px rgba(0,0,0,0.5);\n                    margin-top: 8px;\n                \"\u003e2\u003c/div\u003e\n            \u003c/div\u003e\n            ",
-  "iconSize": [44, 44],
-  "iconAnchor": [22, 22],
-  "className": "empty",
-});
-        
-    
-        var popup_4a748e2f4539e62e14b46b3353ae9c16 = L.popup({
-  "maxWidth": 250,
-});
-
-        
-            
-                var html_484c4e7b03d5b99ea2f1b91d06bc3b6f = $(`<div id="html_484c4e7b03d5b99ea2f1b91d06bc3b6f" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_008</b><br>                 <b>Prioridade: Normal</b><br>                 Tipo: Insumos<br>                 Peso: 22.0 kg<br>                 Parada 2 na rota do Veículo 3             </div>             </div>`)[0];
-                popup_4a748e2f4539e62e14b46b3353ae9c16.setContent(html_484c4e7b03d5b99ea2f1b91d06bc3b6f);
-            
-        
-
-        marker_7bf8a3a5b461e7338e0e3ef4dc74594c.bindPopup(popup_4a748e2f4539e62e14b46b3353ae9c16)
-        ;
-
-        
-    
-    
-            marker_7bf8a3a5b461e7338e0e3ef4dc74594c.bindTooltip(
-                `<div>
-                     📦 HOSP_008 - Parada 2 (Insumos) - Veículo 3
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_7bf8a3a5b461e7338e0e3ef4dc74594c.setIcon(div_icon_b188939e18d109210f0f79426f9b8da3);
-            
-    
-            var marker_9bd8fccdc39115f5a4f0abd5c0b3a07b = L.marker(
+            var marker_f9cff8d3e1cc8bf9f8f3f81fe852146d = L.marker(
                 [-23.556, -46.6566],
                 {
 }
-            ).addTo(feature_group_54d12761824c90f9e9acad95a9642a85);
+            ).addTo(feature_group_4a89d972506abedcd67bb1e1d8191f67);
         
     
-            var div_icon_3d7fbab40f77cf4b187b6dbebfaa5805 = L.divIcon({
-  "html": "\n            \u003cstyle\u003e\n                \n                @keyframes pulse {\n                    0%, 100% { transform: scale(1); opacity: 1; }\n                    50% { transform: scale(1.1); opacity: 0.9; }\n                }\n                .pulse-border {\n                    animation: pulse 2s ease-in-out infinite;\n                }\n                \n            \u003c/style\u003e\n            \u003cdiv class=\"pulse-border\" style=\"\n                position: relative;\n                width: 48px;\n                height: 48px;\n                filter: drop-shadow(0 3px 10px rgba(0,0,0,0.5));\n            \"\u003e\n                \u003ci class=\"fas fa-exclamation-triangle\" \n                   style=\"\n                       font-size: 36px;\n                       color: #EF4444;\n                       position: absolute;\n                       top: 50%;\n                       left: 50%;\n                       transform: translate(-50%, -50%);\n                       text-shadow: 0 0 0 white, 0 0 0 white, 0 0 8px white, 0 0 8px white;\n                       -webkit-text-stroke: 4px white;\n                       paint-order: stroke fill;\n                   \"\u003e\u003c/i\u003e\n                \u003cdiv style=\"\n                    position: absolute;\n                    top: 50%;\n                    left: 50%;\n                    transform: translate(-50%, -50%);\n                    background-color: #EF4444;\n                    color: white;\n                    border: 3px solid white;\n                    border-radius: 50%;\n                    width: 24px;\n                    height: 24px;\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-weight: bold;\n                    font-size: 14px;\n                    box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n                    text-shadow: 0 1px 3px rgba(0,0,0,0.5);\n                    margin-top: 8px;\n                \"\u003e3\u003c/div\u003e\n            \u003c/div\u003e\n            ",
+            var div_icon_e676810f62a8e278cd57b0645958f273 = L.divIcon({
+  "html": "\n            \u003cstyle\u003e\n                \n                @keyframes pulse {\n                    0%, 100% { transform: scale(1); opacity: 1; }\n                    50% { transform: scale(1.1); opacity: 0.9; }\n                }\n                .pulse-border {\n                    animation: pulse 2s ease-in-out infinite;\n                }\n                \n            \u003c/style\u003e\n            \u003cdiv class=\"pulse-border\" style=\"\n                position: relative;\n                width: 48px;\n                height: 48px;\n                filter: drop-shadow(0 3px 10px rgba(0,0,0,0.5));\n            \"\u003e\n                \u003ci class=\"fas fa-exclamation-triangle\" \n                   style=\"\n                       font-size: 36px;\n                       color: #EF4444;\n                       position: absolute;\n                       top: 50%;\n                       left: 50%;\n                       transform: translate(-50%, -50%);\n                       text-shadow: 0 0 0 white, 0 0 0 white, 0 0 8px white, 0 0 8px white;\n                       -webkit-text-stroke: 4px white;\n                       paint-order: stroke fill;\n                   \"\u003e\u003c/i\u003e\n                \u003cdiv style=\"\n                    position: absolute;\n                    top: 50%;\n                    left: 50%;\n                    transform: translate(-50%, -50%);\n                    background-color: #EF4444;\n                    color: white;\n                    border: 3px solid white;\n                    border-radius: 50%;\n                    width: 24px;\n                    height: 24px;\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-weight: bold;\n                    font-size: 14px;\n                    box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n                    text-shadow: 0 1px 3px rgba(0,0,0,0.5);\n                    margin-top: 8px;\n                \"\u003e2\u003c/div\u003e\n            \u003c/div\u003e\n            ",
   "iconSize": [48, 48],
   "iconAnchor": [24, 24],
   "className": "empty",
 });
         
     
-        var popup_8809d487fb31ac15cd5f3ba96d6965c2 = L.popup({
+        var popup_1ebc2679a8e141a534420d5d2d8aeca9 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_8fce82ddb590efb7770fdb5b3dc89f6c = $(`<div id="html_8fce82ddb590efb7770fdb5b3dc89f6c" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_005</b><br>                 <b>Prioridade: CRÍTICA (Medicamentos)</b><br>                 Tipo: Medicamentos<br>                 Peso: 10.0 kg<br>                 Parada 3 na rota do Veículo 3             </div>             </div>`)[0];
-                popup_8809d487fb31ac15cd5f3ba96d6965c2.setContent(html_8fce82ddb590efb7770fdb5b3dc89f6c);
+                var html_f79f5170eefb2b4bf78115e54e09ac03 = $(`<div id="html_f79f5170eefb2b4bf78115e54e09ac03" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_005</b><br>                 <b>Prioridade: CRÍTICA (Medicamentos)</b><br>                 Tipo: Medicamentos<br>                 Peso: 10.0 kg<br>                 Parada 2 na rota do Veículo 3             </div>             </div>`)[0];
+                popup_1ebc2679a8e141a534420d5d2d8aeca9.setContent(html_f79f5170eefb2b4bf78115e54e09ac03);
             
         
 
-        marker_9bd8fccdc39115f5a4f0abd5c0b3a07b.bindPopup(popup_8809d487fb31ac15cd5f3ba96d6965c2)
+        marker_f9cff8d3e1cc8bf9f8f3f81fe852146d.bindPopup(popup_1ebc2679a8e141a534420d5d2d8aeca9)
         ;
 
         
     
     
-            marker_9bd8fccdc39115f5a4f0abd5c0b3a07b.bindTooltip(
+            marker_f9cff8d3e1cc8bf9f8f3f81fe852146d.bindTooltip(
                 `<div>
-                     ⚠️ CRÍTICA HOSP_005 - Parada 3 (Medicamentos) - Veículo 3
+                     ⚠️ CRÍTICA HOSP_005 - Parada 2 (Medicamentos) - Veículo 3
                  </div>`,
                 {
   "sticky": true,
@@ -1730,17 +1207,62 @@
             );
         
     
-                marker_9bd8fccdc39115f5a4f0abd5c0b3a07b.setIcon(div_icon_3d7fbab40f77cf4b187b6dbebfaa5805);
+                marker_f9cff8d3e1cc8bf9f8f3f81fe852146d.setIcon(div_icon_e676810f62a8e278cd57b0645958f273);
             
     
-            var marker_5dcce9f0238c6e43566f3daced1a79a4 = L.marker(
-                [-23.5431, -46.6125],
+            var marker_547d885a4a30c63652b54bee18c95950 = L.marker(
+                [-23.5431, -46.6367],
                 {
 }
-            ).addTo(feature_group_54d12761824c90f9e9acad95a9642a85);
+            ).addTo(feature_group_4a89d972506abedcd67bb1e1d8191f67);
         
     
-            var div_icon_317385b8b834ebcb99e2acb1bf916caf = L.divIcon({
+            var div_icon_01f2688817355ad8bf0f60185f51c802 = L.divIcon({
+  "html": "\n            \u003cstyle\u003e\n                \n            \u003c/style\u003e\n            \u003cdiv class=\"\" style=\"\n                position: relative;\n                width: 44px;\n                height: 44px;\n                filter: drop-shadow(0 3px 10px rgba(0,0,0,0.5));\n            \"\u003e\n                \u003ci class=\"fas fa-box\" \n                   style=\"\n                       font-size: 32px;\n                       color: #3B82F6;\n                       position: absolute;\n                       top: 50%;\n                       left: 50%;\n                       transform: translate(-50%, -50%);\n                       text-shadow: 0 0 0 white, 0 0 0 white, 0 0 8px white, 0 0 8px white;\n                       -webkit-text-stroke: 4px white;\n                       paint-order: stroke fill;\n                   \"\u003e\u003c/i\u003e\n                \u003cdiv style=\"\n                    position: absolute;\n                    top: 50%;\n                    left: 50%;\n                    transform: translate(-50%, -50%);\n                    background-color: #3B82F6;\n                    color: white;\n                    border: 3px solid white;\n                    border-radius: 50%;\n                    width: 24px;\n                    height: 24px;\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-weight: bold;\n                    font-size: 14px;\n                    box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n                    text-shadow: 0 1px 3px rgba(0,0,0,0.5);\n                    margin-top: 8px;\n                \"\u003e3\u003c/div\u003e\n            \u003c/div\u003e\n            ",
+  "iconSize": [44, 44],
+  "iconAnchor": [22, 22],
+  "className": "empty",
+});
+        
+    
+        var popup_97343033a8113ea96fa32cecfdba021d = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_7b6a90e2b09f5f1825ae70075ebec0cd = $(`<div id="html_7b6a90e2b09f5f1825ae70075ebec0cd" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_007</b><br>                 <b>Prioridade: Normal</b><br>                 Tipo: Insumos<br>                 Peso: 30.0 kg<br>                 Parada 3 na rota do Veículo 3             </div>             </div>`)[0];
+                popup_97343033a8113ea96fa32cecfdba021d.setContent(html_7b6a90e2b09f5f1825ae70075ebec0cd);
+            
+        
+
+        marker_547d885a4a30c63652b54bee18c95950.bindPopup(popup_97343033a8113ea96fa32cecfdba021d)
+        ;
+
+        
+    
+    
+            marker_547d885a4a30c63652b54bee18c95950.bindTooltip(
+                `<div>
+                     📦 HOSP_007 - Parada 3 (Insumos) - Veículo 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_547d885a4a30c63652b54bee18c95950.setIcon(div_icon_01f2688817355ad8bf0f60185f51c802);
+            
+    
+            var marker_247e97f6cdd93865e32013a5cf9b919b = L.marker(
+                [-23.5631, -46.4642],
+                {
+}
+            ).addTo(feature_group_4a89d972506abedcd67bb1e1d8191f67);
+        
+    
+            var div_icon_6ed11b75a3703b8a51e31d3ec28c5ce9 = L.divIcon({
   "html": "\n            \u003cstyle\u003e\n                \n            \u003c/style\u003e\n            \u003cdiv class=\"\" style=\"\n                position: relative;\n                width: 44px;\n                height: 44px;\n                filter: drop-shadow(0 3px 10px rgba(0,0,0,0.5));\n            \"\u003e\n                \u003ci class=\"fas fa-box\" \n                   style=\"\n                       font-size: 32px;\n                       color: #3B82F6;\n                       position: absolute;\n                       top: 50%;\n                       left: 50%;\n                       transform: translate(-50%, -50%);\n                       text-shadow: 0 0 0 white, 0 0 0 white, 0 0 8px white, 0 0 8px white;\n                       -webkit-text-stroke: 4px white;\n                       paint-order: stroke fill;\n                   \"\u003e\u003c/i\u003e\n                \u003cdiv style=\"\n                    position: absolute;\n                    top: 50%;\n                    left: 50%;\n                    transform: translate(-50%, -50%);\n                    background-color: #3B82F6;\n                    color: white;\n                    border: 3px solid white;\n                    border-radius: 50%;\n                    width: 24px;\n                    height: 24px;\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-weight: bold;\n                    font-size: 14px;\n                    box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n                    text-shadow: 0 1px 3px rgba(0,0,0,0.5);\n                    margin-top: 8px;\n                \"\u003e4\u003c/div\u003e\n            \u003c/div\u003e\n            ",
   "iconSize": [44, 44],
   "iconAnchor": [22, 22],
@@ -1748,26 +1270,26 @@
 });
         
     
-        var popup_e24ee6c701928251ca493748c28b263f = L.popup({
+        var popup_a9a21966ea770a2efbe5c192e87858d7 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_0c95ac573109cc5424610a4567bb9f97 = $(`<div id="html_0c95ac573109cc5424610a4567bb9f97" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_012</b><br>                 <b>Prioridade: Normal</b><br>                 Tipo: Insumos<br>                 Peso: 18.0 kg<br>                 Parada 4 na rota do Veículo 3             </div>             </div>`)[0];
-                popup_e24ee6c701928251ca493748c28b263f.setContent(html_0c95ac573109cc5424610a4567bb9f97);
+                var html_f60c83aec13676db885dceb99178a944 = $(`<div id="html_f60c83aec13676db885dceb99178a944" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_009</b><br>                 <b>Prioridade: Normal</b><br>                 Tipo: Insumos<br>                 Peso: 28.0 kg<br>                 Parada 4 na rota do Veículo 3             </div>             </div>`)[0];
+                popup_a9a21966ea770a2efbe5c192e87858d7.setContent(html_f60c83aec13676db885dceb99178a944);
             
         
 
-        marker_5dcce9f0238c6e43566f3daced1a79a4.bindPopup(popup_e24ee6c701928251ca493748c28b263f)
+        marker_247e97f6cdd93865e32013a5cf9b919b.bindPopup(popup_a9a21966ea770a2efbe5c192e87858d7)
         ;
 
         
     
     
-            marker_5dcce9f0238c6e43566f3daced1a79a4.bindTooltip(
+            marker_247e97f6cdd93865e32013a5cf9b919b.bindTooltip(
                 `<div>
-                     📦 HOSP_012 - Parada 4 (Insumos) - Veículo 3
+                     📦 HOSP_009 - Parada 4 (Insumos) - Veículo 3
                  </div>`,
                 {
   "sticky": true,
@@ -1775,17 +1297,17 @@
             );
         
     
-                marker_5dcce9f0238c6e43566f3daced1a79a4.setIcon(div_icon_317385b8b834ebcb99e2acb1bf916caf);
+                marker_247e97f6cdd93865e32013a5cf9b919b.setIcon(div_icon_6ed11b75a3703b8a51e31d3ec28c5ce9);
             
     
-            var marker_2985f26ac4c7f922e73ed5b16db52103 = L.marker(
-                [-23.4859, -46.6333],
+            var marker_e14af25e3aa19cb211228b2424af4393 = L.marker(
+                [-23.6028, -46.6703],
                 {
 }
-            ).addTo(feature_group_54d12761824c90f9e9acad95a9642a85);
+            ).addTo(feature_group_4a89d972506abedcd67bb1e1d8191f67);
         
     
-            var div_icon_59f0573d6baee9ae332152c276755e82 = L.divIcon({
+            var div_icon_472d3028f9e9d82f8382cf4c03012d36 = L.divIcon({
   "html": "\n            \u003cstyle\u003e\n                \n            \u003c/style\u003e\n            \u003cdiv class=\"\" style=\"\n                position: relative;\n                width: 44px;\n                height: 44px;\n                filter: drop-shadow(0 3px 10px rgba(0,0,0,0.5));\n            \"\u003e\n                \u003ci class=\"fas fa-box\" \n                   style=\"\n                       font-size: 32px;\n                       color: #3B82F6;\n                       position: absolute;\n                       top: 50%;\n                       left: 50%;\n                       transform: translate(-50%, -50%);\n                       text-shadow: 0 0 0 white, 0 0 0 white, 0 0 8px white, 0 0 8px white;\n                       -webkit-text-stroke: 4px white;\n                       paint-order: stroke fill;\n                   \"\u003e\u003c/i\u003e\n                \u003cdiv style=\"\n                    position: absolute;\n                    top: 50%;\n                    left: 50%;\n                    transform: translate(-50%, -50%);\n                    background-color: #3B82F6;\n                    color: white;\n                    border: 3px solid white;\n                    border-radius: 50%;\n                    width: 24px;\n                    height: 24px;\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-weight: bold;\n                    font-size: 14px;\n                    box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n                    text-shadow: 0 1px 3px rgba(0,0,0,0.5);\n                    margin-top: 8px;\n                \"\u003e5\u003c/div\u003e\n            \u003c/div\u003e\n            ",
   "iconSize": [44, 44],
   "iconAnchor": [22, 22],
@@ -1793,26 +1315,26 @@
 });
         
     
-        var popup_c662be3cf349a6686155415a63c83ca1 = L.popup({
+        var popup_4180064f0afef4cad3797f1f60a6fcf6 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_2bc99d80e96f7e8ce663042fadaf79b5 = $(`<div id="html_2bc99d80e96f7e8ce663042fadaf79b5" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_006</b><br>                 <b>Prioridade: Normal</b><br>                 Tipo: Insumos<br>                 Peso: 25.0 kg<br>                 Parada 5 na rota do Veículo 3             </div>             </div>`)[0];
-                popup_c662be3cf349a6686155415a63c83ca1.setContent(html_2bc99d80e96f7e8ce663042fadaf79b5);
+                var html_cc59d6a4b77e4525808fe42edcd1da51 = $(`<div id="html_cc59d6a4b77e4525808fe42edcd1da51" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_008</b><br>                 <b>Prioridade: Normal</b><br>                 Tipo: Insumos<br>                 Peso: 22.0 kg<br>                 Parada 5 na rota do Veículo 3             </div>             </div>`)[0];
+                popup_4180064f0afef4cad3797f1f60a6fcf6.setContent(html_cc59d6a4b77e4525808fe42edcd1da51);
             
         
 
-        marker_2985f26ac4c7f922e73ed5b16db52103.bindPopup(popup_c662be3cf349a6686155415a63c83ca1)
+        marker_e14af25e3aa19cb211228b2424af4393.bindPopup(popup_4180064f0afef4cad3797f1f60a6fcf6)
         ;
 
         
     
     
-            marker_2985f26ac4c7f922e73ed5b16db52103.bindTooltip(
+            marker_e14af25e3aa19cb211228b2424af4393.bindTooltip(
                 `<div>
-                     📦 HOSP_006 - Parada 5 (Insumos) - Veículo 3
+                     📦 HOSP_008 - Parada 5 (Insumos) - Veículo 3
                  </div>`,
                 {
   "sticky": true,
@@ -1820,17 +1342,17 @@
             );
         
     
-                marker_2985f26ac4c7f922e73ed5b16db52103.setIcon(div_icon_59f0573d6baee9ae332152c276755e82);
+                marker_e14af25e3aa19cb211228b2424af4393.setIcon(div_icon_472d3028f9e9d82f8382cf4c03012d36);
             
     
-            var marker_6cb7e79e1e7e968158e926fc6042a0fd = L.marker(
-                [-23.5431, -46.6367],
+            var marker_97ec3d1bed5c782e5386d28032504cdb = L.marker(
+                [-23.4859, -46.6333],
                 {
 }
-            ).addTo(feature_group_54d12761824c90f9e9acad95a9642a85);
+            ).addTo(feature_group_4a89d972506abedcd67bb1e1d8191f67);
         
     
-            var div_icon_c17dbb4b4ef41ee5cb11b3670dca3f43 = L.divIcon({
+            var div_icon_d1a69b8a01ff0b2ac3459a63db27cb19 = L.divIcon({
   "html": "\n            \u003cstyle\u003e\n                \n            \u003c/style\u003e\n            \u003cdiv class=\"\" style=\"\n                position: relative;\n                width: 44px;\n                height: 44px;\n                filter: drop-shadow(0 3px 10px rgba(0,0,0,0.5));\n            \"\u003e\n                \u003ci class=\"fas fa-box\" \n                   style=\"\n                       font-size: 32px;\n                       color: #3B82F6;\n                       position: absolute;\n                       top: 50%;\n                       left: 50%;\n                       transform: translate(-50%, -50%);\n                       text-shadow: 0 0 0 white, 0 0 0 white, 0 0 8px white, 0 0 8px white;\n                       -webkit-text-stroke: 4px white;\n                       paint-order: stroke fill;\n                   \"\u003e\u003c/i\u003e\n                \u003cdiv style=\"\n                    position: absolute;\n                    top: 50%;\n                    left: 50%;\n                    transform: translate(-50%, -50%);\n                    background-color: #3B82F6;\n                    color: white;\n                    border: 3px solid white;\n                    border-radius: 50%;\n                    width: 24px;\n                    height: 24px;\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-weight: bold;\n                    font-size: 14px;\n                    box-shadow: 0 2px 8px rgba(0,0,0,0.4);\n                    text-shadow: 0 1px 3px rgba(0,0,0,0.5);\n                    margin-top: 8px;\n                \"\u003e6\u003c/div\u003e\n            \u003c/div\u003e\n            ",
   "iconSize": [44, 44],
   "iconAnchor": [22, 22],
@@ -1838,26 +1360,26 @@
 });
         
     
-        var popup_7457e8ca1ed5d5f203a467207c2d538d = L.popup({
+        var popup_c03d48a66ce53dfd98bda8ef9d3029d6 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_07cf586c07f4502fbcfa0009a34690cf = $(`<div id="html_07cf586c07f4502fbcfa0009a34690cf" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_007</b><br>                 <b>Prioridade: Normal</b><br>                 Tipo: Insumos<br>                 Peso: 30.0 kg<br>                 Parada 6 na rota do Veículo 3             </div>             </div>`)[0];
-                popup_7457e8ca1ed5d5f203a467207c2d538d.setContent(html_07cf586c07f4502fbcfa0009a34690cf);
+                var html_13450816cc31ee5212115ed3cdb54304 = $(`<div id="html_13450816cc31ee5212115ed3cdb54304" style="width: 100.0%; height: 100.0%;">             <div style="font-size: 12px">                 <b>Entrega: HOSP_006</b><br>                 <b>Prioridade: Normal</b><br>                 Tipo: Insumos<br>                 Peso: 25.0 kg<br>                 Parada 6 na rota do Veículo 3             </div>             </div>`)[0];
+                popup_c03d48a66ce53dfd98bda8ef9d3029d6.setContent(html_13450816cc31ee5212115ed3cdb54304);
             
         
 
-        marker_6cb7e79e1e7e968158e926fc6042a0fd.bindPopup(popup_7457e8ca1ed5d5f203a467207c2d538d)
+        marker_97ec3d1bed5c782e5386d28032504cdb.bindPopup(popup_c03d48a66ce53dfd98bda8ef9d3029d6)
         ;
 
         
     
     
-            marker_6cb7e79e1e7e968158e926fc6042a0fd.bindTooltip(
+            marker_97ec3d1bed5c782e5386d28032504cdb.bindTooltip(
                 `<div>
-                     📦 HOSP_007 - Parada 6 (Insumos) - Veículo 3
+                     📦 HOSP_006 - Parada 6 (Insumos) - Veículo 3
                  </div>`,
                 {
   "sticky": true,
@@ -1865,10 +1387,10 @@
             );
         
     
-                marker_6cb7e79e1e7e968158e926fc6042a0fd.setIcon(div_icon_c17dbb4b4ef41ee5cb11b3670dca3f43);
+                marker_97ec3d1bed5c782e5386d28032504cdb.setIcon(div_icon_d1a69b8a01ff0b2ac3459a63db27cb19);
             
     
-            feature_group_54d12761824c90f9e9acad95a9642a85.addTo(map_5ed796bdc8c4bf8966eb237a556c911b);
+            feature_group_4a89d972506abedcd67bb1e1d8191f67.addTo(map_90c001504f5c4c6656e7fb82415039d8);
         
 </script>
 </html>

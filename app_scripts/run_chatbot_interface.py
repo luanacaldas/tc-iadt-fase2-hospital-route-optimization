@@ -11,6 +11,7 @@ from pathlib import Path
 import webbrowser
 import threading
 import time
+from datetime import datetime
 
 # Adicionar raiz do projeto ao PYTHONPATH
 PROJECT_ROOT = Path(__file__).parent.parent
@@ -18,7 +19,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 # Importações Flask
 try:
-    from flask import Flask, send_from_directory, jsonify, request
+    from flask import Flask, send_from_directory, jsonify, request, send_file
     from flask_cors import CORS
     FLASK_AVAILABLE = True
 except ImportError:
@@ -74,6 +75,29 @@ def serve_rastreamento():
         return f"Erro: Arquivo não encontrado em {file_path}", 404
     
     return send_from_directory(interfaces_dir, 'rastreamento_mapbox.html')
+
+
+@app.route('/map')
+def serve_map():
+    """Servir mapa de rotas otimizadas."""
+    file_path = PROJECT_ROOT / 'route_map.html'
+    
+    if not file_path.exists():
+        return f"Erro: Mapa não encontrado. Execute a otimização primeiro.", 404
+    
+    return send_from_directory(str(PROJECT_ROOT), 'route_map.html')
+
+
+@app.route('/api/init', methods=['POST'])
+def init():
+    """Endpoint para inicializar/verificar se sistema está pronto."""
+    global optimization_result, chatbot_instance
+    
+    return jsonify({
+        "status": "ready" if optimization_result else "loading",
+        "optimization_ready": optimization_result is not None,
+        "chatbot_ready": chatbot_instance is not None
+    })
 
 
 @app.route('/api/chat', methods=['POST'])
@@ -146,7 +170,7 @@ def stats():
     if optimization_result is None:
         return jsonify({"error": "Otimização não carregada"}), 404
     
-    critical_count = sum(1 for d in deliveries_data if d.urgency_level == 1)
+    critical_count = sum(1 for d in deliveries_data if d.priority == 1)
     
     return jsonify({
         "total_distance": round(optimization_result.solution.total_distance, 2),
@@ -156,6 +180,67 @@ def stats():
         "critical_deliveries": critical_count,
         "execution_time": round(optimization_result.execution_time, 2)
     })
+
+
+@app.route('/api/export/<export_type>', methods=['GET'])
+def export_report(export_type):
+    """Exportar relatórios em diferentes formatos."""
+    global optimization_result, deliveries_data
+    
+    if optimization_result is None:
+        return jsonify({"error": "Otimização não carregada"}), 404
+    
+    try:
+        from visualization.report_exporter import ReportExporter
+        
+        exporter = ReportExporter()
+        vehicles = generate_vehicles()
+        
+        # Criar diretório de saída
+        output_dir = PROJECT_ROOT / 'output'
+        output_dir.mkdir(exist_ok=True)
+        
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        
+        if export_type == 'pdf-executive':
+            filename = f'relatorio_executivo_{timestamp}.pdf'
+            output_path = output_dir / filename
+            file_path = exporter.export_pdf_executive(
+                optimization_result, deliveries_data, vehicles, str(output_path)
+            )
+            mimetype = 'application/pdf' if file_path.endswith('.pdf') else 'text/html'
+            
+        elif export_type == 'pdf-driver':
+            filename = f'instrucoes_motorista_{timestamp}.pdf'
+            output_path = output_dir / filename
+            file_path = exporter.export_pdf_driver(
+                optimization_result, deliveries_data, vehicles, str(output_path)
+            )
+            mimetype = 'application/pdf' if file_path.endswith('.pdf') else 'text/html'
+            
+        elif export_type == 'excel':
+            filename = f'dados_rotas_{timestamp}.xlsx'
+            output_path = output_dir / filename
+            file_path = exporter.export_excel(
+                optimization_result, deliveries_data, vehicles, str(output_path)
+            )
+            mimetype = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            
+        else:
+            return jsonify({"error": "Tipo de exportação inválido"}), 400
+        
+        # Enviar arquivo
+        return send_file(
+            file_path,
+            mimetype=mimetype,
+            as_attachment=True,
+            download_name=Path(file_path).name
+        )
+        
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return jsonify({"error": f"Erro ao exportar: {str(e)}"}), 500
 
 
 def initialize_optimization():
@@ -201,6 +286,23 @@ def initialize_optimization():
     print(f"   💰 Custo total: R$ {optimization_result.solution.total_cost:.2f}")
     print(f"   🚗 Veículos usados: {len(optimization_result.solution.routes)}")
     print(f"   ⏱️  Tempo execução: {optimization_result.execution_time:.2f}s")
+    
+    # Gerar mapa
+    print("\n🗺️  Gerando mapa de rotas...")
+    try:
+        from visualization.map_generator import MapGenerator
+        map_gen = MapGenerator()
+        map_gen.generate_map(
+            optimization_result=optimization_result,
+            deliveries=deliveries_data,
+            depot_location=depot,
+            output_path=str(PROJECT_ROOT / 'route_map.html'),
+            title="Rotas Otimizadas - Hospital Routes",
+            show_accidents=False
+        )
+        print("✅ Mapa gerado!")
+    except Exception as e:
+        print(f"⚠️  Erro ao gerar mapa: {e}")
     
     # Inicializar chatbot
     print("\n🤖 Inicializando chatbot...")
