@@ -1,440 +1,393 @@
-# 🏥 Sistema de Otimização de Rotas Hospitalares
+# Hospital Route Optimization System
 
-> Sistema inteligente de distribuição de medicamentos com Algoritmos Genéticos, LLMs e visualização em tempo real
+Intelligent medication delivery routing for hospitals, combining Genetic Algorithms, local LLM reporting, and real-time route tracking.
 
-[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
-[![MapBox](https://img.shields.io/badge/MapBox-GL_JS_3.0-green.svg)](https://www.mapbox.com/)
-[![Ollama](https://img.shields.io/badge/LLM-Ollama-orange.svg)](https://ollama.ai/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![Mapbox](https://img.shields.io/badge/Mapbox-GL%20JS%203.0-000000)
+![Ollama](https://img.shields.io/badge/Ollama-Llama%203.2-green)
+![License](https://img.shields.io/badge/License-TBD-lightgrey)
 
----
+## Table of Contents
 
-## 📑 Índice
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [Interactive Demo](#interactive-demo)
+- [Architecture](#architecture)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Genetic Algorithm](#genetic-algorithm)
+- [LLM Integration](#llm-integration)
+- [Real-Time Tracking](#real-time-tracking)
+- [Requirements Compliance](#requirements-compliance)
+- [Documentation](#documentation)
+- [Technology Stack](#technology-stack)
+- [Usage Examples](#usage-examples)
+- [Contributing](#contributing)
+- [License](#license)
 
-- [Visão Geral](#-visão-geral)
-- [Funcionalidades](#-funcionalidades)
-- [Demo Interativa](#-demo-interativa)
-- [Arquitetura](#-arquitetura)
-- [Instalação](#-instalação)
-- [Início Rápido](#-início-rápido)
-- [Algoritmo Genético](#-algoritmo-genético)
-- [Integração LLM](#-integração-llm)
-- [Rastreamento ao Vivo](#-rastreamento-ao-vivo)
-- [Conformidade Requisitos](#-conformidade-requisitos)
-- [Documentação](#-documentação)
+## Overview
 
----
+This project is a complete route optimization system for hospital medication delivery in Sao Paulo, Brazil. It solves a realistic Vehicle Routing Problem (VRP) with multiple constraints, generates operational reports with a local LLM, and provides a real-time tracking interface for simulated delivery vehicles.
 
-## 🎯 Visão Geral
+### Problem Solved
 
-Sistema completo para otimizar distribuição de medicamentos hospitalares que resolve o **Vehicle Routing Problem (VRP)** com múltiplas restrições realistas, gera relatórios inteligentes usando LLMs e oferece rastreamento em tempo real.
+- **Problem type:** Vehicle Routing Problem (VRP) with multiple vehicles
+- **Scenario:** Medication delivery to hospitals in Sao Paulo
+- **Constraints:** Vehicle capacity, vehicle range, critical delivery priority, and multi-vehicle allocation
+- **Optimization method:** Genetic Algorithm with a six-component fitness function
+- **AI layer:** Operational reports, driver instructions, route analysis, and analytical chatbot powered by Ollama
 
-### 🎪 Problema Resolvido
+## Key Features
 
-- **Tipo**: Vehicle Routing Problem (VRP) com múltiplos veículos
-- **Cenário**: Distribuição de medicamentos para hospitais de São Paulo
-- **Restrições**: Capacidade, autonomia, prioridades críticas, múltiplos veículos
-- **Método**: Algoritmo Genético com 6 componentes de fitness
-- **LLM**: Relatórios operacionais, instruções para motoristas, chatbot analítico
+### Advanced Optimization
 
----
+- Specialized Genetic Algorithm for VRP
+- Six fitness components: distance, capacity, range, priority, load balancing, and vehicle usage
+- Custom genetic operators: Order Crossover and multiple mutation strategies
+- Realistic operational constraints: load capacity, vehicle autonomy, and critical deliveries
+- Local search refinement with 2-opt and inter-route swap
+- Elitism and early stopping for faster convergence
 
-## ✨ Funcionalidades
+### Artificial Intelligence
 
-### 🧬 Otimização Avançada
+- Analytical chatbot powered by Ollama and Llama 3.2
+- Automatic daily, weekly, and management reports
+- LLM-generated driver instructions
+- Data-driven route improvement suggestions
+- Natural-language route analysis and contextual Q&A
 
-- ✅ **Algoritmo Genético** especializado para VRP
-- ✅ **6 componentes de fitness**: distância, capacidade, autonomia, prioridade, balanceamento, veículos
-- ✅ **Operadores genéticos customizados**: Order Crossover, múltiplas mutações
-- ✅ **Restrições realistas**: capacidade de carga, autonomia, entregas críticas
-- ✅ **Busca local**: 2-opt e inter-route swap para refinamento
-- ✅ **Elitismo e early stopping**: convergência otimizada
+### Real-Time Tracking
 
-### 🤖 Inteligência Artificial
+- Mapbox GL JS 3.0 visualization with complete route rendering
+- Smooth vehicle movement with 100 ms updates, equivalent to 10 FPS
+- Interactive hospital and vehicle markers
+- Dynamic popups with live status, speed, destination, and ETA
+- Vehicle trails showing the path already traveled
+- Toast notifications when vehicles arrive at hospitals
+- Simulation speed controls from 0.5x to 10x
+- Responsive mobile-first interface
 
-- ✅ **Chatbot analítico** com Ollama (Llama 3.2)
-- ✅ **Relatórios automáticos**: diário, semanal, gerencial
-- ✅ **Instruções para motoristas**: geradas por LLM
-- ✅ **Análise inteligente**: sugestões de melhorias baseadas em dados reais
-- ✅ **Linguagem natural**: perguntas e respostas contextuais
+### Professional Interface
 
-### 📍 Rastreamento em Tempo Real
+- Clean design system using the Inter font and semantic colors
+- Slim dashboard header with real-time KPI metrics
+- Full route dashboard covering distance, cost, vehicles, deliveries, and critical stops
+- Interactive Folium map with optimized route visualization
+- Integrated chatbot for conversational route analysis
 
-- ✅ **Visualização MapBox GL JS 3.0** com rotas completas
-- ✅ **Movimento suave**: atualização a cada 100ms (10 FPS)
-- ✅ **Marcadores interativos**: hospitais 🏥 e veículos 🚗
-- ✅ **Popups dinâmicos**: info em tempo real (status, velocidade, ETA)
-- ✅ **Trails/rastros**: caminho percorrido por cada veículo
-- ✅ **Notificações toast**: alertas de chegada em hospitais
-- ✅ **Controle de velocidade**: 0.5x até 10x para simulação
-- ✅ **Responsivo**: mobile-first design
+## Differentiators
 
-### 📊 Interface Profissional
+This project goes beyond the base requirements with several production-oriented improvements:
 
-- ✅ **Design system** com Inter font e paleta semântica
-- ✅ **Header slim** com métricas KPI em tempo real
-- ✅ **Dashboard completo**: distância, custo, veículos, entregas, críticas
-- ✅ **Mapa interativo Folium**: rotas otimizadas coloridas
-- ✅ **Chatbot integrado**: análise conversacional das rotas
+| Area | Enhancement |
+| --- | --- |
+| Real-time tracking | Mapbox GL JS 3.0, 100 ms updates, dynamic popups, vehicle trails, and speed control |
+| Load balancing | Additional fitness component to distribute workload more evenly across vehicles |
+| Local search | 2-opt and inter-route swap refinements after Genetic Algorithm evolution |
+| Interface quality | Professional responsive dashboard with mobile-first behavior |
+| Intelligent analysis | RouteAnalyzer module with actionable route improvement recommendations |
 
+## Interactive Demo
 
-DIFERENCIAIS (13:15)
-### 🌟 DIFERENCIAIS - ALÉM DOS REQUISITOS
-
-1. ⭐⭐⭐ RASTREAMENTO TEMPO REAL
-  └─ MapBox GL JS 3.0
-  └─ Atualização 100ms (10 FPS)
-  └─ Popups dinâmicos
-  └─ Trails/rastros
-  └─ Controle velocidade
-
-2. ⭐⭐ BALANCEAMENTO DE CARGA
-  └─ 6º componente fitness
-  └─ Distribui equitativamente
-
-3. ⭐⭐ BUSCA LOCAL
-  └─ 2-opt + inter-route swap
-  └─ Refina soluções GA
-
-4. ⭐⭐ INTERFACE PROFISSIONAL
-  └─ Design system completo
-  └─ Responsivo mobile-first
-
-5. ⭐⭐ ANÁLISE INTELIGENTE
-  └─ RouteAnalyzer
-  └─ Sugestões acionáveis
----
-
-## 🎬 Demo Interativa
-
-### 1️⃣ Interface Principal (Dashboard)
+### 1. Main Dashboard
 
 ```bash
-python app_scripts/open_interface.py
+python app_scripts/run_chatbot_interface.py
 ```
 
-Abra: `http://localhost:5000`
+Open:
 
-**Funcionalidades**:
-
-- Header profissional com 5 KPIs (distância, custo, veículos, entregas, críticas)
-- Botão "Rastrear" → abre rastreamento ao vivo em nova aba
-- Chatbot interativo para análise de rotas
-- Mapa com rotas otimizadas
-
-### 2️⃣ Rastreamento ao Vivo (MapBox)
-
-```bash
-# Clique no botão "Rastrear" no dashboard
-# OU abra diretamente:
-# interfaces/rastreamento_mapbox.html
+```text
+http://localhost:5000
 ```
 
-**Funcionalidades**:
+The dashboard includes:
 
-- 🗺️ **Rotas completas** desenhadas no mapa (LineString)
-- 🏥 **Marcadores hospitais** com popups informativos
-- 🚗 **3 veículos** simulados (azul, vermelho, verde)
-- ⚡ **Movimento suave** 100ms (vs 3000ms anterior)
-- 📊 **Popups veículos** com status, destino, velocidade, ETA
-- 🛤️ **Trails/rastros** mostrando caminho percorrido
-- 🔔 **Notificações** quando veículo chega em hospital
-- 🎛️ **Controle velocidade** (0.5x, 1x, 2x, 5x, 10x)
-- 📱 **Responsivo** para mobile
+- Five KPI cards: distance, cost, vehicles, deliveries, and critical deliveries
+- A **Track** button that opens the live tracking view
+- An interactive chatbot for route analysis
+- A map with optimized delivery routes
 
-### 3️⃣ Chatbot Analítico
+### 2. Live Tracking with Mapbox
 
-```bash
-# Integrado no dashboard principal
-# Perguntas exemplo:
-- "Analise a eficiência das rotas"
-- "Há entregas críticas?"
-- "Qual a distância total?"
-- "Sugira melhorias"
-- "Compare os veículos"
+Open the tracking page from the dashboard, or open it directly:
+
+```text
+interfaces/rastreamento_mapbox.html
 ```
 
----
+The tracking interface includes:
 
-## 🏗️ Arquitetura
+- Complete route lines drawn on the map
+- Hospital markers with informational popups
+- Three simulated vehicles with distinct colors
+- Smooth 100 ms vehicle position updates
+- Live vehicle popups with status, destination, speed, and ETA
+- Vehicle trails showing completed path segments
+- Arrival notifications for hospital stops
+- Speed control at 0.5x, 1x, 2x, 5x, and 10x
+- Responsive layout for mobile devices
 
-### Estrutura de Módulos (SOLID)
+### 3. Analytical Chatbot
 
+The chatbot is integrated into the main dashboard. Example questions:
+
+```text
+Analyze route efficiency.
+Are there any critical deliveries?
+What is the total distance?
+Suggest route improvements.
+Compare the vehicles.
 ```
+
+## Architecture
+
+The codebase is organized around modular, SOLID-oriented components.
+
+```text
 hospital_routes/
-├── 📁 core/                    # 🎯 Interfaces e modelos base
-│   ├── interfaces.py           # BaseOptimizer, BaseReporter
-│   ├── models.py               # OptimizationResult, RouteInfo
-│   └── exceptions.py           # Exceções customizadas
-│
-├── 📁 optimization/            # 🧬 Motor de otimização
-│   ├── genetic_algorithm.py    # Algoritmo Genético VRP
-│   ├── local_search.py         # 2-opt, inter-route swap
-│   ├── fitness/                # Componentes de fitness
-│   │   ├── composite_fitness.py
-│   │   ├── distance_fitness.py
-│   │   ├── capacity_penalty.py
-│   │   ├── autonomy_penalty.py
-│   │   ├── priority_penalty.py
-│   │   └── load_balance_penalty.py
-│   └── strategies/             # Estratégias de inicialização
-│
-├── 📁 llm/                     # 🤖 Inteligência Artificial
-│   ├── chatbot.py              # Chatbot analítico (Ollama)
-│   ├── ollama_reporter.py      # Gerador de relatórios
-│   ├── prompts.py              # Templates de prompts
-│   └── route_analyzer.py       # Análise inteligente de rotas
-│
-├── 📁 visualization/           # 📊 Visualização
-│   ├── map_generator.py        # Mapas Folium
-│   └── chatbot_interface_v2.py # Dashboard Flask
-│
-├── 📁 domain/                  # 🏥 Entidades de domínio
-│   ├── hospital.py
-│   ├── vehicle.py
-│   ├── delivery.py
-│   └── route.py
-│
-├── 📁 utils/                   # 🛠️ Utilitários
-│   ├── distance_calculator.py  # Haversine, OSRM
-│   └── data_loader.py          # Carregamento de dados
-│
-├── 📁 interfaces/              # 🎨 Interfaces HTML (NOVO!)
-│   ├── chatbot_interface_v2.html   # Dashboard principal
-│   ├── chatbot_interface.html      # Dashboard v1 (legado)
-│   └── rastreamento_mapbox.html    # Rastreamento tempo real
-│
-├── 📁 app_scripts/             # 🚀 Scripts executáveis (NOVO!)
-│   ├── run_chatbot_interface.py    # Servidor Flask
-│   ├── seed_real_data.py           # Dados realistas SP
-│   ├── server_chatbot.py           # API chatbot
-│   ├── setup_ollama.py             # Configurar Ollama
-│   ├── run_demo.py                 # Demo completo
-│   └── test_optimization.py        # Testes otimização
-│
-├── 📁 docs/                    # 📚 Documentação (NOVO!)
-│   ├── VERIFICACAO_REQUISITOS.md   # Conformidade detalhada
-│   ├── COMO_EXECUTAR.md            # Guia execução
-│   ├── COMO_USAR_CHATBOT.md        # Tutorial chatbot
-│   ├── COMO_RESOLVER_OLLAMA.md     # Troubleshooting Ollama
-│   ├── GUIA_RAPIDO_CHATBOT.md      # Quick start
-│   ├── INSTALACAO_FLASK.md         # Setup Flask
-│   ├── SOLUCAO_FLASK.md            # Resolução problemas
-│   ├── MELHORIAS_ALGORITMO.md      # Otimizações genético
-│   ├── MELHORIAS_CHATBOT.md        # Análises LLM
-│   ├── MELHORIAS_SENIOR.md         # Best practices
-│   ├── UX_HEADER_REDESIGN.md       # Design system
-│   └── ORGANIZACAO_PROJETO.md      # Este documento de organização
-│
-├── 📁 output/                  # 📤 Arquivos gerados (NOVO!)
-│   ├── route_map.html          # Mapa gerado (gitignored)
-│   ├── driver_instructions.txt # Instruções geradas
-│   └── route_analysis.txt      # Análises geradas
-│
-├── 📁 examples/                # 💡 Exemplos de uso
-│
-├── cli.py                      # 🖥️ Interface linha de comando
-├── requirements.txt            # 📦 Dependências Python
-└── README.md                   # 📖 Este arquivo
+|-- core/                         # Base interfaces and shared models
+|   |-- interfaces.py             # BaseOptimizer, BaseReporter
+|   |-- models.py                 # OptimizationResult, RouteInfo
+|   `-- exceptions.py             # Custom exceptions
+|
+|-- optimization/                 # Optimization engine
+|   |-- genetic_algorithm.py      # Genetic Algorithm for VRP
+|   |-- local_search.py           # 2-opt and inter-route swap
+|   |-- fitness/                  # Fitness components
+|   |   |-- composite_fitness.py
+|   |   |-- distance_fitness.py
+|   |   |-- capacity_penalty.py
+|   |   |-- autonomy_penalty.py
+|   |   |-- priority_penalty.py
+|   |   `-- load_balance_penalty.py
+|   `-- strategies/               # Initialization strategies
+|
+|-- llm/                          # Artificial intelligence layer
+|   |-- chatbot.py                # Analytical chatbot using Ollama
+|   |-- ollama_reporter.py        # Report generator
+|   |-- prompts.py                # Prompt templates
+|   `-- route_analyzer.py         # Intelligent route analysis
+|
+|-- visualization/                # Visualization layer
+|   |-- map_generator.py          # Folium maps
+|   `-- chatbot_interface_v2.py   # Flask dashboard
+|
+|-- domain/                       # Domain entities
+|   |-- hospital.py
+|   |-- vehicle.py
+|   |-- delivery.py
+|   `-- route.py
+|
+|-- utils/                        # Utilities
+|   |-- distance_calculator.py    # Haversine and OSRM distance calculations
+|   `-- data_loader.py            # Data loading helpers
+|
+|-- interfaces/                   # HTML interfaces
+|   |-- chatbot_interface_v2.html # Main dashboard
+|   |-- chatbot_interface.html    # Legacy dashboard
+|   `-- rastreamento_mapbox.html  # Real-time tracking interface
+|
+|-- app_scripts/                  # Executable scripts
+|   |-- run_chatbot_interface.py  # Flask server
+|   |-- seed_real_data.py         # Realistic Sao Paulo data
+|   |-- server_chatbot.py         # Chatbot API
+|   |-- setup_ollama.py           # Ollama setup helper
+|   |-- run_demo.py               # Full demo
+|   `-- test_optimization.py      # Optimization tests
+|
+|-- docs/                         # Project documentation
+|-- output/                       # Generated files, usually gitignored
+|-- examples/                     # Usage examples
+|-- cli.py                        # Command-line interface
+|-- requirements.txt              # Python dependencies
+`-- README.md
 ```
 
-### Princípios de Design
+### Design Principles
 
-- **SOLID**: Interfaces abstratas, injeção de dependência
-- **Strategy Pattern**: Algoritmos intercambiáveis
-- **Composite Pattern**: Função fitness modular
-- **Factory Pattern**: Criação de otimizadores
-- **Observer Pattern**: Rastreamento em tempo real
+- **SOLID:** Abstract interfaces and dependency injection
+- **Strategy Pattern:** Interchangeable optimization strategies
+- **Composite Pattern:** Modular fitness function composition
+- **Factory Pattern:** Optimizer creation
+- **Observer Pattern:** Real-time tracking updates
 
----
+## Installation
 
-## 🚀 Instalação
+### Prerequisites
 
-### Pré-requisitos
+- Python 3.10 or higher
+- Ollama, required for local LLM features
+- A free Mapbox account and access token
 
-- Python 3.10+
-- Ollama (para LLM)
-- Conta MapBox (token gratuito)
-
-### Passo 1: Clonar Repositório
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/seu-usuario/hospital_routes.git
+git clone https://github.com/your-username/hospital_routes.git
 cd hospital_routes
 ```
 
-### Passo 2: Instalar Dependências
+### 2. Create and Activate a Virtual Environment
 
 ```bash
-# Criar ambiente virtual
-python -m venv .
+python -m venv .venv
+```
 
-# Ativar (Windows)
-.\Scripts\activate
+Windows:
 
-# Ativar (Linux/Mac)
-source bin/activate
+```bash
+.venv\Scripts\activate
+```
 
-# Instalar pacotes
+Linux or macOS:
+
+```bash
+source .venv/bin/activate
+```
+
+Install dependencies:
+
+```bash
 pip install -r requirements.txt
 ```
 
-### Passo 3: Instalar Ollama
+### 3. Install Ollama
+
+Download Ollama from:
+
+```text
+https://ollama.com/download
+```
+
+Then install the Llama 3.2 model:
 
 ```bash
-# Windows/Mac/Linux
-# Baixar de: https://ollama.ai/download
-
-# Instalar modelo Llama 3.2
 ollama pull llama3.2
 ```
 
-### Passo 4: Configurar MapBox
+### 4. Configure Mapbox
 
-1. Criar conta gratuita: https://account.mapbox.com/
-2. Copiar Access Token
-3. Atualizar `interfaces/rastreamento_mapbox.html` linha ~650:
+1. Create a free account at `https://account.mapbox.com/`.
+2. Copy your access token.
+3. Update the token in `interfaces/rastreamento_mapbox.html`:
 
 ```javascript
-mapboxgl.accessToken = "SEU_TOKEN_AQUI";
+mapboxgl.accessToken = "YOUR_MAPBOX_TOKEN";
 ```
 
----
+## Quick Start
 
-## 🎯 Início Rápido
-
-### Opção 1: Interface Completa (Recomendado)
+### Option 1: Full Web Interface
 
 ```bash
-# 1. Iniciar servidor Flask
-python app_scripts/scripts/run_chatbot_interface.py
-
-# 2. Abrir navegador
-# http://localhost:5000
-
-# 3. Explorar funcionalidades:
-#    - Ver mapa com rotas otimizadas
-#    - Clicar em "Rastrear" → rastreamento ao vivo
-#    - Usar chatbot para análise
+python app_scripts/run_chatbot_interface.py
 ```
 
-### Opção 2: CLI (Terminal)
+Then open:
+
+```text
+http://localhost:5000
+```
+
+From the dashboard, you can view optimized routes, open the live tracking simulation, and use the chatbot for route analysis.
+
+### Option 2: Command-Line Interface
 
 ```bash
-# 1. Gerar dados realistas
 python app_scripts/seed_real_data.py
-
-# 2. Executar otimização
 python cli.py
-
-# 3. Abrir mapa gerado
-# output/route_map.html
 ```
 
-### Opção 3: API Programática
+Then open the generated map:
+
+```text
+output/route_map.html
+```
+
+### Option 3: Programmatic API
 
 ```python
 from optimization.genetic_algorithm import GeneticAlgorithmOptimizer
 from core.interfaces import VehicleConstraints, Delivery
 from utils.distance_calculator import HaversineDistanceCalculator
 
-# Configurar veículos
 vehicles = [
     VehicleConstraints(id="V1", max_capacity=150, max_range=100, cost_per_km=2.5),
-    VehicleConstraints(id="V2", max_capacity=200, max_range=120, cost_per_km=3.0)
+    VehicleConstraints(id="V2", max_capacity=200, max_range=120, cost_per_km=3.0),
 ]
 
-# Configurar entregas
 deliveries = [
     Delivery(
-        id="H001", hospital_name="Hospital das Clínicas",
-        latitude=-23.5646, longitude=-46.6708,
-        urgency_level=1,  # Crítico
-        required_capacity=50
+        id="H001",
+        hospital_name="Hospital das Clinicas",
+        latitude=-23.5646,
+        longitude=-46.6708,
+        urgency_level=1,
+        required_capacity=50,
     ),
-    # ... mais entregas
 ]
 
-# Otimizar
 optimizer = GeneticAlgorithmOptimizer()
 result = optimizer.optimize(
     deliveries=deliveries,
     vehicles=vehicles,
-    depot_location=(-23.5505, -46.6333),  # São Paulo
-    distance_calculator=HaversineDistanceCalculator()
+    depot_location=(-23.5505, -46.6333),
+    distance_calculator=HaversineDistanceCalculator(),
 )
 
-print(f"Distância total: {result.total_distance:.2f} km")
-print(f"Custo total: R$ {result.total_cost:.2f}")
-print(f"Veículos usados: {len(result.routes)}")
+print(f"Total distance: {result.total_distance:.2f} km")
+print(f"Total cost: R$ {result.total_cost:.2f}")
+print(f"Vehicles used: {len(result.routes)}")
 ```
 
----
+## Genetic Algorithm
 
-## 🧬 Algoritmo Genético
+### Genetic Representation
 
-### Representação Genética
+Each individual is represented as a list of vehicle routes:
 
 ```python
-# Individual = List[List[str]]
-# Cada lista interna = rota de um veículo
-
 individual = [
-    ["H001", "H003", "H005"],  # Veículo 1
-    ["H002", "H004"],          # Veículo 2
-    ["H006", "H007", "H008"]   # Veículo 3
+    ["H001", "H003", "H005"],  # Vehicle 1
+    ["H002", "H004"],          # Vehicle 2
+    ["H006", "H007", "H008"],  # Vehicle 3
 ]
 ```
 
-### Função Fitness (6 Componentes)
+### Fitness Function
 
+The fitness function combines six optimization objectives:
+
+```text
+fitness = alpha * distance
+        + beta  * capacity_penalty
+        + gamma * autonomy_penalty
+        + delta * priority_penalty
+        + zeta  * load_balance_penalty
+        + eps   * vehicle_penalty
 ```
-fitness = α * distance                  # Minimizar distância total
-       + β * capacity_penalty          # Penalizar violação capacidade
-       + γ * autonomy_penalty          # Penalizar violação autonomia
-       + δ * priority_penalty          # Penalizar atraso críticos
-       + ζ * load_balance_penalty      # Balancear carga entre veículos
-       + ε * vehicle_penalty           # Minimizar número veículos
-```
 
-**Pesos Padrão**:
+Default weights:
 
-- `α = 1.0` (distância base)
-- `β = 1000.0` (capacidade - alta penalidade)
-- `γ = 1000.0` (autonomia - alta penalidade)
-- `δ = 500.0` (prioridade - média penalidade)
-- `ζ = 50.0` (balanceamento - baixa penalidade)
-- `ε = 100.0` (veículos - média penalidade)
+| Component | Weight | Purpose |
+| --- | ---: | --- |
+| Distance | 1.0 | Minimize total distance |
+| Capacity penalty | 1000.0 | Strongly penalize load capacity violations |
+| Autonomy penalty | 1000.0 | Strongly penalize vehicle range violations |
+| Priority penalty | 500.0 | Penalize delayed critical deliveries |
+| Load balance penalty | 50.0 | Encourage balanced vehicle workload |
+| Vehicle penalty | 100.0 | Reduce unnecessary vehicle usage |
 
-### Operadores Genéticos
+### Genetic Operators
 
-#### 1. Seleção
+| Stage | Method |
+| --- | --- |
+| Selection | Tournament selection with three individuals |
+| Crossover | Order Crossover adapted for VRP |
+| Mutation | Swap, insertion, inter-route swap, and route merge |
+| Local search | 2-opt and inter-route swap applied to the best individual |
 
-- **Método**: Tournament Selection (torneio com 3 indivíduos)
-- **Pressão seletiva**: Média
-
-#### 2. Crossover
-
-- **Método**: Order Crossover (OX) adaptado para VRP
-- **Taxa**: 70%
-- **Características**: Preserva ordem parcial, respeita capacidade
-
-#### 3. Mutação
-
-- **Operadores**:
-  - Swap (troca dentro da rota)
-  - Insertion (move para outra posição)
-  - Inter-route swap (move entre rotas)
-  - Route merge (combina rotas)
-- **Taxa**: 20%
-
-#### 4. Busca Local
-
-- **2-opt**: Otimiza rotas individuais
-- **Inter-route swap**: Balanceia carga
-- **Aplicação**: Após cada geração no melhor indivíduo
-
-### Configuração
+Example configuration:
 
 ```python
 config = OptimizationConfig(
@@ -444,15 +397,13 @@ config = OptimizationConfig(
     mutation_rate=0.2,
     elite_size=5,
     tournament_size=3,
-    max_iterations_without_improvement=50
+    max_iterations_without_improvement=50,
 )
 ```
 
----
+## LLM Integration
 
-## 🤖 Integração LLM
-
-### Ollama (Local, Gratuito)
+### Local Chatbot with Ollama
 
 ```python
 from llm.chatbot import RouteChatbot
@@ -460,32 +411,24 @@ from llm.chatbot import RouteChatbot
 chatbot = RouteChatbot(model="llama3.2")
 chatbot.set_optimization_context(result, deliveries)
 
-# Análise conversacional
-response = chatbot.chat("Há melhorias possíveis nas rotas?")
+response = chatbot.chat("Are there possible improvements in these routes?")
 print(response)
 ```
 
-### Relatórios Automáticos
+### Automatic Reports
 
 ```python
 from llm.ollama_reporter import OllamaReporter
 
 reporter = OllamaReporter()
 
-# 1. Instruções para motoristas
 instructions = reporter.generate_driver_instructions(result, deliveries, vehicles)
-
-# 2. Relatório diário
 daily = reporter.generate_daily_summary(result, deliveries)
-
-# 3. Análise semanal
 weekly = reporter.generate_weekly_analysis(result, deliveries)
-
-# 4. Relatório gerencial
 managerial = reporter.generate_managerial_report(result, deliveries, vehicles)
 ```
 
-### Análise Inteligente
+### Intelligent Route Analysis
 
 ```python
 from llm.route_analyzer import RouteAnalyzer
@@ -493,223 +436,176 @@ from llm.route_analyzer import RouteAnalyzer
 analyzer = RouteAnalyzer()
 analysis = analyzer.analyze_route(result, deliveries, vehicles)
 
-print(f"Distribuição de carga: {analysis['load_distribution']}")
-print(f"Sugestões: {analysis['recommendations']}")
+print(f"Load distribution: {analysis['load_distribution']}")
+print(f"Recommendations: {analysis['recommendations']}")
 ```
 
----
+## Real-Time Tracking
 
-## 📍 Rastreamento ao Vivo
+The Mapbox tracking interface includes eight professional capabilities:
 
-### 8 Funcionalidades Profissionais
+| Feature | Description |
+| --- | --- |
+| Route rendering | Planned routes are drawn as LineString layers |
+| Hospital markers | Hospital destinations include informative popups |
+| Smooth movement | Vehicle positions update every 100 ms |
+| Header controls | Simulation speed can be changed from the interface |
+| Vehicle popups | Live status, destination, speed, and ETA |
+| Vehicle trails | Completed path segments are rendered per vehicle |
+| Toast notifications | Arrival alerts are shown with short animations |
+| Mobile responsiveness | Layout adapts to smaller screens |
 
-#### 1. 🗺️ Rotas no Mapa
+Customization examples:
 
 ```javascript
-// LineString para cada veículo com cores distintas
-drawRoutes() → Visualiza rotas planejadas
+const vehicles = [
+  { id: 1, baseSpeed: 45 },
+  { id: 2, baseSpeed: 35 },
+];
+
+setInterval(updatePositions, 100);
 ```
 
-#### 2. 🏥 Marcadores Hospitais
+## Requirements Compliance
 
-```javascript
-// Ícone 🏥 com popups informativos
-addHospitalMarkers() → Destinos com hover effects
-```
+### Requirement 1: Route Optimization with Genetic Algorithms
 
-#### 3. ⚡ Movimento Suave
+| Item | Status | Evidence |
+| --- | --- | --- |
+| TSP/VRP optimization system | Implemented | `optimization/genetic_algorithm.py` |
+| Genetic representation | Implemented | DEAP individual as `List[List[str]]` |
+| Genetic operators | Implemented | Tournament selection, OX crossover, and four mutations |
+| Fitness function | Implemented | Six modular fitness components |
+| Priority handling | Implemented | `PriorityPenalty` and critical deliveries |
+| Capacity constraints | Implemented | `CapacityPenalty` and `max_capacity` |
+| Vehicle autonomy constraints | Implemented | `AutonomyPenalty` and `max_range` |
+| Multiple vehicles | Implemented | Complete VRP representation |
+| Additional constraints | Implemented | Load balancing and local search |
+| Map visualization | Implemented | Folium and Mapbox GL JS |
 
-```javascript
-// 100ms updates (vs 3000ms anterior)
-updatePositions() → 10 FPS, UI render 1Hz
-```
+### Requirement 3: LLM Integration
 
-#### 4. 🎛️ Header Controles
+| Item | Status | Evidence |
+| --- | --- | --- |
+| Driver instructions | Implemented | `OllamaReporter.generate_driver_instructions()` |
+| Daily and weekly reports | Implemented | `generate_daily_summary()` and `generate_weekly_analysis()` |
+| Improvement suggestions | Implemented | `RouteChatbot.chat()` and `RouteAnalyzer` |
+| Effective prompts | Implemented | `llm/prompts.py` and structured system prompts |
+| Natural language interface | Implemented | Web interface, REST API, and Ollama integration |
 
-```html
-<!-- Dropdown velocidade: 0.5x, 1x, 2x, 5x, 10x -->
-<select id="speedControl" onchange="changeSimulationSpeed()"></select>
-```
+All mandatory requirements are implemented and functional.
 
-#### 5. 💬 Popups Veículos
+## Documentation
 
-```javascript
-// Info tempo real: Status, Destino, Velocidade, ETA
-getVehiclePopupHTML(vehicle) → Atualização automática
-```
+### Main Guides
 
-#### 6. 🛤️ Trails/Rastros
+- `docs/VERIFICACAO_REQUISITOS.md` - Detailed requirements compliance
+- `docs/ARCHITECTURE.md` - Full architecture description
+- `docs/PROJECT_STRUCTURE.md` - Folder structure
+- `docs/UX_HEADER_REDESIGN.md` - Design system and header redesign
 
-```javascript
-// LineString mostrando caminho percorrido
-initializeTrails() + updateTrail() → Cores por veículo
-```
+### Quick Guides
 
-#### 7. 🔔 Notificações Toast
+- `docs/GUIA_RAPIDO_CHATBOT.md` - Chatbot quick start
+- `docs/COMO_USAR_CHATBOT.md` - Complete chatbot tutorial
+- `docs/COMO_RESOLVER_OLLAMA.md` - Ollama troubleshooting
+- `docs/INSTALACAO_FLASK.md` - Flask setup
 
-```javascript
-// Alertas de chegada com animações
-showNotification(message, type) → Auto-remove 3s
-```
+### Implemented Improvements
 
-#### 8. 📱 Responsividade Mobile
+- `docs/MELHORIAS_ALGORITMO.md` - Genetic Algorithm improvements
+- `docs/MELHORIAS_CHATBOT.md` - LLM analysis improvements
+- `docs/MELHORIAS_SENIOR.md` - Senior engineering practices
+- `docs/UX_HEADER_REDESIGN.md` - Professional UI improvements
 
-```css
-/* Grid 1 coluna, header stack, botões apenas ícones */
-@media (max-width: 768px) {
-  ...;
-}
-```
-
-### Personalização
-
-```javascript
-// Ajustar velocidade base dos veículos
-vehicles: [
-    { id: 1, baseSpeed: 45, ... },
-    { id: 2, baseSpeed: 35, ... }
-]
-
-// Ajustar intervalo de atualização
-setInterval(updatePositions, 100); // 100ms = 10 FPS
-```
-
----
-
-## ✅ Conformidade Requisitos
-
-### Requisito 1: Sistema Otimização (Algoritmos Genéticos)
-
-| Item                       | Status | Evidência                            |
-| -------------------------- | ------ | ------------------------------------ |
-| 1.1 Sistema TSP/VRP        | ✅     | `optimization/genetic_algorithm.py`  |
-| 1.2 Representação Genética | ✅     | DEAP Individual (List[List[str]])    |
-| 1.3 Operadores Genéticos   | ✅     | Tournament, OX Crossover, 4 mutações |
-| 1.4 Função Fitness         | ✅     | 6 componentes modulares              |
-| 1.5.1 Prioridades          | ✅     | `PriorityPenalty` + críticos         |
-| 1.5.2 Capacidade           | ✅     | `CapacityPenalty` + max_capacity     |
-| 1.5.3 Autonomia            | ✅     | `AutonomyPenalty` + max_range        |
-| 1.5.4 Múltiplos Veículos   | ✅     | VRP completo                         |
-| 1.5.5 Outras Restrições    | ✅     | Balanceamento + busca local          |
-| 1.6 Visualização Mapa      | ✅     | Folium + MapBox GL JS                |
-
-### Requisito 3: Integração LLMs
-
-| Item                            | Status | Evidência                                                |
-| ------------------------------- | ------ | -------------------------------------------------------- |
-| 3.1 Instruções Motoristas       | ✅     | `OllamaReporter.generate_driver_instructions()`          |
-| 3.2 Relatórios Diários/Semanais | ✅     | `generate_daily_summary()`, `generate_weekly_analysis()` |
-| 3.3 Sugestões Melhorias         | ✅     | `RouteChatbot.chat()`, `RouteAnalyzer`                   |
-| 3.4 Prompts Eficientes          | ✅     | `llm/prompts.py`, system prompts estruturados            |
-| 3.5 Linguagem Natural           | ✅     | Interface web + API REST + Ollama                        |
-
-**✅ TODOS OS REQUISITOS OBRIGATÓRIOS IMPLEMENTADOS E FUNCIONAIS!**
-
----
-
-## 📚 Documentação
-
-### Guias Principais
-
-- 📖 **[VERIFICACAO_REQUISITOS.md](docs/VERIFICACAO_REQUISITOS.md)** - Conformidade detalhada
-- 🏗️ **[ARCHITECTURE.md](ARCHITECTURE.md)** - Arquitetura completa
-- 📦 **[PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md)** - Estrutura de pastas
-- 🎨 **[UX_HEADER_REDESIGN.md](docs/UX_HEADER_REDESIGN.md)** - Design system
-
-### Guias Rápidos
-
-- 🚀 **[GUIA_RAPIDO_CHATBOT.md](GUIA_RAPIDO_CHATBOT.md)** - Usar chatbot
-- 💬 **[COMO_USAR_CHATBOT.md](COMO_USAR_CHATBOT.md)** - Tutorial completo
-- 🔧 **[COMO_RESOLVER_OLLAMA.md](COMO_RESOLVER_OLLAMA.md)** - Troubleshooting
-- ⚙️ **[INSTALACAO_FLASK.md](INSTALACAO_FLASK.md)** - Setup servidor
-
-### Melhorias Implementadas
-
-- 📊 **[MELHORIAS_ALGORITMO.md](docs/MELHORIAS_ALGORITMO.md)** - Otimizações genético
-- 🤖 **[MELHORIAS_CHATBOT.md](docs/MELHORIAS_CHATBOT.md)** - Análises LLM
-- 👨‍💼 **[MELHORIAS_SENIOR.md](docs/MELHORIAS_SENIOR.md)** - Best practices
-- 🎨 **[UX_HEADER_REDESIGN.md](docs/UX_HEADER_REDESIGN.md)** - UI profissional
-
----
-
-## 🛠️ Tecnologias
+## Technology Stack
 
 ### Backend
 
-- **Python 3.10+**: Linguagem principal
-- **DEAP**: Framework algoritmos genéticos
-- **Flask**: Servidor web API REST
-- **Ollama**: LLM local (Llama 3.2)
+- Python 3.10+
+- DEAP for evolutionary algorithms
+- Flask for the REST API and web server
+- Ollama with Llama 3.2 for local LLM features
 
 ### Frontend
 
-- **HTML5/CSS3/JavaScript ES6+**: Interface web
-- **MapBox GL JS 3.0**: Mapas interativos
-- **Folium**: Visualização estática rotas
-- **Inter Font (Google Fonts)**: Tipografia profissional
+- HTML5, CSS3, and modern JavaScript
+- Mapbox GL JS 3.0 for interactive maps
+- Folium for static route maps
+- Inter font for interface typography
 
-### Libs Python
+### Python Libraries
 
-- `deap`: Algoritmos evolutivos
-- `folium`: Mapas Leaflet
-- `requests`: Cliente HTTP
-- `flask`, `flask-cors`: API REST
-- `python-dotenv`: Configuração
+- `deap` for evolutionary algorithms
+- `folium` for Leaflet-based maps
+- `requests` for HTTP calls
+- `flask` and `flask-cors` for the API
+- `python-dotenv` for configuration
 
----
+## Usage Examples
 
-## 🎓 Exemplos de Uso
-
-### Exemplo 1: Otimização Básica
+### Basic Optimization
 
 ```bash
 python cli.py
 ```
 
-### Exemplo 2: Dashboard Completo
+### Full Dashboard
 
 ```bash
 python app_scripts/run_chatbot_interface.py
-# http://localhost:5000
 ```
 
-### Exemplo 3: Rastreamento Direto
+Open:
 
-```bash
-# Abrir interfaces/rastreamento_mapbox.html no navegador
-# OU clicar em "Rastrear" no dashboard
+```text
+http://localhost:5000
 ```
 
-### Exemplo 4: Chatbot API
+### Direct Tracking View
+
+Open the following file in a browser:
+
+```text
+interfaces/rastreamento_mapbox.html
+```
+
+You can also open it by clicking **Track** in the dashboard.
+
+### Chatbot API
 
 ```python
 import requests
 
-response = requests.post('http://localhost:5000/api/chat', json={
-    "message": "Analise a eficiência das rotas"
-})
-print(response.json()['response'])
+response = requests.post(
+    "http://localhost:5000/api/chat",
+    json={"message": "Analyze route efficiency"},
+)
+
+print(response.json()["response"])
 ```
 
----
+## Contributing
 
+Contributions are welcome.
 
-## 🤝 Contribuindo
+1. Fork the project.
+2. Create a feature branch:
 
-Contribuições são bem-vindas! Por favor:
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
 
-1. Fork o projeto
-2. Crie uma branch (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
+3. Commit your changes:
 
----
+   ```bash
+   git commit -m "Add amazing feature"
+   ```
 
-<div align="center">
+4. Push to your branch:
 
-**[⬆ Voltar ao topo](#-sistema-de-otimização-de-rotas-hospitalares)**
+   ```bash
+   git push origin feature/amazing-feature
+   ```
 
-Feito com ❤️ e ☕
-
-</div>
+5. Open a Pull Request.
